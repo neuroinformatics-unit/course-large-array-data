@@ -1,0 +1,46 @@
+# Introduction
+
+## The instructor team
+
+Alessandro Felder
+Igor Tatarnikov
+Kimberly Meechan
+Laura Porta
+James A. Bednar
+
+## Mentimeter
+
+What is your role at work?
+What scientific domains do you work in?
+
+# Overall objectives of this track
+
+- understand key strategies that allow handling large array data
+- gain hands-on Python experience handling large array data
+- appreciate the diversity of the open-source Python ecosystem for large array data
+
+# What do we mean by large array data?
+
+## Some examples
+
+## Electrophysiology
+
+## Whole brain imaging
+
+## Two-photon microscopy
+
+## Multimodal imaging
+
+## Large Array Data
+
+Apart from being beautiful and useful public research datasets, they vastly exceed [an average laptop's memory (8-32 GB) in size([@hp_ram_guide]).
+
+
+## An abstraction of a computer
+
+
+## Latency
+
+<script src="https://gist.github.com/hellerbarde/2843375.js"></script>
+
+## 
