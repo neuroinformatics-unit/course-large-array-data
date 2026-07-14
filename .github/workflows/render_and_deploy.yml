@@ -1,0 +1,58 @@
+name: Render presentation and publish to GitHub Pages
+
+# Render presentation with Quarto on all merges to main, all pull requests, 
+# or by manual workflow dispatch. The build job can be used as a CI check 
+# that the presentation still renders successfully.
+# The deploy step only runs when a release tag is pushed to the main branch 
+# and actually pushes the generated html to the gh-pages branch 
+# (which triggers a GitHub pages deployment).
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: render and publish
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: "3.13"
+          activate-environment: "true"
+
+      - name: Install Python dependencies with uv
+        run: |
+          uv pip install -r requirements.txt
+
+      - name: Render Quarto Project
+        env:
+          # Quarto will use the currently-activated venv's Python
+          QUARTO_PYTHON: python
+        run: |
+          quarto render index.qmd
+
+      - name: Create .nojekyll file
+        run: |
+          touch build/.nojekyll
+
+      - name: Deploy
+        if: github.event_name == 'push' && github.ref_type == 'tag'
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build
+  
