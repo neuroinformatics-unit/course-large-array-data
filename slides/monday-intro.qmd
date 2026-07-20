@@ -15,9 +15,18 @@ What scientific domains do you work in?
 
 # Overall objectives of this track
 
-- understand key strategies that allow handling large array data
-- gain hands-on Python experience handling large array data
-- appreciate the diversity of the open-source Python ecosystem for large array data
+- understand challenges related to large array data and key strategies to address them
+- gain hands-on Python experience and increase confidence in handling large array data
+- appreciate the diversity of the open-source Python ecosystem for large array data and how you are part of it
+
+# Overview of week
+
+## Overview
+
+- day 1: foundations: computers, examples, IO, laziness, RAM
+- day 2: more foundations. OME-zarr
+- day 3: compression, profiling, benchmarking, visualisation, applications
+- day 4-5: collaboration
 
 # What do we mean by large array data?
 
@@ -43,4 +52,24 @@ Apart from being beautiful and useful public research datasets, they vastly exce
 
 <script src="https://gist.github.com/hellerbarde/2843375.js"></script>
 
-## 
+## `numpy` is great
+
+`numpy` is the default scientific Python library to process array data.
+It works well for many applications.
+Using `numpy` keeps your code simple, more accessible, and easy-to-read.
+
+## `numpy` can 
+
+write 32 gig tiff, read, downsample with memmap
+used in `roiextractors`
+
+## limitations of numpy memmap
+
+- pickling and multiprocessing
+- store
+
+## the `dask` Array
+
+An evolution of the `numpy` array
+- same interface (for most functions)
+- uses chunking
