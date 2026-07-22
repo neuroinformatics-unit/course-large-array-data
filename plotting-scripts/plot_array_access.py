@@ -259,21 +259,3 @@ def color_chunk_figure(*, image_shape: tuple[int, int, int], chunk_shape: tuple[
     ax.axis('off');
     ax.set_title(f'Image shape = {image_shape}\nChunk shape = {chunk_shape}')
     return fig
-
-
-def access_figure() -> tuple[tuple[matplotlib.figure.Figure, object], tuple[matplotlib.figure.Figure, object]]:
-    first = plot_array_access(
-        array_shape=(10, 10, 20),
-        chunk_shape=(10, 10, 1),
-        requested=(slice(2, 4), slice(3, 5), slice(2, 4)),
-        title="Chunk shape = (10, 10, 1)",
-    )
-
-    second = plot_array_access(
-        array_shape=(10, 10, 20),
-        chunk_shape=(2, 2, 3),
-        requested=(slice(2, 4), slice(3, 5), slice(2, 4)),
-        title="Chunk shape = (2, 2, 3)",
-    )
-
-    return first, second
