@@ -1,12 +1,34 @@
 # Introduction
 
+intro to computers todo
+
+slide for swap diagram
+slide for gpu diagram
+slide for numpy array reminder
+slide about numpy memmap
+
+technology
+
+add nice gitignore
+way to share exercise code
+way to set up env
+
+exercises
+
+exercise around using memmap
+
+zarr exercise
+dask exercise
+
+fix references
+
 ## The instructor team
 
-Alessandro Felder
-Igor Tatarnikov
-Kimberly Meechan
-Laura Porta
-James A. Bednar
+* Alessandro Felder
+* Igor Tatarnikov
+* Kimberly Meechan
+* Laura Porta
+* James A. Bednar
 
 ## Mentimeter
 
@@ -19,44 +41,131 @@ What scientific domains do you work in?
 - gain hands-on Python experience and increase confidence in handling large array data
 - appreciate the diversity of the open-source Python ecosystem for large array data and how you are part of it
 
-# Overview of week
-
 ## Overview
 
-- day 1: foundations: computers, examples, IO, laziness, RAM
-- day 2: more foundations. OME-zarr
-- day 3: compression, profiling, benchmarking, visualisation, applications
+- day 1: theory, motivation, intro to zarr and dask
+- day 2: parallelisation with dask, standards for large imaging data
+- day 3: advanced topics: compression, benchmarking, visualisation, real-life applications
 - day 4-5: collaboration
 
-# What do we mean by large array data?
-
-## Some examples
+# Some examples of large array data
 
 ## Electrophysiology
 
+![](img/elife-47188-video2.mp4){fig-align="center" width="95%"}
+
+::: footer
+[@juavinett_chronically_2019]
+:::
+
+## Brain Wide Map
+
+![](img/raw_voltage_snippet.png){fig-align="center" width="95%"}
+
+::: footer
+[@ibl_brain_wide_map_2026]
+:::
+
+## Brain Wide Map
+
+https://viz.internationalbrainlab.org/app?spikesorting=ss_2024-05-06
+
+::: footer
+[@ibl_brain_wide_map_2026]
+:::
+
+::: notes
+49.7 TB across 2048 files and 139 subjects
+:::
+
+## Brain Wide Map (~ 50TB)
+
+![](img/raw_voltage_snippet.png){fig-align="center" width="95%"}
+
+::: footer
+[@ibl_brain_wide_map_2026]
+:::
+
+## Project Aeon: Week-long recordings
+
+<iframe src="https://aeon.swc.ucl.ac.uk/getting_started/npx_recording/#id1" title="Aeon NPX Recording Guide" style="max-height: 110%; max-width: 125%; width: 125%; height: 100%; transform: scale(0.8); transform-origin: top left;"></iframe>
+
+Two mice, video + neuropixels at 200GB/h
+
+::: footer
+[@aeon_npx_recording_guide]
+:::
+
+## Project Aeon: Week-long recordings
+
+<iframe src="https://aeon.swc.ucl.ac.uk/user/datasets/#datasets" title="Aeon Datasets" style="max-height: 110%; max-width: 125%; width: 125%; height: 100%; transform: scale(0.8); transform-origin: top left;"></iframe>
+
+::: footer
+[@aeon_datasets_page]
+:::
+
 ## Whole brain imaging
+
+TODO
 
 ## Two-photon microscopy
 
-## Multimodal imaging
+TODO
+
+## Electron microscopy of a marine worm (~2TB) {.smaller}
+
+![](img/platynereis-overview.png){fig-align="center" .nostretch width="65%"}
+
+::: footer
+[@vergara_whole_body_2021]
+:::
+
+## Electron microscopy of a marine worm (~2TB) {.smaller}
+
+![](img/platy-cut.webm){fig-align="center" .nostretch width="65%" loop="true"}
+
+::: footer
+[@vergara_whole_body_2021]
+:::
+
+## Astronomy
+
+TODO
+
+## Geography
+
+TODO
 
 ## Large Array Data
 
 Apart from being beautiful and useful public research datasets, they vastly exceed [an average laptop's memory (8-32 GB) in size([@hp_ram_guide]).
+To be able 
 
 
-## An abstraction of a computer
+## A mental model of a computer
 
+
+![](img/von_neumann.png){fig-align="center" .nostretch width="65%"}
 
 ## Latency
 
 <script src="https://gist.github.com/hellerbarde/2843375.js"></script>
 
-## `numpy` is great
+Data access times are key!
+
+
+## `numpy` is great!
 
 `numpy` is the default scientific Python library to process array data.
 It works well for many applications.
 Using `numpy` keeps your code simple, more accessible, and easy-to-read.
+
+## Plot a slice of a brain using `numpy` array
+
+TODO numpy array example
+
+## A mental model of accessing part of an array
+
 
 ## `numpy` can 
 

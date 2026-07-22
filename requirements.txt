@@ -1,2 +1,10 @@
 jupyter
 jupyter-cache
+numpy
+matplotlib
+h5py
+dandi
+remfile
+zarr>=3
+ome-zarr-models
+dask
