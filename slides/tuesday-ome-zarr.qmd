@@ -1,0 +1,59 @@
+---
+title: OME-Zarr introduction
+subtitle: OSSS 2026
+format:
+  revealjs:
+    incremental: true 
+    css: style.css
+---
+
+## Recap on Zarr
+
+:::: {.columns}
+
+::: {.column width="40%"}
+![](../img/zarr-pink-stacked.svg){fig-alt="Zarr logo"}
+:::
+
+::: {.column width="60%"}
+- open-source file format specification
+- n-dimensional arrays
+- split into chunks
+- Each chunk is a separate file
+- Enables parallel processing of massive datasets
+:::
+
+::::
+
+## Zarr is general
+
+One of Zarr's great strengths is that it can be applied to any kind of array data across many fields:
+
+Their website's [dataset section](https://zarr.dev/datasets/) includes:
+
+- climate model outputs
+- sea surface temperature
+- bio-imaging data
+- ...
+
+## Zarr is general
+
+Equally, one of Zarr's great weaknesses is that it is general! When we use it for a specific kind of data (say biological images), there is no consistent place for related metadata to be stored.
+
+For example: 
+- pixel size?
+- units?
+- meaning of dimensions? E.g. time / z / y / x / channels
+
+This makes it harder to share datasets with others, and to process datasets that weren't created by yourself.
+
+## OME-Zarr
+
+Specific fields can get around this limitation by extending the Zarr specification.
+
+- [OME-Zarr](https://ngff.openmicroscopy.org/index.html) = Zarr + bio-imaging related metadata
+- It also introduces conventions on how to layout the Zarr files to handle common use cases:
+  - multi-resolution datasets (we'll come back to this!)
+  - high-content screening
+  - storing label images alongside raw images
+

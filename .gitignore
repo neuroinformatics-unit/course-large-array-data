@@ -5,3 +5,4 @@ build/
 .DS_Store
 /.quarto/
 .venv/
+**/*.quarto_ipynb
