@@ -1,4 +1,8 @@
 jupyter
 jupyter-cache
-zarr
+zarr[remote]
+aiohttp
+ome-zarr-models
 jupyterlab
+rich
+matplotlib

@@ -73,3 +73,12 @@ Specific fields can get around this limitation by extending the Zarr specificati
   - high-content screening
   - storing label images alongside raw images
 
+## Working with OME-Zarr
+
+Let's take a look at some OME-Zarr metadata using [ome-zarr-models](https://ome-zarr-models-py.readthedocs.io/en/stable/).
+
+OME-Zarr models is a python package specialised to validating and loading OME-Zarr metadata.
+
+Quick demo of accessing metadata: `examples/ome-zarr-models_example.ipynb`
+
+
