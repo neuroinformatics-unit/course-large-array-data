@@ -6,3 +6,4 @@ build/
 /.quarto/
 .venv/
 **/*.quarto_ipynb
+**/*.ipynb_checkpoints

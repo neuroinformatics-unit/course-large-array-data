@@ -25,7 +25,23 @@ format:
 
 ::::
 
-## Zarr is general
+## Working with Zarr
+
+One of the main libraries for interacting with Zarr in python is [zarr-python](https://zarr.readthedocs.io/en/stable/).
+
+Quick demo of using zarr-python to make arrays and groups: 
+`examples/zarr_python_example.ipynb`
+
+## What's in a Zarr?
+
+The [zarr specification](https://zarr-specs.readthedocs.io/en/v3.1.0/specs.html) dictates how a Zarr file should be structured.
+
+As we saw in the demo, the main components of a Zarr file are:
+- groups (which you can think of as containers) and arrays (our actual numeric data)
+- groups can contain any combination of groups and arrays, allowing a tree of datasets to be made
+- each level of the tree (a group or array) contains a `zarr.json` file with basic metadata
+
+## Zarr is general (pros)
 
 One of Zarr's great strengths is that it can be applied to any kind of array data across many fields:
 
@@ -36,7 +52,7 @@ Their website's [dataset section](https://zarr.dev/datasets/) includes:
 - bio-imaging data
 - ...
 
-## Zarr is general
+## Zarr is general (cons)
 
 Equally, one of Zarr's great weaknesses is that it is general! When we use it for a specific kind of data (say biological images), there is no consistent place for related metadata to be stored.
 
