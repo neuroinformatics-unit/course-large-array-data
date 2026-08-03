@@ -1,0 +1,10 @@
+zarr>=3
+dask
+pynwb
+ipython
+ome-zarr-models
+numpy
+scipy
+remfile
+dandi
+matplotlib
