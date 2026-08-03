@@ -1,7 +1,7 @@
-index.html
-extra_slide.html
+*.html
 index_files/
 build/
+notebooks/data/
 .DS_Store
 /.quarto/
 .venv/
