@@ -1,6 +1,13 @@
 project:
   type: default
   output-dir: build
+  preview:
+    watch-inputs: true
+    navigate: true
+    browser: false
+
+editor:
+  render-on-save: true
 
 bibliography: references.bib
 

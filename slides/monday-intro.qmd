@@ -1,27 +1,5 @@
 # Introduction
 
-intro to computers todo
-
-slide for swap diagram
-slide for gpu diagram
-slide for numpy array reminder
-slide about numpy memmap
-
-technology
-
-add nice gitignore
-way to share exercise code
-way to set up env
-
-exercises
-
-exercise around using memmap
-
-zarr exercise
-dask exercise
-
-fix references
-
 ## The instructor team
 
 * Alessandro Felder
@@ -43,16 +21,97 @@ What scientific domains do you work in?
 
 ## Overview
 
-- day 1: theory, motivation, intro to zarr and dask
-- day 2: parallelisation with dask, standards for large imaging data
-- day 3: advanced topics: compression, benchmarking, visualisation, real-life applications
+- day 1: basics, motivation, reading and writing large arrays
+- day 2: processing large arrays in parallel, standards for large imaging data
+- day 3: advanced topics and case studies: compression, benchmarking, visualisation, real-life applications
 - day 4-5: collaboration
 
-# Some examples of large array data
+# High-level preliminaries
 
-## Electrophysiology
+* what are arrays?
+* what is data "size"?
 
-![](img/elife-47188-video2.mp4){fig-align="center" width="95%"}
+We will look deeper later
+
+::: notes :::
+everybody on the same page
+:::
+
+## Arrays
+
+::: {.columns}
+::: {.column width="45%"}
+* Data arranged in an (N-dimensional) grid
+* Data all have the same type
+:::
+
+::: {.column width="55%"}
+![](img/array_2d.png){.nostretch width="90%"}
+:::
+:::
+
+## Data size
+
+::: {.columns}
+::: {.column width="40%"}
+Computers store data as _bits_ , arranged in _bytes_ of 8 bits.
+We use the usual decimal system prefixes:
+
+* kilobyte (KB)
+* megabyte (MB)
+* gigabyte (GB)
+* terabyte (TB)
+* ...
+
+:::
+
+::: {.column width="59%"}
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+
+array_shape = (5,5)
+dtype = np.uint8
+array = np.random.randint(low=0, high=2**8, size=array_shape, dtype=dtype)
+
+print(array)
+print("Array shape: "+str(array.shape))
+array_bytes = array.tobytes()
+
+print(f"{len(array_bytes)} bytes total")
+print()
+print("First ten bytes:")
+for my_byte in array_bytes[:10]:
+    print(f'{my_byte:0>8b}', end=' ')
+
+print("...")
+```
+:::
+:::
+
+:::footer
+[@ome_zarr_book]
+:::
+
+# Why do we care about arrays?
+
+Lots of scientific data comes in array form.
+
+## Electrophysiological probes
+
+hello
+
+![](img/neuropixels-nature-2017.png){fig-align="center"}
+
+::: footer
+[@jun_fully_2017]
+:::
+
+## Electrophysiological probe recordings {.smaller}
+
+hello
+
+![](img/elife-47188-video2.mp4){fig-align="center" width="95%" loop="True"}
 
 ::: footer
 [@juavinett_chronically_2019]
@@ -68,27 +127,30 @@ What scientific domains do you work in?
 
 ## Brain Wide Map
 
-https://viz.internationalbrainlab.org/app?spikesorting=ss_2024-05-06
+<iframe src="https://viz.internationalbrainlab.org/app?spikesorting=ss_2024-05-06" title="IBL Brain wide map" style="max-height: 110%; max-width: 125%; width: 125%; height: 100%; transform: scale(0.8); transform-origin: top left;"></iframe>
 
 ::: footer
 [@ibl_brain_wide_map_2026]
 :::
 
-::: notes
+## Brain Wide Map
+
 49.7 TB across 2048 files and 139 subjects
-:::
-
-## Brain Wide Map (~ 50TB)
-
-![](img/raw_voltage_snippet.png){fig-align="center" width="95%"}
 
 ::: footer
 [@ibl_brain_wide_map_2026]
 :::
 
-## Project Aeon: Week-long recordings
+
+## Week-long recordings
 
 <iframe src="https://aeon.swc.ucl.ac.uk/getting_started/npx_recording/#id1" title="Aeon NPX Recording Guide" style="max-height: 110%; max-width: 125%; width: 125%; height: 100%; transform: scale(0.8); transform-origin: top left;"></iframe>
+
+::: footer
+[@aeon_npx_recording_guide]
+:::
+
+## Week-long recordings
 
 Two mice, video + neuropixels at 200GB/h
 
@@ -96,23 +158,17 @@ Two mice, video + neuropixels at 200GB/h
 [@aeon_npx_recording_guide]
 :::
 
-## Project Aeon: Week-long recordings
+## Two-photon microscopy
 
-<iframe src="https://aeon.swc.ucl.ac.uk/user/datasets/#datasets" title="Aeon Datasets" style="max-height: 110%; max-width: 125%; width: 125%; height: 100%; transform: scale(0.8); transform-origin: top left;"></iframe>
+TODO
 
-::: footer
-[@aeon_datasets_page]
-:::
 
 ## Whole brain imaging
 
 TODO
 
-## Two-photon microscopy
 
-TODO
-
-## Electron microscopy of a marine worm (~2TB) {.smaller}
+## Electron microscopy of a marine worm {.smaller}
 
 ![](img/platynereis-overview.png){fig-align="center" .nostretch width="65%"}
 
@@ -120,7 +176,7 @@ TODO
 [@vergara_whole_body_2021]
 :::
 
-## Electron microscopy of a marine worm (~2TB) {.smaller}
+## Electron microscopy of a marine worm {.smaller}
 
 ![](img/platy-cut.webm){fig-align="center" .nostretch width="65%" loop="true"}
 
@@ -128,31 +184,112 @@ TODO
 [@vergara_whole_body_2021]
 :::
 
-## Astronomy
-
-TODO
+(~2TB) 
 
 ## Geography
 
 TODO
 
+## Astronomy
+
+TODO
+
+
+
+## Example: a 3D array of unsigned 16-bit integer type
+
+::: {.columns}
+::: {.column width="45%"}
+* Data arranged in an (N-dimensional) grid
+* Data all have the same type
+:::
+
+::: {.column width="55%"}
+![](img/array_3d.png){.nostretch width="90%"}
+:::
+
+:::
+
+:::footer
+[@ome_zarr_book]
+:::
+
+## What is an array?
+
+::: {.columns}
+::: {.column width="55%"}
+Computers store data as _bits_ , arranged in _bytes_ of 8 bits
+:::
+
+::: {.column width="45%"}
+![](img/array_3d.png){.nostretch width="90%"}
+:::
+
+:::
+
+:::footer
+[@ome_zarr_book]
+:::
+
+## What is an array?
+
+::: {.columns}
+::: {.column width="55%"}
+Computers store data as _bits_ , arranged in _bytes_ of 8 bits
+:::
+
+::: {.column width="45%"}
+```{.python}
+import matplotlib.pyplot as plt
+import numpy as np
+
+array_shape = (32, 32)
+dtype = np.uint16
+image = np.random.randint(low=0, high=2**16, size=array_shape, dtype=dtype)
+print(image)
+
+fig, ax = plt.subplots()
+ax.imshow(image, cmap="Grays", vmin=0, vmax=2**16);
+```
+:::
+
+:::
+
+:::footer
+[@ome_zarr_book]
+:::
+
 ## Large Array Data
 
 Apart from being beautiful and useful public research datasets, they vastly exceed [an average laptop's memory (8-32 GB) in size([@hp_ram_guide]).
-To be able 
 
 
-## A mental model of a computer
+## A mental model of a computer {.smaller}
 
 
-![](img/von_neumann.png){fig-align="center" .nostretch width="65%"}
+![](img/computer_mental_model.png){fig-align="center" .nostretch height="10%"}
+
+## A mental model of a computer {.smaller}
+
+
+![](img/computer_mental_model_influence.png){fig-align="center" .nostretch height="40%"}
+
+## A mental model of a computer {.smaller}
+
+
+![](img/computer_mental_model_cache_swap.png){fig-align="center" .nostretch height="40%"}
+
 
 ## Latency
 
 <script src="https://gist.github.com/hellerbarde/2843375.js"></script>
 
-Data access times are key!
+## A mental model of a computer {.smaller}
 
+
+![](img/computer_mental_model.png){fig-align="center" .nostretch height="40%"}
+
+Most of the time, we don't have to worry about this.
 
 ## `numpy` is great!
 

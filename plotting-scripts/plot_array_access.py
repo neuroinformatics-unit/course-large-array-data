@@ -5,18 +5,21 @@ import numpy as np
 
 
 DEFAULT_ACCESS_STYLE: dict[str, object] = {
-    "all_color": "tab:blue",
-    "all_alpha": 0.18,
-    "requested_color": "tab:red",
+    "all_color": "#E4E3F7",
+    "all_alpha": 0.35,
+    "requested_color": "#1F6B47",
     "requested_alpha": 0.95,
-    "loaded_color": "tab:orange",
-    "loaded_alpha": 0.35,
+    "loaded_color": "#B3E2CD",
+    "loaded_alpha": 0.45,
     "edge_color": "black",
     "edge_linewidth": 0.5,
     "legend_all": "All data",
     "legend_requested": "Requested data ({count} voxels)",
     "legend_loaded": "Loaded data ({count} voxels)",
+    "title_fontsize": 24,
+    "legend_fontsize": 18,
 }
+DPI = 300
 
 
 def _merge_style(overrides: dict[str, object] | None) -> dict[str, object]:
@@ -39,9 +42,6 @@ def _normalize_requested_slices(
         if step != 1:
             raise ValueError(f"requested slice step must be contiguous (axis {axis})")
 
-        if stop <= start:
-            raise ValueError(f"requested region is empty after normalization on axis {axis}")
-
         normalized.append(slice(start, stop, 1))
 
     return tuple(normalized)
@@ -58,7 +58,7 @@ def _compute_requested_and_loaded_masks(
         raise ValueError("array_shape values must be positive")
     if len(chunk_shape) != len(array_shape):
         raise ValueError("chunk_shape dimensionality must match array_shape")
-    if any(c <= 0 for c in chunk_shape):
+    if any(c < 0 for c in chunk_shape):
         raise ValueError("chunk_shape values must be positive")
 
     req = _normalize_requested_slices(array_shape, requested)
@@ -68,27 +68,28 @@ def _compute_requested_and_loaded_masks(
 
     loaded_mask = np.zeros(array_shape, dtype=bool)
 
-    chunk_starts_per_axis: list[range] = [
-        range(0, size, chunk)
-        for size, chunk in zip(array_shape, chunk_shape, strict=True)
-    ]
+    if chunk_shape[0]>0:
+        chunk_starts_per_axis: list[range] = [
+            range(0, size, chunk)
+            for size, chunk in zip(array_shape, chunk_shape, strict=True)
+        ]
 
-    for chunk_origin in np.ndindex(*(len(r) for r in chunk_starts_per_axis)):
-        chunk_slices: list[slice] = []
-        intersects = True
-        for axis, chunk_idx in enumerate(chunk_origin):
-            start = chunk_starts_per_axis[axis][chunk_idx]
-            stop = min(start + chunk_shape[axis], array_shape[axis])
-            chunk_slices.append(slice(start, stop))
+        for chunk_origin in np.ndindex(*(len(r) for r in chunk_starts_per_axis)):
+            chunk_slices: list[slice] = []
+            intersects = True
+            for axis, chunk_idx in enumerate(chunk_origin):
+                start = chunk_starts_per_axis[axis][chunk_idx]
+                stop = min(start + chunk_shape[axis], array_shape[axis])
+                chunk_slices.append(slice(start, stop))
 
-            req_start = req[axis].start
-            req_stop = req[axis].stop
-            if stop <= req_start or start >= req_stop:
-                intersects = False
-                break
+                req_start = req[axis].start
+                req_stop = req[axis].stop
+                if stop <= req_start or start >= req_stop:
+                    intersects = False
+                    break
 
-        if intersects:
-            loaded_mask[tuple(chunk_slices)] = True
+            if intersects:
+                loaded_mask[tuple(chunk_slices)] = True
 
     return requested_mask, loaded_mask
 
@@ -103,6 +104,17 @@ def _plot_array_access_2d(
     title: str | None,
 ) -> tuple[matplotlib.figure.Figure, object]:
     fig, ax = plt.subplots()
+    has_chunk_legend = chunk_shape[0] > 0
+    title_fontsize = float(style["title_fontsize"])
+    legend_fontsize = float(style["legend_fontsize"])
+    width_in = 4.6
+    data_height_in = width_in * (array_shape[0] / array_shape[1])
+    title_text = title or f"Array shape = {array_shape}" + (f"\nChunk shape = {chunk_shape}" if has_chunk_legend else "")
+    title_lines = title_text.count("\n") + 1
+    top_pad_in = 0.08 + (title_fontsize / 72.0) * (title_lines + 0.6)
+    bottom_pad_in = 0.8 + ((legend_fontsize / 72.0) * 3.4 if has_chunk_legend else 0.0)
+    height_in = data_height_in + top_pad_in + bottom_pad_in
+    fig.set_size_inches(width_in, height_in)
 
     base_layer = np.zeros((*array_shape, 4), dtype=float)
     base_layer[..., :3] = plt.matplotlib.colors.to_rgb(style["all_color"])
@@ -119,24 +131,61 @@ def _plot_array_access_2d(
     requested_layer[..., 3] = requested_mask.astype(float) * float(style["requested_alpha"])
     ax.imshow(requested_layer)
 
+    # Draw per-pixel outlines on top of the color layers.
+    ax.pcolormesh(
+        np.arange(array_shape[1] + 1) - 0.5,
+        np.arange(array_shape[0] + 1) - 0.5,
+        np.zeros(array_shape, dtype=float),
+        shading="flat",
+        facecolors="none",
+        edgecolors=style["edge_color"],
+        linewidth=0.35,
+    )
+
     ax.set_aspect("equal")
     ax.axis("off")
-    ax.set_title(title or f"Array shape = {array_shape}\nChunk shape = {chunk_shape}")
+    ax.set_xlim(-0.5, array_shape[1] - 0.5)
+    ax.set_ylim(array_shape[0] - 0.5, -0.5)
+    ax.margins(0)
+    ax.set_title(title_text, fontsize=title_fontsize)
 
-    from matplotlib.patches import Patch
+    from matplotlib.patches import Patch, Rectangle
 
-    ax.legend(
-        [
-            Patch(facecolor=style["all_color"], alpha=float(style["all_alpha"])),
-            Patch(facecolor=style["requested_color"], alpha=float(style["requested_alpha"])),
-            Patch(facecolor=style["loaded_color"], alpha=float(style["loaded_alpha"])),
-        ],
-        [
-            str(style["legend_all"]),
-            str(style["legend_requested"]).format(count=int(requested_mask.sum())),
-            str(style["legend_loaded"]).format(count=int(loaded_mask.sum())),
-        ],
+    ax.add_patch(
+        Rectangle(
+            (-0.5, -0.5),
+            array_shape[1],
+            array_shape[0],
+            fill=False,
+            edgecolor=style["edge_color"],
+            linewidth=1.2,
+        )
     )
+
+    if has_chunk_legend:
+        ax.legend(
+            [
+                Patch(facecolor=style["all_color"], alpha=float(style["all_alpha"])),
+                Patch(facecolor=style["requested_color"], alpha=float(style["requested_alpha"])),
+                Patch(facecolor=style["loaded_color"], alpha=float(style["loaded_alpha"])),
+            ],
+            [
+                str(style["legend_all"]),
+                str(style["legend_requested"]).format(count=int(requested_mask.sum())),
+                str(style["legend_loaded"]).format(count=int(loaded_mask.sum())),
+            ],
+            loc="upper center",
+            bbox_to_anchor=(0.5, -0.02),
+            ncol=1,
+            borderaxespad=0.0,
+            fontsize=legend_fontsize,
+        )
+
+    bottom_frac = bottom_pad_in / height_in
+    top_frac = top_pad_in / height_in
+    ax.set_position([0.0, bottom_frac, 1.0, 1.0 - bottom_frac - top_frac])
+
+    fig.subplots_adjust(left=0.0, right=1.0, top=1.0, bottom=0.0)
 
     return fig, ax
 
@@ -150,7 +199,20 @@ def _plot_array_access_3d(
     style: dict[str, object],
     title: str | None,
 ) -> tuple[matplotlib.figure.Figure, object]:
-    fig = plt.figure()
+    has_chunk_legend = chunk_shape[0] > 0
+    title_fontsize = float(style["title_fontsize"])
+    legend_fontsize = float(style["legend_fontsize"])
+    title_text = title or f"Array shape = {array_shape}" + (f"\nChunk shape = {chunk_shape}" if has_chunk_legend else "")
+    title_lines = title_text.count("\n") + 1
+
+    width_in = 4.8
+    data_height_in = 4.8
+    top_pad_in = 0.08 + (title_fontsize / 72.0) * (title_lines + 0.6)
+    bottom_pad_in = 0.8 + ((legend_fontsize / 72.0) * 3.4 if has_chunk_legend else 0.0)
+    height_in = data_height_in + top_pad_in + bottom_pad_in
+
+    # Use a taller canvas so the 3D axes can fill width while leaving room for legend below.
+    fig = plt.figure(figsize=(width_in, height_in))
     ax = fig.add_subplot(projection="3d")
 
     all_mask = np.ones(array_shape, dtype=bool)
@@ -182,21 +244,35 @@ def _plot_array_access_3d(
 
     ax.axis("off")
     ax.set_aspect("equal")
-    ax.set_title(title or f"Array shape = {array_shape}\nChunk shape = {chunk_shape}")
+    ax.set_box_aspect(array_shape)
+    ax.set_title(title_text, fontsize=title_fontsize)
 
-    custom_lines = [
-        list(all_vox.values())[0],
-        list(requested_vox.values())[0],
-        list(loaded_vox.values())[0],
-    ]
-    ax.legend(
-        custom_lines,
-        [
-            str(style["legend_all"]),
-            str(style["legend_requested"]).format(count=int(requested_mask.sum())),
-            str(style["legend_loaded"]).format(count=int(loaded_mask.sum())),
-        ],
-    )
+    from matplotlib.patches import Patch
+
+    if has_chunk_legend:
+        ax.legend(
+            [
+                Patch(facecolor=style["all_color"], alpha=float(style["all_alpha"])),
+                Patch(facecolor=style["requested_color"], alpha=float(style["requested_alpha"])),
+                Patch(facecolor=style["loaded_color"], alpha=float(style["loaded_alpha"])),
+            ],
+            [
+                str(style["legend_all"]),
+                str(style["legend_requested"]).format(count=int(requested_mask.sum())),
+                str(style["legend_loaded"]).format(count=int(loaded_mask.sum())),
+            ],
+            loc="upper center",
+            bbox_to_anchor=(0.5, -0.02),
+            ncol=1,
+            borderaxespad=0.0,
+            fontsize=legend_fontsize,
+        )
+
+    # Expand the 3D axes itself to remove side whitespace.
+    bottom_frac = bottom_pad_in / height_in
+    top_frac = top_pad_in / height_in
+    ax.set_position([0.0, bottom_frac, 1.0, 1.0 - bottom_frac - top_frac])
+    fig.subplots_adjust(left=0.0, right=1.0, top=1.0, bottom=0.0)
 
     return fig, ax
 
@@ -259,3 +335,27 @@ def color_chunk_figure(*, image_shape: tuple[int, int, int], chunk_shape: tuple[
     ax.axis('off');
     ax.set_title(f'Image shape = {image_shape}\nChunk shape = {chunk_shape}')
     return fig
+
+
+from pathlib import Path
+import numpy as np
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+OUTPUT_PATH = PROJECT_ROOT / "img"
+
+if __name__ == "__main__":
+    array_shape = (5,10,20)
+    chunks = (5,5,5)
+    requested = (slice(2,3), slice(7,9), slice(5,11))
+
+    for i, dimension in enumerate([2,3]):
+        print(dimension)
+        fig, ax = plot_array_access(array_shape=array_shape[:dimension], chunk_shape=[0]*dimension, requested=[slice(0,0)]*dimension)
+        fig.tight_layout()
+        fig.savefig(OUTPUT_PATH / f"array_{dimension}d.png", dpi=DPI)
+        plt.close(fig)
+
+        fig, ax = plot_array_access(array_shape=array_shape[:dimension], chunk_shape=chunks[:dimension], requested=requested[:dimension])
+        fig.tight_layout()
+        fig.savefig(OUTPUT_PATH / f"access_{dimension}d.png", dpi=DPI)
+        plt.close(fig)
+
