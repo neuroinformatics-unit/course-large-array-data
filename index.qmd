@@ -58,8 +58,6 @@ from pathlib import Path
 print("Hello world")
 ```
 
-{{< include slides/extra_slide.qmd >}}
-
 ## An example image
 
 Include an image:
@@ -75,7 +73,7 @@ Include an image:
 
 ## Use a variable several times
 
-Variables defined in the metadata is re-useable anywhere
+Variables defined in the metadata is reusable anywhere
 
 * {{< meta my-custom-stuff.my-reuseable-variable >}}
 * {{< meta my-custom-stuff.my-reuseable-variable >}}
