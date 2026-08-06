@@ -58,8 +58,6 @@ from pathlib import Path
 print("Hello world")
 ```
 
-{{< include slides/extra_slide.qmd >}}
-
 ## An example image
 
 Include an image:
