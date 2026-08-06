@@ -1,8 +1,15 @@
 include LICENSE
 include README.md
 exclude .pre-commit-config.yaml
+exclude references.bib
+exclude requirements.txt
+exclude *.qmd
+exclude *.yml
 
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
 recursive-exclude docs *
 recursive-exclude tests *
+recursive-exclude img *.jpg
+recursive-exclude img *.png
+recursive-exclude slides *.qmd

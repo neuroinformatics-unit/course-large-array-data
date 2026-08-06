@@ -6,17 +6,18 @@ requires-python = ">=3.12.0"
 dynamic = ["version"]
 
 dependencies = [
-    "zarr>=3.1",
+    "dandi",
     "dask",
-    "pynwb",
     "jupyterlab",
-    "ome-zarr-models",
     "numpy",
+    "pynwb",
+    "pywin32; sys_platform == 'win32'",
+    "ome-zarr-models",
+    "remfile",
     "rich",
     "scipy",
-    "remfile",
-    "dandi",
     "matplotlib",
+    "zarr>=3.1",
 ]
 
 license = "MIT"
