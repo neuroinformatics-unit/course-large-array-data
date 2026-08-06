@@ -10,6 +10,5 @@ recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
 recursive-exclude docs *
 recursive-exclude tests *
-recursive-exclude img *.jpg
-recursive-exclude img *.png
+recursive-exclude img *
 recursive-exclude slides *.qmd
