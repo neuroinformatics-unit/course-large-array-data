@@ -5,3 +5,8 @@ try:
 except PackageNotFoundError:
     # package is not installed
     pass
+
+from .monitor import *
+from .dandi_example_data import *
+from .array_info import *
+from .cap_memory import *
