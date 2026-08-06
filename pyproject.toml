@@ -1,5 +1,5 @@
 [project]
-name = "large_array_data_osss26"
+name = "course_large_array_data"
 authors = [{name = "Neuroinformatics Unit", email= "a.felder@ucl.ac.uk"}]
 description = "Helper functions for Large Array Data course"
 requires-python = ">=3.12.0"
@@ -59,11 +59,11 @@ build-backend = "setuptools.build_meta"
 include-package-data = true
 
 [tool.setuptools.packages.find]
-include = ["large_array_data_osss26*"]
+include = ["course_large_array_data*"]
 exclude = ["tests*"]
 
 [tool.pytest.ini_options]
-addopts = "--cov=large_array_data_osss26"
+addopts = "--cov=course_large_array_data"
 filterwarnings = [
     "error",
 ]
@@ -120,7 +120,7 @@ passenv =
 extras =
     dev
 commands =
-    pytest -v --color=yes --cov=large_array_data_osss26 --cov-report=xml
+    pytest -v --color=yes --cov=course_large_array_data --cov-report=xml
 """
 
 
