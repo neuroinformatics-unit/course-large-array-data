@@ -11,4 +11,5 @@ recursive-exclude * *.py[co]
 recursive-exclude docs *
 recursive-exclude tests *
 recursive-exclude img *
+recursive-exclude notebooks *
 recursive-exclude slides *.qmd
