@@ -1,100 +1,48 @@
-"""Helpers for memory-limit demos.
-
-These functions do not toggle system swap. They cap this process's virtual
-address space so allocations fail before the OS can back them with swap.
-
-POSIX uses ``resource.setrlimit(RLIMIT_AS, ...)``.
-Windows uses a Job Object with ``JOB_OBJECT_LIMIT_PROCESS_MEMORY``.
-"""
+"""Helpers for memory-limit demos."""
 
 from __future__ import annotations
 
-import sys
-
+import numpy as np
 import psutil
 
-_IS_WINDOWS = sys.platform == "win32"
 
-if _IS_WINDOWS:
-    import win32api  # type: ignore[import-not-found]
-    import win32job  # type: ignore[import-not-found]
+class SimulateArrayLimits:
+    def __init__(self):
+        self.limit_bytes = None
 
-    _job = None
-else:
-    import resource  # type: ignore[import-not-found]
+    def enable_memory_limit(self, fraction: float):
+        """Enable a simulated memory limit,
+        and set it to ``fraction`` of physical RAM."""
+        if fraction > 0 and not 0 < fraction <= 1:
+            raise ValueError("fraction must be in the range (0, 1].")
 
-    _original_soft_limit = None
+        total_ram = psutil.virtual_memory().total
+        self.limit_bytes = int(total_ram * fraction)
+        return self.limit_bytes
 
+    def disable_memory_limit(self):
+        """Disable simulated memory limit."""
+        self.limit_bytes = None
+        return self.limit_bytes
 
-def enable_process_memory_limit(fraction: float = 0.9) -> int:
-    """Cap this process's memory to ``fraction`` of physical RAM."""
+    def memory_limit_gib(self):
+        return self.limit_bytes / 1024**3
 
-    if not 0 < fraction <= 1:
-        raise ValueError("fraction must be in the range (0, 1].")
+    def allocate_random_array(self, shape: tuple[int]) -> None:
+        """Create an Float64 array of ``shape``
+        if it fits into currently allowed limit.
+        Raises ``MemoryError`` if limit exceeded."""
 
-    total_ram = psutil.virtual_memory().total
-    limit_bytes = int(total_ram * fraction)
+        if self.limit_bytes:
+            requested_bytes = np.prod(shape) * np.dtype(np.float64).itemsize
+            if requested_bytes > self.limit_bytes:
+                raise MemoryError(
+                    f"Not enough memory. Memory is capped to "
+                    f"{self.limit_bytes / 1024**3:.2f} GiB, but "
+                    f"you have requested {requested_bytes / 1024**3:.2f} GiB."
+                )
 
-    if _IS_WINDOWS:
-        global _job
-        _job = win32job.CreateJobObject(None, "")
-        info = win32job.QueryInformationJobObject(
-            _job, win32job.JobObjectExtendedLimitInformation
-        )
-        info["ProcessMemoryLimit"] = limit_bytes
-        info["BasicLimitInformation"]["LimitFlags"] |= (
-            win32job.JOB_OBJECT_LIMIT_PROCESS_MEMORY
-        )
-        win32job.SetInformationJobObject(
-            _job, win32job.JobObjectExtendedLimitInformation, info
-        )
-        process_handle = win32api.GetCurrentProcess()
-        win32job.AssignProcessToJobObject(_job, process_handle)
-    else:
-        global _original_soft_limit
-        soft_limit, hard_limit = resource.getrlimit(resource.RLIMIT_AS)
-        _original_soft_limit = soft_limit
-        if hard_limit == resource.RLIM_INFINITY:
-            applied_limit = limit_bytes
-        else:
-            applied_limit = min(limit_bytes, hard_limit)
-        try:
-            resource.setrlimit(resource.RLIMIT_AS, (applied_limit, hard_limit))
-        except ValueError as exc:
-            raise RuntimeError(
-                "This runtime rejected RLIMIT_AS updates; process memory "
-                "capping is not available in this environment."
-            ) from exc
-        limit_bytes = applied_limit
-
-    return limit_bytes
+        return np.random.random(shape)
 
 
-def disable_process_memory_limit() -> None:
-    """Remove the process memory cap."""
-    if _IS_WINDOWS:
-        global _job
-        if _job is not None:
-            info = win32job.QueryInformationJobObject(
-                _job, win32job.JobObjectExtendedLimitInformation
-            )
-            info["BasicLimitInformation"]["LimitFlags"] &= ~(
-                win32job.JOB_OBJECT_LIMIT_PROCESS_MEMORY
-            )
-            win32job.SetInformationJobObject(
-                _job, win32job.JobObjectExtendedLimitInformation, info
-            )
-    else:
-        global _original_soft_limit
-        _, hard_limit = resource.getrlimit(resource.RLIMIT_AS)
-
-        target_soft = (
-            _original_soft_limit
-            if _original_soft_limit is not None
-            else resource.RLIM_INFINITY
-        )
-        if hard_limit != resource.RLIM_INFINITY and target_soft > hard_limit:
-            target_soft = hard_limit
-
-        resource.setrlimit(resource.RLIMIT_AS, (target_soft, hard_limit))
-        _original_soft_limit = None
+simulated_array_limits = SimulateArrayLimits()
