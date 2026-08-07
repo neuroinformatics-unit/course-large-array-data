@@ -1,3 +1,4 @@
+import importlib
 from unittest.mock import MagicMock
 
 import pytest
@@ -11,4 +12,5 @@ def mock_get_ipython(monkeypatch):
 
 
 def test_package_can_be_imported(mock_get_ipython):
-    pass
+    module = importlib.import_module("course_large_array_data")
+    assert module is not None
