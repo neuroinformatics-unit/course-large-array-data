@@ -29,7 +29,7 @@ format:
 - One of the main libraries for interacting with Zarr in python is [zarr-python](https://zarr.readthedocs.io/en/stable/).
 
 - Quick demo of using zarr-python to make arrays and groups: 
-`examples/zarr_python_example.ipynb`
+`notebooks/zarr_python_example.ipynb`
 
 ## What's in a Zarr?
 
@@ -47,7 +47,7 @@ As we saw in the demo, the main components of a Zarr file are:
 
 ## Zarr is general (pros)
 
-One of Zarr's great strengths is that it can be applied to any kind of array data across many fields:
+One of Zarr's great strengths is that it can be applied to any kind of array data across many fields.
 
 Their website's [dataset section](https://zarr.dev/datasets/) includes:
 
@@ -87,7 +87,7 @@ Let's take a look at some OME-Zarr metadata using [ome-zarr-models](https://ome-
 
 - OME-Zarr models is a python package specialised to validating and loading OME-Zarr metadata.
 
-- Quick demo of accessing metadata: `examples/ome-zarr-models_example.ipynb`
+- Quick demo of accessing metadata: `notebooks/ome-zarr-models_example.ipynb`
 
 ## Multi-scales
 
@@ -106,6 +106,10 @@ metadata.
 Viewing a whole slice from a multi-terabyte dataset can still be hundreds of GB!
 
 ![](../img/platy_zooms.png){fig-align="center" width="100%"}
+
+::: footer
+Image from Vergara et al. 2021 - Whole-body integration of gene expression and single-cell morphology
+:::
 
 
 ## Specialised viewers
@@ -149,8 +153,6 @@ Don't be afraid to try different options, and see what works best for your data.
 
 ## Try it out!
 
-
-
-
-
-
+- `notebooks/creating_ome_zarr.ipynb`: creating OME-Zarr step by step
+- `notebooks/converting_ome_zarr.ipynb`: libraries for converting to OME-Zarr
+- `notebooks/visualising_ome_zarr.ipynb`: viewing OME-Zarr in napari
