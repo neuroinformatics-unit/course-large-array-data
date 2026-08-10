@@ -18,7 +18,6 @@ dependencies = [
     "scipy",
     "tifffile",
     "zarr>=3.1",
-    "imageio",
     "napari[all]",
     "napari-ome-zarr"
 ]
