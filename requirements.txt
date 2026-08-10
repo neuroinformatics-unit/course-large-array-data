@@ -2,6 +2,8 @@ jupyter
 jupyter-cache
 zarr[remote]
 aiohttp
+imageio
+scipy
 ome-zarr-models
 jupyterlab
 rich
