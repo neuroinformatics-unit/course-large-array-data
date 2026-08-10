@@ -9,14 +9,14 @@ dependencies = [
     "dandi",
     "dask",
     "jupyterlab",
+    "matplotlib",
     "numpy",
     "pynwb",
-    "pywin32; sys_platform == 'win32'",
     "ome-zarr-models",
     "remfile",
     "rich",
     "scipy",
-    "matplotlib",
+    "tifffile",
     "zarr>=3.1",
 ]
 
@@ -99,6 +99,9 @@ fix = true
 [tool.ruff.format]
 docstring-code-format = true # Also format code in docstrings (e.g. examples)
 
+[tool.ruff.lint.per-file-ignores]
+"*.ipynb" = ["E501","F821"]
+
 [tool.tox]
 legacy_tox_ini = """
 [tox]
@@ -126,5 +129,5 @@ commands =
 
 
 [tool.codespell]
-skip = '.git'
+skip = '.git,*/2_numpy_to_dask.ipynb'
 check-hidden = true
