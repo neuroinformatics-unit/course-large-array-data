@@ -1,0 +1,133 @@
+[project]
+name = "course-large-array-data"
+authors = [{name = "Neuroinformatics Unit", email= "a.felder@ucl.ac.uk"}]
+description = "Helper functions for Large Array Data course"
+requires-python = ">=3.12.0"
+dynamic = ["version"]
+
+dependencies = [
+    "dandi",
+    "dask",
+    "jupyterlab",
+    "matplotlib",
+    "numpy",
+    "pynwb",
+    "ome-zarr-models",
+    "remfile",
+    "rich",
+    "scipy",
+    "tifffile",
+    "zarr>=3.1",
+]
+
+license = "MIT"
+
+license-files = ["LICENSE"]
+
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Operating System :: OS Independent",
+]
+
+
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "pytest-cov",
+  "coverage",
+  "tox",
+  "mypy",
+  "pre-commit",
+  "ruff",
+  "setuptools-scm",
+]
+
+[build-system]
+requires = [
+    "setuptools>=77",
+    "wheel",
+    "setuptools-scm[toml]>=8",
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["course_large_array_data*"]
+exclude = ["tests*"]
+
+[tool.pytest.ini_options]
+addopts = "--cov=course_large_array_data"
+filterwarnings = [
+    "error",
+]
+
+[tool.setuptools_scm]
+
+[tool.check-manifest]
+ignore = [
+  ".yaml",
+  "tox.ini",
+  "tests/",
+  "tests/test_unit/",
+  "tests/test_integration/",
+]
+
+[tool.ruff]
+line-length = 79
+exclude = ["__init__.py", "build", ".eggs"]
+lint.select = [
+  "E",   # pycodestyle errors
+  "F",   # Pyflakes
+  "I",   # isort
+  # You can see what all the rules do here: https://docs.astral.sh/ruff/rules/
+  # Some additional ruff rules that might be useful (uncomment to enable)
+  #"UP",  # pyupgrade
+  #"B",   # flake8 bugbear
+  #"SIM", # flake8 simplify
+  #"C90", # McCabe complexity
+]
+fix = true
+
+[tool.ruff.format]
+docstring-code-format = true # Also format code in docstrings (e.g. examples)
+
+[tool.ruff.lint.per-file-ignores]
+"*.ipynb" = ["E501","F821"]
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+requires =
+    tox>=4
+    tox-gh-actions
+envlist = py{312,313,314}
+isolated_build = True
+
+[gh-actions]
+python =
+    3.12: py312
+    3.13: py313
+    3.14: py314
+
+[testenv]
+passenv =
+    CI
+    GITHUB_ACTIONS
+extras =
+    dev
+commands =
+    pytest -v --color=yes --cov=course_large_array_data --cov-report=xml
+"""
+
+
+[tool.codespell]
+skip = '.git,*/2_numpy_to_dask.ipynb'
+check-hidden = true

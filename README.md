@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-You only need to do these once locally. 
+You only need to do these once locally.
 * Install [Quarto](https://quarto.org/docs/get-started/)
 * Install the [VS Code Quarto extension](https://quarto.org/docs/get-started/hello/vscode.html)
 * Install [uv](https://docs.astral.sh/uv/) to manage your Python environments (recommended if you want to execute code in your presentation)
@@ -23,13 +23,13 @@ If you have additional requirements for your execution environment (e.g. your Py
 
 We recommend using [uv](https://uv.sh/) to manage your Python environment:
 * Create a new environment with `uv venv --python=3.13`. Make sure the Python version matches the one used in your GitHub Actions workflow.
-* Activate the environment with `source .venv/bin/activate` 
+* Activate the environment with `source .venv/bin/activate`
 * Install the required packages with `uv pip install -r requirements.txt`
 
 > [!warning]
-> Make sure Quarto is using the correct Python environment 
+> Make sure Quarto is using the correct Python environment
 > by setting the `QUARTO_PYTHON` environment variable.
-> 
+>
 > An easy way to do this once you have activated the environment is:
 > ```sh
 > export QUARTO_PYTHON=$(which python)
