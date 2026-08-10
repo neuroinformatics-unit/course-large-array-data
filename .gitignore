@@ -5,6 +5,7 @@ notebooks/data/
 .DS_Store
 /.quarto/
 .venv/
+uv.lock
 
 **/*.quarto_ipynb
 
