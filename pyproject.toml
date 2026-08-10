@@ -18,6 +18,7 @@ dependencies = [
     "scipy",
     "tifffile",
     "zarr>=3.1",
+    "imageio"
 ]
 
 license = "MIT"
