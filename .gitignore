@@ -5,6 +5,9 @@ notebooks/data/
 .DS_Store
 /.quarto/
 .venv/
+uv.lock
+
+**/*.quarto_ipynb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

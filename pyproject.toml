@@ -18,6 +18,10 @@ dependencies = [
     "scipy",
     "tifffile",
     "zarr>=3.1",
+    "bioio",
+    "bioio-ome-zarr",
+    "napari[all]",
+    "napari-ome-zarr"
 ]
 
 license = "MIT"
