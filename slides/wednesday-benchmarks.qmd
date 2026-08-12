@@ -155,5 +155,3 @@ Segmentations compress much more!
 ![](../img/library_read.png){fig-align="center" height=1500}
 
 Which software library you use affects read / write times. [Tensorstore](https://google.github.io/tensorstore/) had the best performance.
-
-
