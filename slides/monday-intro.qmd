@@ -1,0 +1,455 @@
+# Introduction
+
+## Open these slides on your laptop
+
+[neuroinformatics.dev/course-large-array-data](neuroinformatics.dev/course-large-array-data)
+
+They contain links to exercises, polls and further references.
+
+## The instructor team
+
+* Alessandro Felder
+* Igor Tatarnikov
+* Kimberly Meechan
+* Jim Bednar
+
+## Mentimeter
+
+What is your role at work?
+What scientific domains do you work in?
+
+# Overall objectives
+
+- understand computational challenges related to large array data and key strategies to address them
+- gain hands-on Python experience and increase confidence in handling large array data
+- appreciate the diversity of the open-source Python ecosystem for large array data and how you are part of it
+
+## Schedule
+
+- day 1: basics, motivation, reading and writing large arrays
+- day 2: processing large arrays in parallel, standards for large imaging data
+- day 3: advanced topics and case studies: compression, benchmarking, visualisation, real-life applications
+- day 4-5: collaboration
+
+## Fundamentals
+
+* What is an array?
+* What do we mean by data "size"?
+
+::: notes :::
+everybody on the same page
+:::
+
+## What is an array?
+
+::: {.columns}
+::: {.column width="45%"}
+* Data arranged in an (N-dimensional) grid
+* Data all have the same type
+:::
+
+::: {.column width="55%"}
+![](img/array_2d.png){.nostretch width="90%"}
+:::
+:::
+
+## What is an array?
+
+::: {.columns}
+::: {.column width="40%"}
+Arrays have type and shape.
+:::
+
+::: {.column width="59%"}
+```{.python}
+import numpy as np
+
+array_shape = (5,6)
+dtype = np.uint8
+array = np.random.randint(low=0, high=2**8, size=array_shape, dtype=dtype)
+
+print(array)
+print("Array shape: "+str(array.shape))
+array_bytes = array.tobytes()
+```
+:::
+:::
+
+:::footer
+[@stansby_introduction_2026]
+:::
+
+## Data size
+
+::: {.columns}
+::: {.column width="40%"}
+Arrays have type and shape.
+:::
+
+::: {.column width="59%"}
+```{python}
+import numpy as np
+
+array_shape = (5,6)
+dtype = np.uint8
+np.random.seed = 42
+array = np.random.randint(
+    low=0, high=2**8, 
+    size=array_shape, 
+    dtype=dtype
+)
+
+print(array)
+print("Array shape: "+str(array.shape))
+```
+:::
+:::
+
+:::footer
+[@stansby_introduction_2026]
+:::
+
+## Array size
+
+::: {.columns}
+::: {.column width="40%"}
+Computers store data as _bits_ , arranged in _bytes_ of 8 bits.
+We use the usual decimal system prefixes:
+
+* kilobyte (KB)
+* megabyte (MB)
+* gigabyte (GB)
+* terabyte (TB)
+
+:::
+
+::: {.column width="59%"}
+```{.python}
+
+...
+
+array_bytes = arr.tobytes()
+print(f"{len(array_bytes)} bytes total")
+print()
+print("First ten bytes:")
+for my_byte in array_bytes[:10]:
+    print(f'{my_byte:0>8b}', end=' ')
+
+print("...")
+```
+:::
+:::
+
+:::footer
+[@stansby_introduction_2026]
+:::
+
+## Array size
+
+::: {.columns}
+::: {.column width="40%"}
+Computers store data as _bits_, arranged in _bytes_ of 8 bits.
+We use the usual decimal system prefixes:
+
+* kilobyte (KB)
+* megabyte (MB)
+* gigabyte (GB)
+* terabyte (TB)
+
+:::
+
+::: {.column width="59%"}
+```{python}
+import numpy as np
+
+array_shape = (5,5)
+dtype = np.uint8
+np.random.seed = 42
+array = np.random.randint(low=0, high=2**8, size=array_shape, dtype=dtype)
+array_bytes = array.tobytes()
+
+print(f"{len(array_bytes)} bytes total")
+print()
+print("First ten bytes:")
+for my_byte in array_bytes[:10]:
+    print(f'{my_byte:0>8b}', end=' ')
+
+print("...")
+```
+:::
+:::
+
+:::footer
+[@stansby_introduction_2026]
+:::
+
+## Array size
+
+::: {.columns}
+::: {.column width="40%"}
+Computers store data as _bits_ , arranged in _bytes_ of 8 bits.
+There are also binary system equivalents
+
+* kibibyte (KiB) = 1024 bytes
+* mebibyte (MiB) = 1024 kibibytes
+* ...
+
+We treat KB and KiB as equivalent for our purposes.
+
+# Why do we care about arrays?
+
+Lots of scientific data comes in (large) array form.
+
+## Electrophysiological probes
+
+![](img/neuropixels-nature-2017.png){fig-align="center"}
+
+::: footer
+[@jun_fully_2017]
+:::
+
+## Electrophysiological probe recordings {.smaller}
+
+![](img/elife-47188-video2.mp4){fig-align="center" width="95%" loop="True"}
+
+::: footer
+[@juavinett_chronically_2019]
+:::
+
+## Brain Wide Map
+
+![](img/raw_voltage_snippet.png){fig-align="center" width="95%"}
+
+::: footer
+[@international_brain_laboratory_ibl_2026]
+:::
+
+## Brain Wide Map
+
+<iframe src="https://viz.internationalbrainlab.org/app?spikesorting=ss_2024-05-06" title="IBL Brain wide map" style="max-height: 110%; max-width: 125%; width: 125%; height: 100%; transform: scale(0.8); transform-origin: top left;"></iframe>
+
+::: footer
+[@international_brain_laboratory_ibl_2026]
+:::
+
+## Brain Wide Map
+
+49.7 TB across 2048 files and 139 subjects
+
+::: footer
+[@international_brain_laboratory_ibl_2026]
+:::
+
+
+## Week-long recordings
+
+<iframe src="https://aeon.swc.ucl.ac.uk/getting_started/npx_recording/#id1" title="Aeon NPX Recording Guide" style="max-height: 110%; max-width: 125%; width: 125%; height: 100%; transform: scale(0.8); transform-origin: top left;"></iframe>
+
+::: footer
+[@aeon_neuropixels_2026]
+:::
+
+## Week-long recordings
+
+https://www.biorxiv.org/content/10.1101/2025.07.31.664513v1.full
+
+Two mice, video + neuropixels at 200GB/h
+
+::: footer
+[@aeon_neuropixels_2026]
+:::
+
+## Two-photon microscopy
+
+TODO
+
+
+## Whole brain imaging
+
+TODO
+
+
+## Electron microscopy of a marine worm {.smaller}
+
+![](img/platynereis-overview.png){fig-align="center" .nostretch width="65%"}
+
+::: footer
+[@vergara_whole-body_2021]
+:::
+
+## Electron microscopy of a marine worm {.smaller}
+
+![](img/platy-cut.webm){fig-align="center" .nostretch width="65%" loop="true"}
+
+::: footer
+[@vergara_whole-body_2021]
+:::
+
+(~2TB) 
+
+## Geography
+
+<div id="map" style="height: 550px;"></div>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+let map;
+function initMap() {
+  if (map) return;
+  map = L.map('map', {
+    center: [51.5204, -0.1385],
+    zoom: 16,
+    preferCanvas: true
+  });
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  L.marker([51.5204, -0.1385])
+    .addTo(map)
+    .bindPopup('25 Howland St')
+    .openPopup();
+}
+
+Reveal.on('slidechanged', event => {
+  if (event.currentSlide.querySelector('#map')) {
+    initMap();
+    setTimeout(() => map.invalidateSize(), 200);
+  }
+});
+</script>
+
+## Geography
+
+TODO
+
+## Astronomy
+
+TODO
+
+## Example: a 3D array of unsigned 16-bit integer type
+
+::: {.columns}
+::: {.column width="45%"}
+* Data arranged in an (N-dimensional) grid
+* Data all have the same type
+:::
+
+::: {.column width="55%"}
+![](img/array_3d.png){.nostretch width="90%"}
+:::
+
+:::
+
+:::footer
+[@stansby_introduction_2026]
+:::
+
+## What is an array?
+
+::: {.columns}
+::: {.column width="55%"}
+Computers store data as _bits_ , arranged in _bytes_ of 8 bits
+:::
+
+::: {.column width="45%"}
+![](img/array_3d.png){.nostretch width="90%"}
+:::
+
+:::
+
+:::footer
+[@stansby_introduction_2026]
+:::
+
+## What is an array?
+
+::: {.columns}
+::: {.column width="55%"}
+Computers store data as _bits_ , arranged in _bytes_ of 8 bits
+:::
+
+::: {.column width="45%"}
+```{.python}
+import matplotlib.pyplot as plt
+import numpy as np
+
+array_shape = (32, 32)
+dtype = np.uint16
+image = np.random.randint(low=0, high=2**16, size=array_shape, dtype=dtype)
+print(image)
+
+fig, ax = plt.subplots()
+ax.imshow(image, cmap="Grays", vmin=0, vmax=2**16);
+```
+:::
+
+:::
+
+:::footer
+[@stansby_introduction_2026]
+:::
+
+## Large Array Data
+
+Apart from being beautiful and useful public research datasets, they vastly exceed [an average laptop's memory (8-32 GB) in size([@hp_tech_takes_how_nodate]).
+
+
+## A mental model of a computer {.smaller}
+
+
+![](img/computer_mental_model.png){fig-align="center" .nostretch height="10%"}
+
+## A mental model of a computer {.smaller}
+
+
+![](img/computer_mental_model_influence.png){fig-align="center" .nostretch height="40%"}
+
+## A mental model of a computer {.smaller}
+
+
+![](img/computer_mental_model_cache_swap.png){fig-align="center" .nostretch height="40%"}
+
+
+## Latency
+
+<script src="https://gist.github.com/hellerbarde/2843375.js"></script>
+
+## A mental model of a computer {.smaller}
+
+
+![](img/computer_mental_model.png){fig-align="center" .nostretch height="40%"}
+
+Most of the time, we don't have to worry about this.
+
+## `numpy` is great!
+
+`numpy` is the default scientific Python library to process array data.
+It works well for many applications.
+Using `numpy` keeps your code simple, more accessible, and easy-to-read.
+
+## Plot a slice of a brain using `numpy` array
+
+TODO numpy array example
+
+## A mental model of accessing part of an array
+
+
+## `numpy` can 
+
+write 32 gig tiff, read, downsample with memmap
+used in `roiextractors`
+
+## limitations of numpy memmap
+
+- pickling and multiprocessing
+- store
+
+## the `dask` Array
+
+An evolution of the `numpy` array
+- same interface (for most functions)
+- uses chunking

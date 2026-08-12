@@ -1,14 +1,20 @@
 ---
-title: A template presentation
-subtitle: Made with Quarto and RevealJS
-author: SWC/GCNU Neuroinformatics Unit
-date: today
+title: Large Array Data
+subtitle: Neuroinformatics Open Software Summer School 
+author: Alessandro Felder
+date: August 2026
 format:
   revealjs:
-    footer: "Location | Event | Date"
+    footer: "Sainsbury Wellcome Centre | OSSS | 17-21 August 2026"
 my-custom-stuff:
    my-reuseable-variable: "I can use this wherever I want in the markdown, and change it in only once place :)"
 ---
+
+{{< include slides/monday-intro.qmd >}}
+{{< include slides/monday-zarr.qmd >}}
+{{< include slides/monday-dask.qmd >}}
+{{< include slides/monday-conclusion.qmd >}}
+
 
 ## Contents
 
@@ -58,6 +64,7 @@ from pathlib import Path
 print("Hello world")
 ```
 
+
 ## An example image
 
 Include an image:
@@ -73,7 +80,7 @@ Include an image:
 
 ## Use a variable several times
 
-Variables defined in the metadata is reusable anywhere
+Variables defined in the metadata is re-useable anywhere
 
 * {{< meta my-custom-stuff.my-reuseable-variable >}}
 * {{< meta my-custom-stuff.my-reuseable-variable >}}
