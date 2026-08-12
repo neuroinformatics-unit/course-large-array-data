@@ -155,3 +155,16 @@ Segmentations compress much more!
 ![](../img/library_read.png){fig-align="center" height=1500}
 
 Which software library you use affects read / write times. [Tensorstore](https://google.github.io/tensorstore/) had the best performance.
+
+## Benchmarking Zarr conclusions {.smaller}
+
+Approximately "optimal" choices:
+
+-  Use `tensorstore` library for fastest read/write
+-  `blosc-zstd` is a good default compressor
+-  Use a high compression level to get the smallest file size (usually means longer write times, but not much effect on read time)
+-  Smaller chunks = smaller overall file size + less memory usage
+- Larger chunks = faster read/write times + fewer files
+-  It's a balance! People often use 64x64x64 or 128x128x128
+
+This is different for different data! Worth testing some small samples of your own data with different settings
