@@ -32,9 +32,10 @@ jobs:
 
     steps:
       # Run tests
-      - uses: neuroinformatics-unit/actions/test@v2
+      - uses: neuroinformatics-unit/actions/test-uv@8fae58caf493987de249c4aa975ffc71c55d53b7 # v3.0.0
         with:
           python-version: ${{ matrix.python-version }}
+          use-headless: True
 
   build_sdist_wheels:
     name: Build source distribution
