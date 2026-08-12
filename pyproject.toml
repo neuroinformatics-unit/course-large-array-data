@@ -71,6 +71,7 @@ exclude = ["tests*"]
 addopts = "--cov=course_large_array_data"
 filterwarnings = [
     "error",
+    "ignore:`json_encoders` is deprecated:DeprecationWarning",
 ]
 
 [tool.setuptools_scm]
