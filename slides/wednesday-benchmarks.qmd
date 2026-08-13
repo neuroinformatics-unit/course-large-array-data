@@ -158,7 +158,7 @@ Which software library you use affects read / write times. [Tensorstore](https:/
 
 ## Benchmarking Zarr conclusions {.smaller}
 
-Approximately "optimal" choices:
+Some general recommendations:
 
 -  Use `tensorstore` library for fastest read/write
 -  `blosc-zstd` is a good default compressor
@@ -167,7 +167,7 @@ Approximately "optimal" choices:
 - Larger chunks = faster read/write times + fewer files
 -  It's a balance! People often use 64x64x64 or 128x128x128
 
-This is different for different data! Worth testing some small samples of your own data with different settings
+- This is different for different data! Worth testing some small samples of your own data with different settings
 
 ## Sharding
 
@@ -182,4 +182,5 @@ One of the settings we didn't benchmark was 'sharding':
 ## Benchmarking sharding
 
 Let's experiment with sharding options:
+
 - `notebooks/sharding.ipynb`
