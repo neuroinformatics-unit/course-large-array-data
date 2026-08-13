@@ -2,4 +2,4 @@ jupyter
 jupyter-cache
 numpy
 dask
-zarr-python
+zarr>=3.1
