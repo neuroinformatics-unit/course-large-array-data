@@ -1,2 +1,5 @@
 jupyter
 jupyter-cache
+numpy
+dask
+zarr-python
