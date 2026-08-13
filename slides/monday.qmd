@@ -74,6 +74,12 @@ Data being processed on a computer.
 
 Lots of scientific data comes in (large) array form.
 
+
+# Why does data come in array form?
+
+* Naturally lends itself to some data (e.g. microscopy)
+* Arrays can be indexed efficiently in memory
+
 ## Electrophysiological probes {.smaller}
 
 ![](img/neuropixels-nature-2017.png){fig-align="center"}
@@ -130,6 +136,10 @@ Lots of scientific data comes in (large) array form.
 ::: footer
 [@aeon_neuropixels_2026]
 :::
+
+## Electrophysiology
+
+![](img/neuropixels.png){fig-align="center"}
 
 ## Two-photon microscopy {.smaller}
 
@@ -286,14 +296,14 @@ Extract its bytes.
 
 ::: {.column width="59%"}
 ```{.python}
+array_bytes = array.tobytes()
 
-...
-
-array_bytes = arr.tobytes()
 print(f"{len(array_bytes)} bytes total")
-print("First ten bytes:")
-for my_byte in array_bytes[:10]:
-    print(f'{my_byte:0>8b}', end=' ')
+print()
+print("First five elements:")
+for i in range(0, 10, 2):
+    word = int.from_bytes(array_bytes[i:i+2], byteorder='little')
+    print(f'{word:016b}', end=' ')
 
 print("...")
 ```
@@ -313,61 +323,14 @@ Extract its bytes
 
 ::: {.column width="59%"}
 ```{python}
-import numpy as np
-
-array_shape = (5,6)
-dtype = np.uint16
-np.random.seed = 42
-array = np.random.randint(
-  low=0,
-  high=100,
-  size=array_shape,
-  dtype=dtype
-)
 array_bytes = array.tobytes()
 
 print(f"{len(array_bytes)} bytes total")
 print()
-print("First ten bytes:")
-for my_byte in array_bytes[:10]:
-    print(f'{my_byte:0>8b}', end=' ')
-
-print("...")
-```
-:::
-:::
-
-:::footer
-[@stansby_introduction_2026]
-:::
-
-## Exploring the array size
-
-::: {.columns}
-::: {.column width="40%"}
-Extract its bytes
-:::
-
-::: {.column width="59%"}
-```{python}
-import numpy as np
-
-array_shape = (5,6)
-dtype = np.uint16
-np.random.seed = 42
-array = np.random.randint(
-  low=0,
-  high=100,
-  size=array_shape,
-  dtype=dtype
-)
-array_bytes = array.tobytes()
-
-print(f"{len(array_bytes)} bytes total")
-print()
-print("First ten bytes:")
-for my_byte in array_bytes[:10]:
-    print(f'{my_byte:0>8b}', end=' ')
+print("First five elements:")
+for i in range(0, 10, 2):
+    word = int.from_bytes(array_bytes[i:i+2], byteorder='little')
+    print(f'{word:016b}', end=' ')
 
 print("...")
 ```
@@ -412,7 +375,7 @@ This is usually fine, but...
 
 ## Large Array Data
 
-Apart from being beautiful and useful research datasets, they vastly exceed an average laptop's memory (8-32 GB) in size.
+...vastly exceeds an average laptop's memory (8-32 GB) in size.
 
 Therefore, allocating memory eagerly is a bad idea!
 
@@ -422,17 +385,20 @@ Therefore, allocating memory eagerly is a bad idea!
 
 ## Exercise 1 (Eager memory allocation)
 
-1. Download [the Exercise 1 notebook](https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/1_memory_cap.ipynb)
-2. Activate your conda environment
+
+::: {.nonincremental}
+- Download [the Exercise 1 notebook](https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/1_memory_cap.ipynb)
+- Activate your conda environment
 ```bash
 conda activate large-arrays
 ```
-3. Run jupyter
+- Run jupyter
 ```bash
 jupyter lab
 ```
-4. Open `http://localhost:8888/lab?`
-5. Navigate to the downloaded notebook and work through it.
+- Open `http://localhost:8888/lab?`
+- Navigate to the downloaded notebook and work through it.
+:::
 
 ## Exercise 1 (demo)
 
@@ -475,7 +441,7 @@ Lazy strategy:
 
 A memory map lets us treat a file on disk as if it were in memory.
 
-The OS loads part of it from disk into memory only as they're actually accessed.
+The operating system loads parts of it from disk into memory only as they're actually accessed.
 
 ## `numpy` can do this
 
@@ -493,24 +459,28 @@ print(arr[50, :, :]) # only necessary "pages" loaded into memory
 
 ## Limitations of `numpy` memory maps
 
+- data has to be on local disk (not cloud)
 - no compression
 - no parallelisation
-- data has to be on local disk (not cloud)
 
-## How could we improve on this?
+## How could we improve on this? {.smaller}
 
-## How could we improve on this?
+## How could we improve on this? {.smaller}
 
-Increase flexibility by
-* allowing large arrays to be cut into smaller, customisable "chunks" that can be anywhere
+We would benefit from increased flexibility like
+
+* allowing large arrays to be cut into smaller, customisable "chunks" that can live anywhere
 * allow control over when operations are executed
-  * keep track using a "task graph"
 
 ## The `dask` array
 
 An evolution of the `numpy` array
-- same interface (for most functions)
+
+- same interface (for most functionality)
 - allows "chunking" of the array into smaller chunks
+- gives control over when data is actually loaded into memory
+
+`dask` keeps track of lazy operations in a "task graph"
 
 ## The `dask` array
 
@@ -541,8 +511,7 @@ x = rng.random((10000, 10000), chunks=(1000, 1000))
 print(x[0:100, 0:100])
 ```
 
-Lazy evaluation means `print(x)` and slicing
-still doesn't load array data into memory.
+Lazy evaluation means `print(x)` and slicing still doesn't load array data into memory.
 
 ## The `dask` array
 
@@ -559,11 +528,10 @@ print(x[0:100, 0:100])
 import dask.array as da
 rng = da.random.default_rng()
 x = rng.random((10000, 10000), chunks=(1000, 1000))
-print(x[0:100, 0:100])
+print(x[0:100, 0:100].compute())
 ```
 
-Lazy evaluation means `print(x)` and slicing
-still doesn't load array data into memory.
+`.compute` method gives us control over when to actually load into memory.
 
 ## The `dask` array
 
@@ -574,7 +542,7 @@ x = rng.random((10000, 10000), chunks=(1000, 1000))
 print(x[0:100, 0:100].compute())
 ```
 
-`.compute` function gives us control over when to actually load into memory.
+`.compute` method gives us control over when to actually load into memory.
 
 ## `dask` delayed
 
@@ -596,6 +564,8 @@ array = np.random.randint(
 print(delayed(for_loop_sum(x[0:100, 0:100]))) # lazy
 print(for_loop_sum(x[0:100, 0:100])) # eager
 ```
+
+`delayed` function allows us to execute our own functions lazily.
 
 ## `dask` delayed
 
@@ -621,6 +591,8 @@ print(delayed_sum) # lazy
 print(eager_sum) # eager
 ```
 
+`delayed` function allows us to execute our own functions lazily.
+
 ## Exercise 2 (Joint) {.smaller}
 
 Loading of large array slices with
@@ -635,17 +607,20 @@ showcasing the increased flexibility of `dask`.
 
 If you want to run on your own data
 
-1. Download [the exercise notebook](https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/2_numpy_to_dask.ipynb)
-2. Activate your conda environment
+
+::: {.nonincremental}
+- Download [the exercise notebook](https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/2_numpy_to_dask.ipynb)
+- Activate your conda environment
 ```bash
 conda activate large-arrays
 ```
-3. Run jupyter
+- Run jupyter
 ```bash
 jupyter lab
 ```
-4. Open `http://localhost:8888/lab?`
-5. Navigate to the downloaded notebook and work through it, make it point to your own data
+- Open `http://localhost:8888/lab?`
+- Navigate to the downloaded notebook and work through it, make it point to your own data
+:::
 
 ## Reading and writing `dask` arrays
 
@@ -678,7 +653,7 @@ We can store each chunk in a separate file.
 Zarr is not the same as `zarr-python`.
 
 * Zarr is a file format specification
-* `zarr-python` is a Python library to open Zarr files
+* `zarr-python` is a Python library to work with Zarr files
   * Confusingly, imported with `import zarr`
 
 ## Exercise 3
@@ -700,11 +675,32 @@ Showcases
 * `dask` reading a file from a public cloud archive
 * `dask` processing the data and storing part of it to `zarr`
 
+## Exercise 3
+
+::: {.nonincremental}
+- Download [the exercise notebook](https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/3_dask_remote_to_zarr_io.ipynb)
+- Activate your conda environment
+```bash
+conda activate large-arrays
+```
+- Run jupyter
+```bash
+jupyter lab
+```
+- Open `http://localhost:8888/lab?`
+- Navigate to the downloaded notebook and work through it, make it point to your own data
+:::
+
 ## Summary
 
 ::: {.incremental}
 * `numpy` eager memory allocation is a bad idea for large arrays
 * `numpy.memmap` helps but has limitations
+:::
+
+## Summary
+
+::: {.incremental}
 * `dask` is more flexible
   * lazy by default
   * customise chunks
