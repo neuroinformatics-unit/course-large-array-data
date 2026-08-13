@@ -408,9 +408,11 @@ Eager memory allocation is a problem for large arrays.
 
 ## We need more control
 
-Lazy operations: hold off allocating memory/doing computations as long as we can...
+"Lazy" operations:
 
-... and only operate on the minimum amount of in-memory data needed.
+Hold off allocating memory/doing computations for as long as we can...
+
+...and only operate on the minimum amount of in-memory data needed.
 
 ## An example
 
