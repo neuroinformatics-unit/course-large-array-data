@@ -168,3 +168,18 @@ Approximately "optimal" choices:
 -  It's a balance! People often use 64x64x64 or 128x128x128
 
 This is different for different data! Worth testing some small samples of your own data with different settings
+
+## Sharding
+
+One of the settings we didn't benchmark was 'sharding':
+
+- Shards contain multiple chunks
+- Each shard is a file on disk (rather than each individual chunk)
+- A chunk is the smallest unit you can read; a shard is the smallest unit you can write
+- Main purpose is to reduces number of files
+- Some file systems may have performance issues storing and accessing a large number of small files.
+
+## Benchmarking sharding
+
+Let's experiment with sharding options:
+- `notebooks/sharding.ipynb`
