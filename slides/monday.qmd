@@ -630,6 +630,8 @@ Having chunks helps us here too.
 
 We can store each chunk in a separate file.
 
+We can store metadata in the same (super-)file.
+
 ## Zarr files
 
 :::: {.columns}
