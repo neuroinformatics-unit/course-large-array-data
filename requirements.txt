@@ -1,2 +1,5 @@
+dask
 jupyter
 jupyter-cache
+numpy
+zarr>=3.1

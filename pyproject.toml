@@ -134,5 +134,5 @@ commands =
 
 
 [tool.codespell]
-skip = '.git,*/2_numpy_to_dask.ipynb'
+skip = '.git,*/2_numpy_to_dask.ipynb,references.bib'
 check-hidden = true

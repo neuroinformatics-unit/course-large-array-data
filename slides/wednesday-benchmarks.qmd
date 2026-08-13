@@ -1,12 +1,6 @@
----
-title: Zarr benchmarks
-subtitle: OSSS 2026
-format:
-  revealjs:
-    incremental: true
----
+# Zarr benchmarks
 
-## Recap on Zarr
+## Recap on Zarr {.smaller}
 
 :::: {.columns}
 

@@ -1,10 +1,4 @@
----
-title: OME-Zarr introduction
-subtitle: OSSS 2026
-format:
-  revealjs:
-    incremental: true
----
+# OME-Zarr introduction
 
 ## Recap on Zarr
 
@@ -31,7 +25,7 @@ format:
 - Quick demo of using zarr-python to make arrays and groups:
 `notebooks/zarr_python_example.ipynb`
 
-## What's in a Zarr?
+## What's in a Zarr? {.smaller}
 
 The [zarr specification](https://zarr-specs.readthedocs.io/en/v3.1.0/specs.html) dictates how a Zarr file should be structured.
 
@@ -89,7 +83,7 @@ Let's take a look at some OME-Zarr metadata using [ome-zarr-models](https://ome-
 
 - Quick demo of accessing metadata: `notebooks/ome-zarr-models_example.ipynb`
 
-## Multi-scales
+## Multi-scales {.smaller}
 
 Part of the [OME-Zarr specification](https://ngff.openmicroscopy.org/specifications/0.5/index.html) adds `multiscales`
 metadata.
@@ -112,7 +106,7 @@ Image from Vergara et al. 2021 - Whole-body integration of gene expression and s
 :::
 
 
-## Specialised viewers
+## Specialised viewers {.smaller}
 
 Specialised viewers dynamically load different resolution levels.
 

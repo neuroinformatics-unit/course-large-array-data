@@ -1,0 +1,2 @@
+[ photon mosaic chunking strategy
+](https://github.com/alejoe91/spikeinterface/blob/8f33d984b59e9f6daacbd051f7d521def0314a1f/src/spikeinterface/core/job_tools.py#L188)
