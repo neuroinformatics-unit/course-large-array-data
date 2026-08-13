@@ -137,10 +137,6 @@ Lots of scientific data comes in (large) array form.
 [@aeon_neuropixels_2026]
 :::
 
-## Electrophysiology
-
-![](img/neuropixels.png){fig-align="center"}
-
 ## Two-photon microscopy {.smaller}
 
 
@@ -637,7 +633,7 @@ We can store metadata in the same (super-)file.
 :::: {.columns}
 
 ::: {.column width="40%"}
-![](../img/zarr-pink-stacked.svg){fig-alt="Zarr logo"}
+![](img/zarr-pink-stacked.svg){fig-alt="Zarr logo"}
 :::
 
 ::: {.column width="60%"}
