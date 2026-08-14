@@ -17,8 +17,8 @@ We deal with this
 
 ## Handling large array data with Python
 
-* `zarr-python` and `dask` are generalist libraries for processing large array
-* Use `zarr` files, ideally following a community standard (e.g. OME-Zarr)
+* `zarr-python` and `dask` are generalist libraries for processing large arrays.
+* Use `zarr` files, ideally following a community standard (e.g. OME-Zarr).
 
 ## The open-source ecosystem
 
