@@ -533,6 +533,19 @@ We would benefit from increased flexibility like
 * Allowing large arrays to be cut into smaller, customisable "chunks" that can live anywhere
 * Allow control over when operations are executed
 
+## How could we improve on this?
+
+`dask` has solved this problem for us.
+
+## The `dask` array
+
+An array of `numpy` arrays
+
+![](img/dask-array.svg){fig-alt="A dask array diagram, showing its chunks as numpy array"}
+
+that also behaves like a lazy `numpy` array.
+
+
 ## The `dask` array
 
 An evolution of the `numpy` array
@@ -693,6 +706,11 @@ So far, we have only created `dask` arrays in-memory (lazily). But how do we sto
 * Having chunks helps us here too.
 * We can store each chunk in a separate file.
 * We can store metadata in the same (super-)file.
+
+
+## How do we store them on disk?
+
+`zarr` has solved this problem for us.
 
 ## Zarr files
 

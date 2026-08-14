@@ -12,6 +12,8 @@ format:
 {{< include slides/tuesday-dask.qmd >}}
 {{< include slides/wednesday-compression.qmd >}}
 {{< include slides/wednesday-benchmarks.qmd >}}
+{{< include slides/wednesday-examples.qmd >}}
+{{< include slides/wednesday-conclusion.qmd >}}
 
 
 ## References {.smaller}
