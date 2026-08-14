@@ -37,7 +37,7 @@ As we saw in the demo, the main components of a Zarr file are:
 
 ## Tree / hierarchy
 
-![](../img/zarr_hierarchy.png){fig-align="center"}
+![](img/zarr_hierarchy.png){fig-align="center"}
 
 ## Zarr is general (pros)
 
@@ -93,13 +93,13 @@ metadata.
 
 . . .
 
-![](../img/multiscale.png){height=300 fig-align="center"}
+![](img/multiscale.png){height=300 fig-align="center"}
 
 ## Why multi-scale?
 
 Viewing a whole slice from a multi-terabyte dataset can still be hundreds of GB!
 
-![](../img/platy_zooms.png){fig-align="center" width="100%"}
+![](img/platy_zooms.png){fig-align="center" width="100%"}
 
 ::: footer
 Image from Vergara et al. 2021 - Whole-body integration of gene expression and single-cell morphology

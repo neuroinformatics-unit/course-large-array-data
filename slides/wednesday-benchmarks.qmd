@@ -175,6 +175,6 @@ One of the settings we didn't benchmark was 'sharding':
 
 ## Benchmarking sharding
 
-Let's experiment with sharding options:
+Let's [experiment](https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/sharding.ipynb) with sharding options:
 
 - `notebooks/sharding.ipynb`

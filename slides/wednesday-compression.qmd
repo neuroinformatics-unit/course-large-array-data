@@ -1,0 +1,109 @@
+# Compression
+
+## Data has a "size"
+
+Computers store data as _bits_.
+
+```{python}
+array_bytes = array.tobytes()
+
+print(f"{len(array_bytes)} bytes total")
+print()
+print("First five elements:")
+for i in range(0, 10, 2):
+    word = int.from_bytes(array_bytes[i:i+2], byteorder='little')
+    print(f'{word:016b}', end=' ')
+
+print("...")
+```
+
+## Data compression
+
+We can be smart about how to store this data with fewer bits.
+
+```{python}
+array_bytes = array.tobytes()
+
+print(f"{len(array_bytes)} bytes total")
+print()
+print("First five elements:")
+for i in range(0, 10, 2):
+    word = int.from_bytes(array_bytes[i:i+2], byteorder='little')
+    print(f'{word:016b}', end=' ')
+
+print("...")
+```
+
+## Data compression
+
+We could "encode" something like "assume the first 8 bits are always 0" and halve the file size.
+
+```{python}
+array_bytes = array.tobytes()
+
+print(f"{len(array_bytes)} bytes total")
+print()
+print("First five elements:")
+for i in range(0, 10, 2):
+    word = int.from_bytes(array_bytes[i:i+2], byteorder='little')
+    print(f'{word:016b}', end=' ')
+
+print("...")
+```
+
+## Lossless and lossy compression
+
+Some compression algorithms preserve all the information.
+
+Others are lossy, e.g. ".jpg" files
+
+
+## What is a codec?
+
+Codec stands for encoder/decoder.
+
+If defines how data is written to/read from disk.
+
+Different codecs will work better/worse for different data.
+
+## Compression trade-offs
+
+Generally, we expect a smaller size on disk to result in slower read/write.
+
+But compression algorithms can be clever about this too.
+
+## Case study
+
+Two audio codecs work well on electrophysiology data.
+
+![](img/ephys-codecs.png){fig-alt="A plot showing audio codecs benchmarks on neuropixels data"}
+
+Better compression ratio, slower decompression speed
+
+::: footer
+@Buccino_2023
+:::
+
+## Using Codecs in zarr
+
+Zarr provides a [number of Codecs](https://zarr.readthedocs.io/en/stable/api/zarr/codecs/) that you can specify when writing files.
+
+## Exercise 5
+
+Compares write speeds and disk size for different compression levels.
+
+## Exercise 5
+
+::: {.nonincremental}
+- Download [the exercise notebook](https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/5_remote_file_compression.ipynb)
+- Activate your conda environment
+```bash
+conda activate large-arrays
+```
+- Run jupyter
+```bash
+jupyter lab
+```
+- Open `http://localhost:8888/lab?`
+- Navigate to the downloaded notebook and work through it, make it point to your own data
+:::

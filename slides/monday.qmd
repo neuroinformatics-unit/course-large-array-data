@@ -15,12 +15,14 @@ conda activate large-arrays
 uv pip install git+https://github.com/neuroinformatics-unit/course-large-array-data
 ```
 
+Optional: if you are familiar with `git`, clone the [course GitHub repository](https://github.com/neuroinformatics-unit/course-large-array-data).
 
 ## The instructor team
 
 * Alessandro Felder
 * Igor Tatarnikov
 * Kimberly Meechan
+* Harry Carey
 * Jim Bednar
 
 ## [Mentimeter](https://www.menti.com/alk7wxcqjqhe)
@@ -54,6 +56,11 @@ uv pip install git+https://github.com/neuroinformatics-unit/course-large-array-d
 :::
 :::
 
+# Why does data come in array form?
+
+* Naturally lends itself to what the data represents (e.g. microscopy)
+* Arrays can be indexed efficiently in memory
+
 ## Data has a "size"
 
 Computers store data as _bits_ , arranged in _bytes_ of 8 bits.
@@ -68,9 +75,11 @@ Computers store data as _bits_ , arranged in _bytes_ of 8 bits.
 Computers store data as _bits_ , arranged in _bytes_ of 8 bits.
 There are also binary system equivalents
 
+::: {.nonincremental}
 * kibibyte (KiB) = 1024 bytes
 * mebibyte (MiB) = 1024 kibibytes
 * ...
+:::
 
 We treat KB and KiB as equivalent for our purposes.
 
@@ -83,12 +92,6 @@ Data being processed on a computer.
 # Why do we care about arrays?
 
 Lots of scientific data comes in (large) array form.
-
-
-# Why does data come in array form?
-
-* Naturally lends itself to some data (e.g. microscopy)
-* Arrays can be indexed efficiently in memory
 
 ## Electrophysiological probes {.smaller}
 
@@ -353,21 +356,27 @@ It works well for many applications and is very stable.
 
 Using `numpy` keeps your code simple, more accessible, and easy-to-read.
 
-## A mental model of a computer {.smaller}
+## A mental model {.smaller}
 
 ![](img/computer_mental_model_basic.png){fig-align="center" .nostretch height="10%"}
 
-## A mental model of a computer {.smaller}
+Data being processed on a computer.
+
+## A mental model {.smaller}
 
 ![](img/computer_mental_model_access.png){fig-align="center" .nostretch height="40%"}
+
+Data being processed on a computer.
 
 ::: footer
 [Latency in more depth](https://gist.github.com/hellerbarde/2843375.js)
 :::
 
-## A mental model of a computer {.smaller}
+## A mental model {.smaller}
 
 ![](img/computer_mental_model_access_expanded.png){fig-align="center" .nostretch height="40%"}
+
+Data being processed on a computer.
 
 ::: footer
 [Latency in more depth](https://gist.github.com/hellerbarde/2843375.js)
@@ -391,7 +400,6 @@ Therefore, allocating memory eagerly is a bad idea!
 
 ## Exercise 1 (Eager memory allocation)
 
-
 ::: {.nonincremental}
 - Download [the Exercise 1 notebook](https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/1_memory_cap.ipynb)
 - Activate your conda environment
@@ -410,7 +418,7 @@ jupyter lab
 
 # Coffee break?
 
-## A mental model of a computer {.smaller}
+## A mental model {.smaller}
 
 ![](img/computer_mental_model_access.png){fig-align="center" .nostretch height="40%"}
 
@@ -423,6 +431,10 @@ Eager memory allocation is a problem for large arrays.
 Hold off allocating memory/doing computations for as long as we can...
 
 ...and only operate on the minimum amount of in-memory data needed.
+
+## We get more control by being lazy :)
+
+![](img/sloth){fig-alt="A three-toed sloth."}
 
 ## An example
 
@@ -484,9 +496,11 @@ We would benefit from increased flexibility like
 
 An evolution of the `numpy` array
 
+::: {.nonincremental}
 - same interface (for most functionality)
 - allows "chunking" of the array into smaller chunks
 - gives control over when data is actually loaded into memory
+:::
 
 `dask` keeps track of lazy operations in a "task graph"
 
@@ -605,16 +619,17 @@ print(eager_sum) # eager
 
 Loading of large array slices with
 
+::: {.nonincremental}
 * `numpy` (eager, via `tifffile.imread`)
 * `numpy.memmap` (lazy, via `tifffile.memmap`)
 * `dask`
+:::
 
 showcasing the increased flexibility of `dask`.
 
 ## Exercise 2 (Joint) {.smaller}
 
 If you want to run on your own data
-
 
 ::: {.nonincremental}
 - Download [the exercise notebook](https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/2_numpy_to_dask.ipynb)
@@ -634,11 +649,9 @@ jupyter lab
 
 So far, we have only created `dask` arrays in-memory (lazily). But how do we store them on disk?
 
-Having chunks helps us here too.
-
-We can store each chunk in a separate file.
-
-We can store metadata in the same (super-)file.
+* Having chunks helps us here too.
+* We can store each chunk in a separate file.
+* We can store metadata in the same (super-)file.
 
 ## Zarr files
 
@@ -664,7 +677,17 @@ Zarr is not the same as `zarr-python`.
 
 * Zarr is a file format specification
 * `zarr-python` is a Python library to work with Zarr files
-  * Confusingly, imported with `import zarr`
+  * Confusingly, used like
+
+::: {.fragment}
+```{.python}
+import zarr
+
+...
+
+zarr_array = zarr.open(path)
+```
+:::
 
 ## Exercise 3
 

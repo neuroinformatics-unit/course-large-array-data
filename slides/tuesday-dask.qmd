@@ -120,18 +120,38 @@ total = sum(partial_sums)
 print(total)
 ```
 
-## Take-away
+## Python concurrency
 
 Python has concurrency built-in.
 
+::: {.nonincremental}
 * Threads share memory
 * Processes don't
+:::
 
 But writing concurrent code is complex and error-prone!
 
 Dask provides some abstractions so you don't have to worry about the intricacies.
 
-## Exercise 4 prep
+## Processing chunks
+
+We can split operations on arrays into two types:
+
+1. The output element depends only on its input element (e.g threshold)
+2. The output element also depends on some neighbouring elements (e.g. Gaussian filter)
+
+## Processing chunks
+
+We can split operations on arrays into two types:
+
+::: {.nonincremental}
+1. The output element depends only on its input element (e.g threshold)
+2. The output element also depends on some neighbouring elements (e.g. Gaussian filter)
+:::
+
+Neighbouring elements may live in a different chunk!
+
+## Operating on `dask/numpy` arrays
 
 Some extra `dask`/`numpy` syntax that will come in handy
 
@@ -139,7 +159,7 @@ Some extra `dask`/`numpy` syntax that will come in handy
 * Boolean comparison of arrays
 * `nanmean`
 
-## Exercise 4 prep
+## Operating on `dask` chunks
 
 You can tell `dask` to apply a function lazily on each chunk
 
@@ -150,8 +170,10 @@ You can tell `dask` to apply a function lazily on each chunk
 
 Exercise 4 will guide you through a realistic analysis of multiphoton imaging data that uses chunkwise dask operations
 
+::: {.nonincremental}
 * without overlap
 * with overlap
+:::
 
 also showing how to choose between multi-threading and multi-processing.
 
@@ -206,7 +228,7 @@ def unit_vector_array_api(x: AnyArray) -> AnyArray:
 
 ## Array API
 
-![array API](img/array_api.png)
+![](img/array_api.png){fig-alt="Libraries involved with the Array API project"}
 
 ## Array API
 
@@ -233,5 +255,5 @@ def unit_vector_array_api(x: AnyArray) -> AnyArray:
 * Use `map_overlap` if you need information from neighbouring chunks,
   * you will need to think about the `depth` parameter
 * By default, `dask` Arrays operate concurrently using multi-threading
-* Favour robustness and simplicity over speed
+* Favour robustness and simplicity over performance
 * There are other open-source Python array libraries
