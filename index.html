@@ -232,24 +232,40 @@
 <h1>Introduction</h1>
 
 </section>
-<section id="open-these-slides-on-your-laptop" class="slide level2">
-<h2>Open these slides on your laptop</h2>
+<section id="setting-up" class="slide level2">
+<h2>Setting up</h2>
+<p>Open these slides on your laptop</p>
 <p><a href="neuroinformatics.dev/course-large-array-data">neuroinformatics.dev/course-large-array-data</a></p>
 <p>They contain links to exercises, polls and further references.</p>
 <p>Also, activate your (conda) environment and install the helper functions for the course</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="" aria-label="1"></a><span class="ex">conda</span> activate large-arrays</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="" aria-label="1"></a><span class="ex">uv</span> pip install git+https://github.com/neuroinformatics-unit/course-large-array-data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Optional: if you are familiar with <code>git</code>, clone the <a href="https://github.com/neuroinformatics-unit/course-large-array-data">course GitHub repository</a>.</p>
+<p>Download <a href="https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fneuroinformatics-unit%2Fcourse-large-array-data%2Ftree%2Fmain%2Fnotebooks">the exercises</a></p>
 </section>
-<section id="the-instructor-team" class="slide level2">
+<section id="the-instructor-team" class="slide level2 smaller">
 <h2>The instructor team</h2>
-<ul>
-<li class="fragment">Alessandro Felder</li>
-<li class="fragment">Igor Tatarnikov</li>
-<li class="fragment">Kimberly Meechan</li>
-<li class="fragment">Harry Carey</li>
-<li class="fragment">Jim Bednar</li>
-</ul>
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; text-align: center;">
+<div class="fragment">
+<p><img data-src="img/alessandro.png" style="width:60.0%"><br>
+Alessandro Felder</p>
+</div>
+<div class="fragment">
+<p><img data-src="img/igor.png" style="width:60.0%"><br>
+Igor Tatarnikov</p>
+</div>
+<div class="fragment">
+<p><img data-src="img/kimberly.png" style="width:60.0%"><br>
+Kimberly Meechan</p>
+</div>
+<div class="fragment">
+<p><img data-src="img/harry.png" style="width:60.0%"><br>
+Harry Carey</p>
+</div>
+<div class="fragment">
+<p><img data-src="img/jim.png" style="width:60.0%"><br>
+Jim Bednar</p>
+</div>
+</div>
 </section>
 <section id="mentimeter" class="slide level2">
 <h2><a href="https://www.menti.com/alk7wxcqjqhe">Mentimeter</a></h2>
@@ -260,18 +276,18 @@
 <section id="overall-objectives" class="slide level2">
 <h2>Overall objectives</h2>
 <ul>
-<li class="fragment">understand computational challenges related to large array data and key strategies to address them</li>
-<li class="fragment">gain hands-on Python experience and increase confidence in handling large array data</li>
-<li class="fragment">appreciate the diversity of the open-source Python ecosystem for large array data and how you are part of it</li>
+<li class="fragment">Understand computational challenges related to large array data and key strategies to address them</li>
+<li class="fragment">Gain hands-on Python experience and increase confidence in handling large array data</li>
+<li class="fragment">Appreciate the diversity of the open-source Python ecosystem for large array data and how you are part of it</li>
 </ul>
 </section>
 <section id="schedule" class="slide level2">
 <h2>Schedule</h2>
 <ul>
-<li class="fragment">day 1: fundamentals, motivation, reading and writing large arrays</li>
-<li class="fragment">day 2: processing large arrays in parallel, standards for large imaging data</li>
-<li class="fragment">day 3: advanced topics and case studies: compression, benchmarking, visualisation, real-life applications</li>
-<li class="fragment">day 4-5: collaboration</li>
+<li class="fragment">Day 1: fundamentals, motivation, reading and writing large arrays</li>
+<li class="fragment">Day 2: processing large arrays in parallel, standards for large imaging data</li>
+<li class="fragment">Day 3: advanced topics and case studies: compression, benchmarking, visualisation, real-life applications</li>
+<li class="fragment">Day 4-5: collaboration</li>
 </ul>
 </section>
 <section id="what-is-an-array" class="slide level2">
@@ -298,30 +314,21 @@
 <h2>Data has a “size”</h2>
 <p>Computers store data as <em>bits</em> , arranged in <em>bytes</em> of 8 bits.</p>
 <ul>
-<li class="fragment">kilobyte (KB) = 1000 bytes</li>
-<li class="fragment">megabyte (MB) = 1000 kilobytes</li>
-<li class="fragment">gigabyte (GB) = 1000 megabytes</li>
-<li class="fragment">terabyte (TB) = 1000 gigabytes</li>
+<li class="fragment">Kilobyte (KB) = 1000 bytes</li>
+<li class="fragment">Megabyte (MB) = 1000 kilobytes</li>
+<li class="fragment">Gigabyte (GB) = 1000 megabytes</li>
+<li class="fragment">Terabyte (TB) = 1000 gigabytes</li>
 </ul>
 </section>
 <section id="data-has-a-size-sidenote" class="slide level2">
 <h2>Data has a “size” (sidenote)</h2>
 <p>Computers store data as <em>bits</em> , arranged in <em>bytes</em> of 8 bits. There are also binary system equivalents</p>
 <ul>
-<li>kibibyte (KiB) = 1024 bytes</li>
-<li>mebibyte (MiB) = 1024 kibibytes</li>
+<li>Kibibyte (KiB) = 1024 bytes</li>
+<li>Mebibyte (MiB) = 1024 kibibytes</li>
 <li>…</li>
 </ul>
 <p>We treat KB and KiB as equivalent for our purposes.</p>
-</section>
-<section id="a-mental-model" class="slide level2 smaller">
-<h2>A mental model</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/computer_mental_model_basic.png" class="quarto-figure quarto-figure-center" style="height:10.0%"></p>
-</figure>
-</div>
-<p>Data being processed on a computer.</p>
 </section></section>
 <section>
 <section id="why-do-we-care-about-arrays" class="title-slide slide level1 center">
@@ -528,13 +535,13 @@ A.init.then(() => {
 </section>
 <section id="exploring-a-numpy-array-1" class="slide level2">
 <h2>Exploring a <code>numpy</code> array</h2>
-<div id="29b3f249" class="cell" data-execution_count="1">
+<div id="febed71e" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
-<pre><code>[[30  5  2 58 76 99]
- [74 76 57 17 44 94]
- [11 40  3 17 86 20]
- [94 67 55 27 42 71]
- [52 82 15 82 36 79]]
+<pre><code>[[87 64 52 15 64  2]
+ [52 70 96 38 97 97]
+ [35 32 28 84 64 98]
+ [10 64 69 25 60 41]
+ [74 89 85 55 58 23]]
 Array shape: (5, 6)</code></pre>
 </div>
 </div>
@@ -569,12 +576,12 @@ Array shape: (5, 6)</code></pre>
 <div class="column" style="width:40%;">
 <p>Extract its bytes</p>
 </div><div class="column" style="width:59%;">
-<div id="40fcfb10" class="cell" data-execution_count="2">
+<div id="a545cfda" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code>60 bytes total
 
 First five elements:
-0000000000011110 0000000000000101 0000000000000010 0000000000111010 0000000001001100 ...</code></pre>
+0000000001010111 0000000001000000 0000000000110100 0000000000001111 0000000001000000 ...</code></pre>
 </div>
 </div>
 </div></div>
@@ -586,12 +593,22 @@ First five elements:
 <h2><code>numpy</code> is great!</h2>
 <p>It works well for many applications and is very stable.</p>
 <p>Using <code>numpy</code> keeps your code simple, more accessible, and easy-to-read.</p>
+<p>So what’s the problem?</p>
+</section>
+<section id="a-mental-model" class="slide level2 smaller">
+<h2>A mental model</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/computer_mental_model_basic.png" class="quarto-figure quarto-figure-center" style="height:10.0%"></p>
+</figure>
+</div>
+<p>Data being processed on a computer.</p>
 </section>
 <section id="a-mental-model-1" class="slide level2 smaller">
 <h2>A mental model</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/computer_mental_model_basic.png" class="quarto-figure quarto-figure-center" style="height:10.0%"></p>
+<p><img data-src="img/computer_mental_model_basic_with_cache.png" class="quarto-figure quarto-figure-center" style="height:10.0%"></p>
 </figure>
 </div>
 <p>Data being processed on a computer.</p>
@@ -612,7 +629,7 @@ First five elements:
 <h2>A mental model</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/computer_mental_model_access_expanded.png" class="quarto-figure quarto-figure-center" style="height:40.0%"></p>
+<p><img data-src="img/computer_mental_model_access_expanded_no_cache.png" class="quarto-figure quarto-figure-center" style="height:40.0%"></p>
 </figure>
 </div>
 <p>Data being processed on a computer.</p>
@@ -633,10 +650,22 @@ First five elements:
 <p><span class="citation" data-cites="hp_tech_takes_how_nodate">(<a href="#/references" role="doc-biblioref" onclick="">HP Tech Takes, n.d.</a>)</span></p>
 </div>
 </section>
+<section id="a-mental-model-4" class="slide level2 smaller">
+<h2>A mental model</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/computer_mental_model_access_expanded.png" class="quarto-figure quarto-figure-center" style="height:40.0%"></p>
+</figure>
+</div>
+<p>Data being processed on a computer.</p>
+<div class="footer">
+<p><a href="https://gist.github.com/hellerbarde/2843375.js">Latency in more depth</a></p>
+</div>
+</section>
 <section id="exercise-1-eager-memory-allocation" class="slide level2">
 <h2>Exercise 1 (Eager memory allocation)</h2>
 <ul>
-<li>Download <a href="https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/1_memory_cap.ipynb">the Exercise 1 notebook</a></li>
+<li><code>notebooks/1_memory_cap.ipynb</code></li>
 <li>Activate your conda environment</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="" aria-label="1"></a><span class="ex">conda</span> activate large-arrays</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -657,7 +686,7 @@ First five elements:
 <h1>Coffee break?</h1>
 
 </section>
-<section id="a-mental-model-4" class="slide level2 smaller">
+<section id="a-mental-model-5" class="slide level2 smaller">
 <h2>A mental model</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -681,9 +710,9 @@ First five elements:
 <p>Our goal is to plot a slice of a 3D brain image.</p>
 <p>Eager strategy:</p>
 <ul>
-<li class="fragment">load the whole image into memory</li>
-<li class="fragment">access the slice</li>
-<li class="fragment">plot the slice</li>
+<li class="fragment">Load the whole image into memory</li>
+<li class="fragment">Access the slice</li>
+<li class="fragment">Plot the slice</li>
 </ul>
 </section>
 <section id="an-example-1" class="slide level2">
@@ -691,9 +720,9 @@ First five elements:
 <p>Our goal is to plot a slice of a 3D brain image on disk.</p>
 <p>Lazy strategy:</p>
 <ul>
-<li class="fragment">store the index of the slice in-memory</li>
-<li class="fragment">figure out where on disk to get the slice from</li>
-<li class="fragment">only when plotting, access the slice</li>
+<li class="fragment">Store the index of the slice in-memory</li>
+<li class="fragment">Figure out where on disk to get the slice from</li>
+<li class="fragment">Only when plotting, access the slice</li>
 </ul>
 </section>
 <section id="numpy-can-do-this" class="slide level2">
@@ -716,9 +745,9 @@ First five elements:
 <section id="limitations-of-numpy-memory-maps" class="slide level2">
 <h2>Limitations of <code>numpy</code> memory maps</h2>
 <ul>
-<li class="fragment">data has to be on local disk (not cloud)</li>
-<li class="fragment">no compression</li>
-<li class="fragment">no parallelisation</li>
+<li class="fragment">Data has to be on local disk (not cloud)</li>
+<li class="fragment">No compression</li>
+<li class="fragment">No parallelisation</li>
 </ul>
 </section>
 <section id="how-could-we-improve-on-this" class="slide level2 smaller">
@@ -728,37 +757,47 @@ First five elements:
 <h2>How could we improve on this?</h2>
 <p>We would benefit from increased flexibility like</p>
 <ul>
-<li class="fragment">allowing large arrays to be cut into smaller, customisable “chunks” that can live anywhere</li>
-<li class="fragment">allow control over when operations are executed</li>
+<li class="fragment">Allowing large arrays to be cut into smaller, customisable “chunks” that can live anywhere</li>
+<li class="fragment">Allow control over when operations are executed</li>
 </ul>
+</section>
+<section id="how-could-we-improve-on-this-2" class="slide level2">
+<h2>How could we improve on this?</h2>
+<p><code>dask</code> has solved this problem for us.</p>
 </section>
 <section id="the-dask-array" class="slide level2">
 <h2>The <code>dask</code> array</h2>
+<p>An array of <code>numpy</code> arrays</p>
+
+<img data-src="img/dask-array.svg" alt="A dask array diagram, showing its chunks as numpy array" class="r-stretch"><p>that also behaves like a lazy <code>numpy</code> array.</p>
+</section>
+<section id="the-dask-array-1" class="slide level2">
+<h2>The <code>dask</code> array</h2>
 <p>An evolution of the <code>numpy</code> array</p>
 <ul>
-<li>same interface (for most functionality)</li>
-<li>allows “chunking” of the array into smaller chunks</li>
-<li>gives control over when data is actually loaded into memory</li>
+<li>Same interface (for most functionality)</li>
+<li>Allows “chunking” of the array into smaller chunks</li>
+<li>Gives control over when data is actually loaded into memory</li>
 </ul>
 <p><code>dask</code> keeps track of lazy operations in a “task graph”</p>
 </section>
-<section id="the-dask-array-1" class="slide level2">
+<section id="the-dask-array-2" class="slide level2">
 <h2>The <code>dask</code> array</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="" aria-label="1"></a><span class="im">import</span> dask.array <span class="im">as</span> da</span>
 <span id="cb10-2"><a href="" aria-label="2"></a>rng <span class="op">=</span> da.random.default_rng()</span>
 <span id="cb10-3"><a href="" aria-label="3"></a>x <span class="op">=</span> rng.random((<span class="dv">10000</span>, <span class="dv">10000</span>), chunks<span class="op">=</span>(<span class="dv">1000</span>, <span class="dv">1000</span>))</span>
 <span id="cb10-4"><a href="" aria-label="4"></a><span class="bu">print</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="the-dask-array-2" class="slide level2">
+<section id="the-dask-array-3" class="slide level2">
 <h2>The <code>dask</code> array</h2>
-<div id="1e510a98" class="cell" data-execution_count="3">
+<div id="d735ea7d" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
 <pre><code>dask.array&lt;random, shape=(10000, 10000), dtype=float64, chunksize=(1000, 1000), chunktype=numpy.ndarray&gt;</code></pre>
 </div>
 </div>
 <p>Lazy evaluation means <code>print(x)</code> doesn’t load array data into memory.</p>
 </section>
-<section id="the-dask-array-3" class="slide level2">
+<section id="the-dask-array-4" class="slide level2">
 <h2>The <code>dask</code> array</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="" aria-label="1"></a><span class="im">import</span> dask.array <span class="im">as</span> da</span>
 <span id="cb12-2"><a href="" aria-label="2"></a>rng <span class="op">=</span> da.random.default_rng()</span>
@@ -766,15 +805,15 @@ First five elements:
 <span id="cb12-4"><a href="" aria-label="4"></a><span class="bu">print</span>(x[<span class="dv">0</span>:<span class="dv">100</span>, <span class="dv">0</span>:<span class="dv">100</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Lazy evaluation means <code>print(x)</code> and slicing still doesn’t load array data into memory.</p>
 </section>
-<section id="the-dask-array-4" class="slide level2">
+<section id="the-dask-array-5" class="slide level2">
 <h2>The <code>dask</code> array</h2>
-<div id="8c307194" class="cell" data-execution_count="4">
+<div id="da30a36f" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-stdout">
 <pre><code>dask.array&lt;getitem, shape=(100, 100), dtype=float64, chunksize=(100, 100), chunktype=numpy.ndarray&gt;</code></pre>
 </div>
 </div>
 </section>
-<section id="the-dask-array-5" class="slide level2">
+<section id="the-dask-array-6" class="slide level2">
 <h2>The <code>dask</code> array</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="" aria-label="1"></a><span class="im">import</span> dask.array <span class="im">as</span> da</span>
 <span id="cb14-2"><a href="" aria-label="2"></a>rng <span class="op">=</span> da.random.default_rng()</span>
@@ -782,17 +821,17 @@ First five elements:
 <span id="cb14-4"><a href="" aria-label="4"></a><span class="bu">print</span>(x[<span class="dv">0</span>:<span class="dv">100</span>, <span class="dv">0</span>:<span class="dv">100</span>].compute())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>.compute</code> method gives us control over when to actually load into memory.</p>
 </section>
-<section id="the-dask-array-6" class="slide level2">
+<section id="the-dask-array-7" class="slide level2">
 <h2>The <code>dask</code> array</h2>
-<div id="35b9b8aa" class="cell" data-execution_count="5">
+<div id="049d0b6e" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-stdout">
-<pre><code>[[0.47355395 0.49330925 0.28811619 ... 0.87299282 0.61790584 0.41371692]
- [0.67249818 0.5544074  0.55176339 ... 0.26326433 0.30256713 0.87684548]
- [0.8470196  0.18027441 0.47667133 ... 0.6923144  0.61607522 0.41034985]
+<pre><code>[[0.21502013 0.94608726 0.18861276 ... 0.44005027 0.37340607 0.51699739]
+ [0.37870673 0.72222123 0.54335243 ... 0.20516071 0.71087694 0.64223179]
+ [0.44406377 0.67466057 0.78663093 ... 0.5367337  0.2993107  0.94826548]
  ...
- [0.87748301 0.38150987 0.55227222 ... 0.73843752 0.75167598 0.75531519]
- [0.34594914 0.9417197  0.51197063 ... 0.30785602 0.92730831 0.07658436]
- [0.45510103 0.13734244 0.00943409 ... 0.45731364 0.06999902 0.85342298]]</code></pre>
+ [0.54189641 0.64672787 0.30909969 ... 0.61318756 0.15293908 0.38301641]
+ [0.06282383 0.24852543 0.28267848 ... 0.88375146 0.28120859 0.60292565]
+ [0.92574916 0.61037157 0.08375182 ... 0.33611313 0.39761642 0.55984078]]</code></pre>
 </div>
 </div>
 <p><code>.compute</code> method gives us control over when to actually load into memory.</p>
@@ -819,18 +858,18 @@ First five elements:
 </section>
 <section id="dask-delayed-1" class="slide level2">
 <h2><code>dask</code> delayed</h2>
-<div id="1c00fc45" class="cell" data-execution_count="6">
+<div id="40e645ac" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-stdout">
-<pre><code>Delayed('ndarray-6277859d-1a77-49ac-96d7-69e8c82c9d63')
-[ 9526 10117  9452  9143  9560  9326 10648 11258  9900  8899  9967  9388
-  9310  9870 10077  9278  9231 10875 10303 10609  9911  9811  9637 10117
-  9798  9823 10408 10462  9789  9601 10662  9865  9401  9709  9233  9950
-  9274  9725  8898  9464  9847  9934  9862  9300 10223  9675  9648 10179
- 10598  9675  8805  9933  9871  9902  9412 10180  9213 10161  9941 10220
-  9040  9206  9744  9949 10600  8938  9486  9739  9663 10402  9414  8646
-  9876  9445 10188 10344 10491  9136 10194  9991  9448  9217  9301  9507
- 10451 10571  9830 10354  8912  9991  9559 10334 10098  9618  8869  9528
-  9519  9424  9492  8685]</code></pre>
+<pre><code>Delayed('ndarray-df408efa-f6ce-4d45-996d-007616e77a39')
+[ 9979  9356 10233  9978 10330 11029  9947  9601  9689  9507  8967  9031
+  9417 10345 10083  9261  9366  9992  8305  9808 10074  9390 10203  9087
+  9197  9884  9652  9703  9671  9979  8969  9875  9529  8478 10349  8870
+  9946  8787 10132  9807 10836  8802  9844 10865 10475  9686 10214  9212
+ 10381  9434  9493  9581  9423  8854  9802 10115  9969 10152 10570 10977
+ 10863  9713  9290 10611  9166  9524 10056 10007  9045 10119  9962 10193
+ 10326 10258  9607  9657 10373  9426  8904 10315  9886  9558  9426 10102
+  9521  9759  8725 10402 10286 10431  9496 11328  9036  9430 10289 10246
+ 10272 10176 10370  8928]</code></pre>
 </div>
 </div>
 <p><code>delayed</code> function allows us to execute our own functions lazily.</p>
@@ -849,7 +888,7 @@ First five elements:
 <h2>Exercise 2 (Joint)</h2>
 <p>If you want to run on your own data</p>
 <ul>
-<li>Download <a href="https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/2_numpy_to_dask.ipynb">the exercise notebook</a></li>
+<li><code>notebooks/2_numpy_to_dask.ipynb</code></li>
 <li>Activate your conda environment</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="" aria-label="1"></a><span class="ex">conda</span> activate large-arrays</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -870,6 +909,10 @@ First five elements:
 <li class="fragment">We can store each chunk in a separate file.</li>
 <li class="fragment">We can store metadata in the same (super-)file.</li>
 </ul>
+</section>
+<section id="how-do-we-store-them-on-disk" class="slide level2">
+<h2>How do we store them on disk?</h2>
+<p><code>zarr</code> has solved this problem for us.</p>
 </section>
 <section id="zarr-files" class="slide level2">
 <h2>Zarr files</h2>
@@ -919,7 +962,7 @@ First five elements:
 <section id="exercise-3-2" class="slide level2">
 <h2>Exercise 3</h2>
 <ul>
-<li>Download <a href="https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/3_dask_remote_to_zarr_io.ipynb">the exercise notebook</a></li>
+<li><code>notebooks/3_dask_remote_to_zarr_io.ipynb</code></li>
 <li>Activate your conda environment</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="" aria-label="1"></a><span class="ex">conda</span> activate large-arrays</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -944,15 +987,15 @@ First five elements:
 <ul>
 <li class="fragment"><code>dask</code> is more flexible
 <ul>
-<li class="fragment">lazy by default</li>
-<li class="fragment">customise chunks</li>
-<li class="fragment">control function execution with <code>delayed</code></li>
-<li class="fragment">works with remote data</li>
+<li class="fragment">Lazy by default</li>
+<li class="fragment">Customise chunks</li>
+<li class="fragment">Control function execution with <code>delayed</code></li>
+<li class="fragment">Works with remote data</li>
 </ul></li>
 <li class="fragment"><code>zarr</code>
 <ul>
-<li class="fragment">flexible file format for chunked arrays</li>
-<li class="fragment">each chunk = one file on disk</li>
+<li class="fragment">Flexible file format for chunked arrays</li>
+<li class="fragment">Each chunk = one file on disk</li>
 </ul></li>
 </ul>
 </section></section>
@@ -1130,7 +1173,7 @@ First five elements:
 <h2>Parallelising array operations with <code>dask</code></h2>
 <p>How should we coordinate array operations so Python can execute them at the same time?</p>
 <ul>
-<li class="fragment">“in parallel”, “concurrently”</li>
+<li class="fragment">“In parallel”, “concurrently”</li>
 </ul>
 </section>
 <section id="concurrency" class="slide level2">
@@ -1172,7 +1215,7 @@ First five elements:
 </section>
 <section id="multi-threading-example-1" class="slide level2">
 <h2>Multi-threading example</h2>
-<div id="6f796c55" class="cell" data-execution_count="7">
+<div id="bbf1eca8" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-stdout">
 <pre><code>400000</code></pre>
 </div>
@@ -1218,7 +1261,7 @@ First five elements:
 </section>
 <section id="multi-processing-example-1" class="slide level2">
 <h2>Multi-processing example</h2>
-<div id="2747146a" class="cell" data-execution_count="8">
+<div id="7e7c3b0c" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-stdout">
 <pre><code>2222
 
@@ -1277,15 +1320,15 @@ First five elements:
 <h2>Exercise 4</h2>
 <p>Exercise 4 will guide you through a realistic analysis of multiphoton imaging data that uses chunkwise dask operations</p>
 <ul>
-<li>without overlap</li>
+<li>Without overlap</li>
 <li>with overlap</li>
 </ul>
-<p>also showing how to choose between multi-threading and multi-processing.</p>
+<p>Also showing how to choose between multi-threading and multi-processing.</p>
 </section>
 <section id="exercise-4-1" class="slide level2 smaller">
 <h2>Exercise 4</h2>
 <ul>
-<li>Download <a href="https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/4_parallel_processing_with_dask.ipynb">the exercise notebook</a></li>
+<li><code>notebooks/4_parallel_processing_with_dask.ipynb</code></li>
 <li>Activate your conda environment</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="" aria-label="1"></a><span class="ex">conda</span> activate large-arrays</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1376,36 +1419,36 @@ First five elements:
 <section id="data-has-a-size-1" class="slide level2">
 <h2>Data has a “size”</h2>
 <p>Computers store data as <em>bits</em>.</p>
-<div id="7aaf2e5e" class="cell" data-execution_count="9">
+<div id="54f4c8a0" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-stdout">
 <pre><code>60 bytes total
 
 First five elements:
-0000000000011110 0000000000000101 0000000000000010 0000000000111010 0000000001001100 ...</code></pre>
+0000000001010111 0000000001000000 0000000000110100 0000000000001111 0000000001000000 ...</code></pre>
 </div>
 </div>
 </section>
 <section id="data-compression" class="slide level2">
 <h2>Data compression</h2>
 <p>We can be smart about how to store this data with fewer bits.</p>
-<div id="5ba198a1" class="cell" data-execution_count="10">
+<div id="9997afaa" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-stdout">
 <pre><code>60 bytes total
 
 First five elements:
-0000000000011110 0000000000000101 0000000000000010 0000000000111010 0000000001001100 ...</code></pre>
+0000000001010111 0000000001000000 0000000000110100 0000000000001111 0000000001000000 ...</code></pre>
 </div>
 </div>
 </section>
 <section id="data-compression-1" class="slide level2">
 <h2>Data compression</h2>
 <p>We could “encode” something like “assume the first 8 bits are always 0” and halve the file size.</p>
-<div id="739d6dad" class="cell" data-execution_count="11">
+<div id="e9f7b154" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-stdout">
 <pre><code>60 bytes total
 
 First five elements:
-0000000000011110 0000000000000101 0000000000000010 0000000000111010 0000000001001100 ...</code></pre>
+0000000001010111 0000000001000000 0000000000110100 0000000000001111 0000000001000000 ...</code></pre>
 </div>
 </div>
 </section>
@@ -1445,7 +1488,7 @@ First five elements:
 <section id="exercise-5-1" class="slide level2">
 <h2>Exercise 5</h2>
 <ul>
-<li>Download <a href="https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/5_remote_file_compression.ipynb">the exercise notebook</a></li>
+<li><code>notebooks/5_remote_file_compression.ipynb</code></li>
 <li>Activate your conda environment</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="" aria-label="1"></a><span class="ex">conda</span> activate large-arrays</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1626,6 +1669,69 @@ First five elements:
 <ul>
 <li class="fragment"><code>notebooks/sharding.ipynb</code></li>
 </ul>
+</section></section>
+<section>
+<section id="large-array-data-1" class="title-slide slide level1 center">
+<h1>Large Array Data</h1>
+<p>Case studies from the Neuroinformatics Unit</p>
+</section>
+<section id="photon-mosaic" class="slide level2">
+<h2>Photon-mosaic</h2>
+<p>🚧</p>
+</section>
+<section id="cellfinder" class="slide level2">
+<h2>Cellfinder</h2>
+<p>🚧</p>
+</section>
+<section id="brainglobe-atlas-api" class="slide level2">
+<h2>BrainGlobe Atlas API</h2>
+<p>🚧</p>
+</section></section>
+<section>
+<section id="overall-summary" class="title-slide slide level1 center">
+<h1>Overall summary</h1>
+
+</section>
+<section id="overall-objectives-1" class="slide level2">
+<h2>Overall objectives</h2>
+<ul>
+<li class="fragment">Understand computational challenges related to large array data and key strategies to address them</li>
+<li class="fragment">Gain hands-on Python experience and increase confidence in handling large array data</li>
+<li class="fragment">Appreciate the diversity of the open-source Python ecosystem for large array data and how you are part of it</li>
+</ul>
+</section>
+<section id="understand-computational-challenges-and-how-to-address-them" class="slide level2">
+<h2>Understand computational challenges and how to address them</h2>
+<p>Large arrays do not fit into memory</p>
+<p>We deal with this</p>
+<ul>
+<li class="fragment">Chunking</li>
+<li class="fragment">Lazy evaluation</li>
+<li class="fragment">Parallelising across chunks</li>
+<li class="fragment">Compressing chunks on disk</li>
+</ul>
+</section>
+<section id="handling-large-array-data-with-python" class="slide level2">
+<h2>Handling large array data with Python</h2>
+<ul>
+<li class="fragment"><code>zarr-python</code> and <code>dask</code> are generalist libraries for processing large arrays.</li>
+<li class="fragment">Use <code>zarr</code> files, ideally following a community standard (e.g.&nbsp;OME-Zarr).</li>
+</ul>
+</section>
+<section id="the-open-source-ecosystem" class="slide level2">
+<h2>The open-source ecosystem</h2>
+<ul>
+<li class="fragment">There are many array libraries and related open-source projects out there.</li>
+<li class="fragment">Each have their niche.</li>
+<li class="fragment">Including in (neuro)science.</li>
+<li class="fragment">By using them, you are part of it!</li>
+<li class="fragment">Hopefully, interact more during collaboration days!</li>
+</ul>
+</section></section>
+<section>
+<section id="thank-you" class="title-slide slide level1 center">
+<h1>Thank you!</h1>
+
 </section>
 <section id="references" class="slide level2 smaller scrollable">
 <h2>References</h2>
