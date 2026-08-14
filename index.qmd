@@ -8,6 +8,7 @@ format:
 
 {{< include slides/monday.qmd >}}
 {{< include slides/tuesday-ome-zarr.qmd >}}
+{{< include slides/tuesday-dask.qmd >}}
 {{< include slides/wednesday-benchmarks.qmd >}}
 
 
