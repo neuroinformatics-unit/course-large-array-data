@@ -89,7 +89,7 @@ def worker(xs):
     print(len(xs))
     return sum(xs)
 
-chunks = [[1,2],[3,4],[5,6],[7,8]] 
+chunks = [[1,2],[3,4],[5,6],[7,8]]
 ctx = mp.get_context("fork")
 with ctx.Pool(4) as pool:
    partial_sums = pool.map(worker, chunks)
@@ -109,7 +109,7 @@ def worker(xs):
     print(len(xs))
     return sum(xs)
 
-chunks = [[1,2],[3,4],[5,6],[7,8]] 
+chunks = [[1,2],[3,4],[5,6],[7,8]]
 ctx = mp.get_context("fork")
 with ctx.Pool(4) as pool:
    partial_sums = pool.map(worker, chunks)
@@ -148,7 +148,7 @@ You can tell `dask` to apply a function lazily on each chunk
 
 ## Exercise 4
 
-Exercise 4 will guide you through a realistic analysis of multiphoton imaging data that uses chunkwise dask operations 
+Exercise 4 will guide you through a realistic analysis of multiphoton imaging data that uses chunkwise dask operations
 
 * without overlap
 * with overlap
@@ -182,13 +182,13 @@ jupyter lab
 Favour robustness and simplicity over speed
 
 * Performance may differ depending on data, hardware...
-* Optimising performance is very tricky 
+* Optimising performance is very tricky
 
 ## Other Python array libraries
 
 * `Xarray`: [label arrays with e.g units, dimensions, ...](https://docs.xarray.dev/en/stable/)
 * `pytorch`: [aimed at machine-learning, native GPU support](https://pytorch.org/)
-* `JAX`: [aimed at machine-learning](https://docs.jax.dev/en/latest/index.html) 
+* `JAX`: [aimed at machine-learning](https://docs.jax.dev/en/latest/index.html)
 * `cupy`: [array library for Python on nvidia GPU](cupy.dev)
 * ...
 
@@ -230,7 +230,7 @@ def unit_vector_array_api(x: AnyArray) -> AnyArray:
 
 * Python has threads and processes
 * Use `map_blocks` to apply chunkwise operations
-* Use `map_overlap` if you need information from neighbouring chunks, 
+* Use `map_overlap` if you need information from neighbouring chunks,
   * you will need to think about the `depth` parameter
 * By default, `dask` Arrays operate concurrently using multi-threading
 * Favour robustness and simplicity over speed
