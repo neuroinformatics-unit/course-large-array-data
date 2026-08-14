@@ -523,13 +523,13 @@ A.init.then(() => {
 </section>
 <section id="exploring-a-numpy-array-1" class="slide level2">
 <h2>Exploring a <code>numpy</code> array</h2>
-<div id="21bb3cfb" class="cell" data-execution_count="1">
+<div id="243694f8" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
-<pre><code>[[31 93 80 34 21 66]
- [53 95 26 41 34 88]
- [97 15 85 99  1 85]
- [64 36 21 25 97 35]
- [95 21 11 14 12 43]]
+<pre><code>[[16 65  6 41 25 89]
+ [40 86 21 92 52  5]
+ [58 62 99 28 62 97]
+ [86 45 29 73 88 31]
+ [23 90 14 19 29 87]]
 Array shape: (5, 6)</code></pre>
 </div>
 </div>
@@ -564,12 +564,12 @@ Array shape: (5, 6)</code></pre>
 <div class="column" style="width:40%;">
 <p>Extract its bytes</p>
 </div><div class="column" style="width:59%;">
-<div id="ba486ffa" class="cell" data-execution_count="2">
+<div id="8383e19c" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code>60 bytes total
 
 First five elements:
-0000000000011111 0000000001011101 0000000001010000 0000000000100010 0000000000010101 ...</code></pre>
+0000000000010000 0000000001000001 0000000000000110 0000000000101001 0000000000011001 ...</code></pre>
 </div>
 </div>
 </div></div>
@@ -739,7 +739,7 @@ First five elements:
 </section>
 <section id="the-dask-array-2" class="slide level2">
 <h2>The <code>dask</code> array</h2>
-<div id="6bf835c8" class="cell" data-execution_count="3">
+<div id="d4c57650" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
 <pre><code>dask.array&lt;random, shape=(10000, 10000), dtype=float64, chunksize=(1000, 1000), chunktype=numpy.ndarray&gt;</code></pre>
 </div>
@@ -756,7 +756,7 @@ First five elements:
 </section>
 <section id="the-dask-array-4" class="slide level2">
 <h2>The <code>dask</code> array</h2>
-<div id="a74e15f1" class="cell" data-execution_count="4">
+<div id="d3c70066" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-stdout">
 <pre><code>dask.array&lt;getitem, shape=(100, 100), dtype=float64, chunksize=(100, 100), chunktype=numpy.ndarray&gt;</code></pre>
 </div>
@@ -772,15 +772,15 @@ First five elements:
 </section>
 <section id="the-dask-array-6" class="slide level2">
 <h2>The <code>dask</code> array</h2>
-<div id="c4df38f4" class="cell" data-execution_count="5">
+<div id="cd8834fa" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-stdout">
-<pre><code>[[0.01421315 0.21078693 0.33367386 ... 0.12596308 0.8285338  0.90170689]
- [0.50846879 0.16076125 0.25346182 ... 0.64236632 0.28817183 0.59729616]
- [0.31395827 0.07614624 0.9902368  ... 0.10652484 0.11480812 0.56249619]
+<pre><code>[[0.62121571 0.38801135 0.42471067 ... 0.12318417 0.25690303 0.94152533]
+ [0.53293756 0.7966921  0.12186163 ... 0.5811482  0.98622727 0.36939098]
+ [0.4226538  0.65749781 0.69054414 ... 0.95981209 0.44974094 0.58183254]
  ...
- [0.1774921  0.91939928 0.69619322 ... 0.56191519 0.03693816 0.04904063]
- [0.80241285 0.97757548 0.36209484 ... 0.27767269 0.80850383 0.94357196]
- [0.17979613 0.21894485 0.64129291 ... 0.96841989 0.30241192 0.61609812]]</code></pre>
+ [0.24249078 0.95240795 0.69339958 ... 0.73061277 0.77004634 0.85153569]
+ [0.76573613 0.99584381 0.61509168 ... 0.40907236 0.42187308 0.73753328]
+ [0.7623503  0.58522315 0.85786946 ... 0.6125158  0.63081603 0.39949671]]</code></pre>
 </div>
 </div>
 <p><code>.compute</code> method gives us control over when to actually load into memory.</p>
@@ -807,18 +807,18 @@ First five elements:
 </section>
 <section id="dask-delayed-1" class="slide level2">
 <h2><code>dask</code> delayed</h2>
-<div id="4044a515" class="cell" data-execution_count="6">
+<div id="358856cb" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-stdout">
-<pre><code>Delayed('ndarray-b8eaf340-8d2c-4c86-83a7-cf3d06be53ae')
-[ 9960  9799 10301 11070 10328  9783 10105  9567 10196  9546 11287  9694
-  9496  9889  9921 10271  9551  8987  9790  9955 10420 10066  9649 10500
- 10197 10695  9632 10311  9475  9805  9806 10159  9921  9405  9991  9345
-  9435 10059  9344  9728 10244  9942  9079  9970 10166 10192 10566  9754
- 10433  9562  9496  9793  9956  9742  9718 10286  9456  9534 10892  9722
-  9441  8762 10319  9881 10081  9552  9644  9436 10946  9984  9259 10075
- 10032  9985  9958 10739  9119 10110 10792 10809  9900 10639  9677  9606
-  9363 10938  8950  9356  9334  9837  9593  9220 10756  9647  9000  9162
-  9640  8818 10255 10209]</code></pre>
+<pre><code>Delayed('ndarray-5d916b8b-72fe-4fd4-b90e-a5c58da14c93')
+[ 9387 10599 10795  9180 10436  9778  9070  9415  8363  9481  8999  9848
+  9492 10145 10810 10760 10789  9316  9818  9734 10526 10277 10293  9808
+ 10473  9346 10038 10044 10283 10232  9339  9783  9945 10548 10199  9151
+ 10842 10554  8156 10445 10320  9032  9297 10486 10975 10869  9902  9993
+ 10063 10028  9800  9270  9319 10351  9864  9534 10262  9650  9245  9515
+  9139  9539  9709 10242 10504  9426  9607  9862 10687  8714 10014  9891
+ 10424  8793  9456  9690 10314 10787  9675 10731 10874  9989  9435  9884
+  9609  9612 10605 10538 10337 10407 10702 10029  9059 10413 10566  9769
+ 10893 10229  9577 11226]</code></pre>
 </div>
 </div>
 <p><code>delayed</code> function allows us to execute our own functions lazily.</p>
@@ -944,7 +944,7 @@ First five elements:
 <h2>Recap on Zarr</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
-<p><img data-src="../img/zarr-pink-stacked.svg" alt="Zarr logo"></p>
+<p><img data-src="img/zarr-pink-stacked.svg" alt="Zarr logo"></p>
 </div><div class="column" style="width:60%;">
 <ul>
 <li class="fragment">open-source file format specification</li>
@@ -1151,7 +1151,7 @@ First five elements:
 </section>
 <section id="multi-threading-example-1" class="slide level2">
 <h2>Multi-threading example</h2>
-<div id="d2be33e8" class="cell" data-execution_count="7">
+<div id="1da7c024" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-stdout">
 <pre><code>400000</code></pre>
 </div>
@@ -1197,7 +1197,7 @@ First five elements:
 </section>
 <section id="multi-processing-example-1" class="slide level2">
 <h2>Multi-processing example</h2>
-<div id="be4266e7" class="cell" data-execution_count="8">
+<div id="c9081ece" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-stdout">
 <pre><code>2222
 
@@ -1339,7 +1339,7 @@ First five elements:
 <h2>Recap on Zarr</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
-<p><img data-src="../img/zarr-pink-stacked.svg" alt="Zarr logo"></p>
+<p><img data-src="img/zarr-pink-stacked.svg" alt="Zarr logo"></p>
 </div><div class="column" style="width:60%;">
 <ul>
 <li class="fragment">open-source file format specification</li>
@@ -1378,7 +1378,7 @@ First five elements:
 <h2>HEFTIE Project</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
-<p><img data-src="../img/heftie.svg" alt="HEFTIE logo" height="300"></p>
+<p><img data-src="img/heftie.svg" alt="HEFTIE logo" height="300"></p>
 </div><div class="column" style="width:60%;">
 <p>Benchmarks were made as part of the <a href="https://github.com/HEFTIEProject">HEFTIE project</a>:</p>
 <ul>
@@ -1404,7 +1404,7 @@ First five elements:
 <div class="column">
 <p><strong>Heart: HiP-CT scan of a heart from the Human Organ Atlas</strong></p>
 </div><div class="column">
-<p><img data-src="../img/heart.png" height="450"></p>
+<p><img data-src="img/heart.png" height="450"></p>
 </div></div>
 </section>
 <section id="images-1" class="slide level2">
@@ -1413,7 +1413,7 @@ First five elements:
 <div class="column">
 <p><strong>Dense: segmented neurons from electron microscopy</strong></p>
 </div><div class="column">
-<p><img data-src="../img/dense.png" height="450"></p>
+<p><img data-src="img/dense.png" height="450"></p>
 </div></div>
 </section>
 <section id="images-2" class="slide level2">
@@ -1422,7 +1422,7 @@ First five elements:
 <div class="column">
 <p><strong>Sparse: A few select segmented neurons from electron microscopy</strong></p>
 </div><div class="column">
-<p><img data-src="../img/sparse.png" height="450"></p>
+<p><img data-src="img/sparse.png" height="450"></p>
 </div></div>
 </section>
 <section id="benchmarks-1" class="slide level2">
@@ -1441,29 +1441,29 @@ First five elements:
 <section id="write-time" class="slide level2">
 <h2>Write time</h2>
 
-<img data-src="../img/write_single.png" class="r-stretch quarto-figure-center"><p class="caption">Higher compression level = higher compression ratio = longer write time</p></section>
+<img data-src="img/write_single.png" class="r-stretch quarto-figure-center"><p class="caption">Higher compression level = higher compression ratio = longer write time</p></section>
 <section id="read-time" class="slide level2">
 <h2>Read time</h2>
 
-<img data-src="../img/read_single.png" class="r-stretch quarto-figure-center"><p class="caption">Higher compression level doesn’t usually result in longer read times. For many compressors this is a feature of their design, with a large one-off cost of compressing the data, but no slow down when reading it</p></section>
+<img data-src="img/read_single.png" class="r-stretch quarto-figure-center"><p class="caption">Higher compression level doesn’t usually result in longer read times. For many compressors this is a feature of their design, with a large one-off cost of compressing the data, but no slow down when reading it</p></section>
 <section id="chunk-size" class="slide level2">
 <h2>Chunk size</h2>
 
-<img data-src="../img/chunk_compression.png" class="r-stretch quarto-figure-center"><p class="caption">Larger chunks = lower compression ratio (but only slightly)</p></section>
+<img data-src="img/chunk_compression.png" class="r-stretch quarto-figure-center"><p class="caption">Larger chunks = lower compression ratio (but only slightly)</p></section>
 <section id="chunk-size-1" class="slide level2">
 <h2>Chunk size</h2>
 
-<img data-src="../img/chunk_read.png" class="r-stretch quarto-figure-center"><p class="caption">Larger chunks = faster write and read times (mainly due to fewer total files)</p></section>
+<img data-src="img/chunk_read.png" class="r-stretch quarto-figure-center"><p class="caption">Larger chunks = faster write and read times (mainly due to fewer total files)</p></section>
 <section id="image-type" class="slide level2">
 <h2>Image type</h2>
-<p>Heart image <img data-src="../img/write_single.png" alt="Heart image"> Dense segmentation <img data-src="../img/dense_write.png" alt="Dense segmentation"> Sparse segmentation <img data-src="../img/sparse_write.png" alt="Sparse segmentation"></p>
+<p>Heart image <img data-src="img/write_single.png" alt="Heart image"> Dense segmentation <img data-src="img/dense_write.png" alt="Dense segmentation"> Sparse segmentation <img data-src="img/sparse_write.png" alt="Sparse segmentation"></p>
 <p>Segmentations compress much more!</p>
 </section>
 <section id="software-library" class="slide level2">
 <h2>Software library</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="../img/library_read.png" class="quarto-figure quarto-figure-center" height="1500"></p>
+<p><img data-src="img/library_read.png" class="quarto-figure quarto-figure-center" height="1500"></p>
 </figure>
 </div>
 <p>Which software library you use affects read / write times. <a href="https://google.github.io/tensorstore/">Tensorstore</a> had the best performance.</p>
