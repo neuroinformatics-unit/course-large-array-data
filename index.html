@@ -236,6 +236,10 @@
 <h2>Open these slides on your laptop</h2>
 <p><a href="neuroinformatics.dev/course-large-array-data">neuroinformatics.dev/course-large-array-data</a></p>
 <p>They contain links to exercises, polls and further references.</p>
+<p>Also, activate your (conda) environment and install the helper functions for the course</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="" aria-label="1"></a><span class="ex">conda</span> activate large-arrays</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="" aria-label="1"></a><span class="ex">uv</span> pip install git+https://github.com/neuroinformatics-unit/course-large-array-data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Optional: if you are familiar with <code>git</code>, clone the <a href="https://github.com/neuroinformatics-unit/course-large-array-data">course GitHub repository</a>.</p>
 </section>
 <section id="the-instructor-team" class="slide level2">
 <h2>The instructor team</h2>
@@ -243,6 +247,7 @@
 <li class="fragment">Alessandro Felder</li>
 <li class="fragment">Igor Tatarnikov</li>
 <li class="fragment">Kimberly Meechan</li>
+<li class="fragment">Harry Carey</li>
 <li class="fragment">Jim Bednar</li>
 </ul>
 </section>
@@ -280,6 +285,14 @@
 </div><div class="column" style="width:55%;">
 <p><img data-src="img/array_2d.png" class="" style="width:90.0%"></p>
 </div></div>
+</section></section>
+<section>
+<section id="why-does-data-come-in-array-form" class="title-slide slide level1 center">
+<h1>Why does data come in array form?</h1>
+<ul>
+<li class="fragment">Naturally lends itself to what the data represents (e.g.&nbsp;microscopy)</li>
+<li class="fragment">Arrays can be indexed efficiently in memory</li>
+</ul>
 </section>
 <section id="data-has-a-size" class="slide level2">
 <h2>Data has a “size”</h2>
@@ -295,9 +308,9 @@
 <h2>Data has a “size” (sidenote)</h2>
 <p>Computers store data as <em>bits</em> , arranged in <em>bytes</em> of 8 bits. There are also binary system equivalents</p>
 <ul>
-<li class="fragment">kibibyte (KiB) = 1024 bytes</li>
-<li class="fragment">mebibyte (MiB) = 1024 kibibytes</li>
-<li class="fragment">…</li>
+<li>kibibyte (KiB) = 1024 bytes</li>
+<li>mebibyte (MiB) = 1024 kibibytes</li>
+<li>…</li>
 </ul>
 <p>We treat KB and KiB as equivalent for our purposes.</p>
 </section>
@@ -310,18 +323,10 @@
 </div>
 <p>Data being processed on a computer.</p>
 </section></section>
+<section>
 <section id="why-do-we-care-about-arrays" class="title-slide slide level1 center">
 <h1>Why do we care about arrays?</h1>
 <p>Lots of scientific data comes in (large) array form.</p>
-</section>
-
-<section>
-<section id="why-does-data-come-in-array-form" class="title-slide slide level1 center">
-<h1>Why does data come in array form?</h1>
-<ul>
-<li class="fragment">Naturally lends itself to some data (e.g.&nbsp;microscopy)</li>
-<li class="fragment">Arrays can be indexed efficiently in memory</li>
-</ul>
 </section>
 <section id="electrophysiological-probes" class="slide level2 smaller">
 <h2>Electrophysiological probes</h2>
@@ -505,31 +510,31 @@ A.init.then(() => {
 </section>
 <section id="exploring-a-numpy-array" class="slide level2">
 <h2>Exploring a <code>numpy</code> array</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="" aria-label="1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="" aria-label="2"></a></span>
-<span id="cb1-3"><a href="" aria-label="3"></a>array_shape <span class="op">=</span> (<span class="dv">5</span>,<span class="dv">6</span>)</span>
-<span id="cb1-4"><a href="" aria-label="4"></a>dtype <span class="op">=</span> np.uint16</span>
-<span id="cb1-5"><a href="" aria-label="5"></a>array <span class="op">=</span> np.random.randint(</span>
-<span id="cb1-6"><a href="" aria-label="6"></a>  low<span class="op">=</span><span class="dv">0</span>,</span>
-<span id="cb1-7"><a href="" aria-label="7"></a>  high<span class="op">=</span><span class="dv">100</span>,</span>
-<span id="cb1-8"><a href="" aria-label="8"></a>  size<span class="op">=</span>array_shape,</span>
-<span id="cb1-9"><a href="" aria-label="9"></a>  dtype<span class="op">=</span>dtype)</span>
-<span id="cb1-10"><a href="" aria-label="10"></a></span>
-<span id="cb1-11"><a href="" aria-label="11"></a><span class="bu">print</span>(array)</span>
-<span id="cb1-12"><a href="" aria-label="12"></a><span class="bu">print</span>(<span class="st">"Array shape: "</span><span class="op">+</span><span class="bu">str</span>(array.shape))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="" aria-label="1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="" aria-label="2"></a></span>
+<span id="cb3-3"><a href="" aria-label="3"></a>array_shape <span class="op">=</span> (<span class="dv">5</span>,<span class="dv">6</span>)</span>
+<span id="cb3-4"><a href="" aria-label="4"></a>dtype <span class="op">=</span> np.uint16</span>
+<span id="cb3-5"><a href="" aria-label="5"></a>array <span class="op">=</span> np.random.randint(</span>
+<span id="cb3-6"><a href="" aria-label="6"></a>  low<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb3-7"><a href="" aria-label="7"></a>  high<span class="op">=</span><span class="dv">100</span>,</span>
+<span id="cb3-8"><a href="" aria-label="8"></a>  size<span class="op">=</span>array_shape,</span>
+<span id="cb3-9"><a href="" aria-label="9"></a>  dtype<span class="op">=</span>dtype)</span>
+<span id="cb3-10"><a href="" aria-label="10"></a></span>
+<span id="cb3-11"><a href="" aria-label="11"></a><span class="bu">print</span>(array)</span>
+<span id="cb3-12"><a href="" aria-label="12"></a><span class="bu">print</span>(<span class="st">"Array shape: "</span><span class="op">+</span><span class="bu">str</span>(array.shape))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="footer">
 <p><span class="citation" data-cites="stansby_introduction_2026">(<a href="#/references" role="doc-biblioref" onclick="">Stansby et al. 2026</a>)</span></p>
 </div>
 </section>
 <section id="exploring-a-numpy-array-1" class="slide level2">
 <h2>Exploring a <code>numpy</code> array</h2>
-<div id="243694f8" class="cell" data-execution_count="1">
+<div id="29b3f249" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
-<pre><code>[[16 65  6 41 25 89]
- [40 86 21 92 52  5]
- [58 62 99 28 62 97]
- [86 45 29 73 88 31]
- [23 90 14 19 29 87]]
+<pre><code>[[30  5  2 58 76 99]
+ [74 76 57 17 44 94]
+ [11 40  3 17 86 20]
+ [94 67 55 27 42 71]
+ [52 82 15 82 36 79]]
 Array shape: (5, 6)</code></pre>
 </div>
 </div>
@@ -543,16 +548,16 @@ Array shape: (5, 6)</code></pre>
 <div class="column" style="width:40%;">
 <p>Extract its bytes.</p>
 </div><div class="column" style="width:59%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="" aria-label="1"></a>array_bytes <span class="op">=</span> array.tobytes()</span>
-<span id="cb3-2"><a href="" aria-label="2"></a></span>
-<span id="cb3-3"><a href="" aria-label="3"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(array_bytes)<span class="sc">}</span><span class="ss"> bytes total"</span>)</span>
-<span id="cb3-4"><a href="" aria-label="4"></a><span class="bu">print</span>()</span>
-<span id="cb3-5"><a href="" aria-label="5"></a><span class="bu">print</span>(<span class="st">"First five elements:"</span>)</span>
-<span id="cb3-6"><a href="" aria-label="6"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>):</span>
-<span id="cb3-7"><a href="" aria-label="7"></a>    word <span class="op">=</span> <span class="bu">int</span>.from_bytes(array_bytes[i:i<span class="op">+</span><span class="dv">2</span>], byteorder<span class="op">=</span><span class="st">'little'</span>)</span>
-<span id="cb3-8"><a href="" aria-label="8"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>word<span class="sc">:016b}</span><span class="ss">'</span>, end<span class="op">=</span><span class="st">' '</span>)</span>
-<span id="cb3-9"><a href="" aria-label="9"></a></span>
-<span id="cb3-10"><a href="" aria-label="10"></a><span class="bu">print</span>(<span class="st">"..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="" aria-label="1"></a>array_bytes <span class="op">=</span> array.tobytes()</span>
+<span id="cb5-2"><a href="" aria-label="2"></a></span>
+<span id="cb5-3"><a href="" aria-label="3"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(array_bytes)<span class="sc">}</span><span class="ss"> bytes total"</span>)</span>
+<span id="cb5-4"><a href="" aria-label="4"></a><span class="bu">print</span>()</span>
+<span id="cb5-5"><a href="" aria-label="5"></a><span class="bu">print</span>(<span class="st">"First five elements:"</span>)</span>
+<span id="cb5-6"><a href="" aria-label="6"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>):</span>
+<span id="cb5-7"><a href="" aria-label="7"></a>    word <span class="op">=</span> <span class="bu">int</span>.from_bytes(array_bytes[i:i<span class="op">+</span><span class="dv">2</span>], byteorder<span class="op">=</span><span class="st">'little'</span>)</span>
+<span id="cb5-8"><a href="" aria-label="8"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>word<span class="sc">:016b}</span><span class="ss">'</span>, end<span class="op">=</span><span class="st">' '</span>)</span>
+<span id="cb5-9"><a href="" aria-label="9"></a></span>
+<span id="cb5-10"><a href="" aria-label="10"></a><span class="bu">print</span>(<span class="st">"..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 <div class="footer">
 <p><span class="citation" data-cites="stansby_introduction_2026">(<a href="#/references" role="doc-biblioref" onclick="">Stansby et al. 2026</a>)</span></p>
@@ -564,12 +569,12 @@ Array shape: (5, 6)</code></pre>
 <div class="column" style="width:40%;">
 <p>Extract its bytes</p>
 </div><div class="column" style="width:59%;">
-<div id="8383e19c" class="cell" data-execution_count="2">
+<div id="40fcfb10" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code>60 bytes total
 
 First five elements:
-0000000000010000 0000000001000001 0000000000000110 0000000000101001 0000000000011001 ...</code></pre>
+0000000000011110 0000000000000101 0000000000000010 0000000000111010 0000000001001100 ...</code></pre>
 </div>
 </div>
 </div></div>
@@ -582,32 +587,35 @@ First five elements:
 <p>It works well for many applications and is very stable.</p>
 <p>Using <code>numpy</code> keeps your code simple, more accessible, and easy-to-read.</p>
 </section>
-<section id="a-mental-model-of-a-computer" class="slide level2 smaller">
-<h2>A mental model of a computer</h2>
+<section id="a-mental-model-1" class="slide level2 smaller">
+<h2>A mental model</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="img/computer_mental_model_basic.png" class="quarto-figure quarto-figure-center" style="height:10.0%"></p>
 </figure>
 </div>
+<p>Data being processed on a computer.</p>
 </section>
-<section id="a-mental-model-of-a-computer-1" class="slide level2 smaller">
-<h2>A mental model of a computer</h2>
+<section id="a-mental-model-2" class="slide level2 smaller">
+<h2>A mental model</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="img/computer_mental_model_access.png" class="quarto-figure quarto-figure-center" style="height:40.0%"></p>
 </figure>
 </div>
+<p>Data being processed on a computer.</p>
 <div class="footer">
 <p><a href="https://gist.github.com/hellerbarde/2843375.js">Latency in more depth</a></p>
 </div>
 </section>
-<section id="a-mental-model-of-a-computer-2" class="slide level2 smaller">
-<h2>A mental model of a computer</h2>
+<section id="a-mental-model-3" class="slide level2 smaller">
+<h2>A mental model</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="img/computer_mental_model_access_expanded.png" class="quarto-figure quarto-figure-center" style="height:40.0%"></p>
 </figure>
 </div>
+<p>Data being processed on a computer.</p>
 <div class="footer">
 <p><a href="https://gist.github.com/hellerbarde/2843375.js">Latency in more depth</a></p>
 </div>
@@ -631,11 +639,11 @@ First five elements:
 <li>Download <a href="https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/1_memory_cap.ipynb">the Exercise 1 notebook</a></li>
 <li>Activate your conda environment</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="" aria-label="1"></a><span class="ex">conda</span> activate large-arrays</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="" aria-label="1"></a><span class="ex">conda</span> activate large-arrays</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Run jupyter</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="" aria-label="1"></a><span class="ex">jupyter</span> lab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="" aria-label="1"></a><span class="ex">jupyter</span> lab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Open <code>http://localhost:8888/lab?</code></li>
 <li>Navigate to the downloaded notebook and work through it.</li>
@@ -649,8 +657,8 @@ First five elements:
 <h1>Coffee break?</h1>
 
 </section>
-<section id="a-mental-model-of-a-computer-3" class="slide level2 smaller">
-<h2>A mental model of a computer</h2>
+<section id="a-mental-model-4" class="slide level2 smaller">
+<h2>A mental model</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="img/computer_mental_model_access.png" class="quarto-figure quarto-figure-center" style="height:40.0%"></p>
@@ -664,6 +672,10 @@ First five elements:
 <p>Hold off allocating memory/doing computations for as long as we can…</p>
 <p>…and only operate on the minimum amount of in-memory data needed.</p>
 </section>
+<section id="we-get-more-control-by-being-lazy" class="slide level2">
+<h2>We get more control by being lazy :)</h2>
+
+<img data-src="img/sloth.png" alt="A three-toed sloth." class="r-stretch"></section>
 <section id="an-example" class="slide level2">
 <h2>An example</h2>
 <p>Our goal is to plot a slice of a 3D brain image.</p>
@@ -691,15 +703,15 @@ First five elements:
 </section>
 <section id="numpy-can-do-this-1" class="slide level2">
 <h2><code>numpy</code> can do this</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="" aria-label="1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb7-2"><a href="" aria-label="2"></a></span>
-<span id="cb7-3"><a href="" aria-label="3"></a>shape <span class="op">=</span> (<span class="dv">100</span>, <span class="dv">512</span>, <span class="dv">512</span>)</span>
-<span id="cb7-4"><a href="" aria-label="4"></a>dtype <span class="op">=</span> np.uint16</span>
-<span id="cb7-5"><a href="" aria-label="5"></a></span>
-<span id="cb7-6"><a href="" aria-label="6"></a>arr <span class="op">=</span> np.memmap(<span class="st">"volume.raw"</span>, dtype<span class="op">=</span>dtype, mode<span class="op">=</span><span class="st">"r"</span>, shape<span class="op">=</span>shape)</span>
-<span id="cb7-7"><a href="" aria-label="7"></a></span>
-<span id="cb7-8"><a href="" aria-label="8"></a>slice_index <span class="op">=</span> <span class="dv">50</span></span>
-<span id="cb7-9"><a href="" aria-label="9"></a><span class="bu">print</span>(arr[<span class="dv">50</span>, :, :]) <span class="co"># only necessary "pages" loaded into memory</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="" aria-label="1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-2"><a href="" aria-label="2"></a></span>
+<span id="cb9-3"><a href="" aria-label="3"></a>shape <span class="op">=</span> (<span class="dv">100</span>, <span class="dv">512</span>, <span class="dv">512</span>)</span>
+<span id="cb9-4"><a href="" aria-label="4"></a>dtype <span class="op">=</span> np.uint16</span>
+<span id="cb9-5"><a href="" aria-label="5"></a></span>
+<span id="cb9-6"><a href="" aria-label="6"></a>arr <span class="op">=</span> np.memmap(<span class="st">"volume.raw"</span>, dtype<span class="op">=</span>dtype, mode<span class="op">=</span><span class="st">"r"</span>, shape<span class="op">=</span>shape)</span>
+<span id="cb9-7"><a href="" aria-label="7"></a></span>
+<span id="cb9-8"><a href="" aria-label="8"></a>slice_index <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb9-9"><a href="" aria-label="9"></a><span class="bu">print</span>(arr[<span class="dv">50</span>, :, :]) <span class="co"># only necessary "pages" loaded into memory</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="limitations-of-numpy-memory-maps" class="slide level2">
 <h2>Limitations of <code>numpy</code> memory maps</h2>
@@ -724,22 +736,22 @@ First five elements:
 <h2>The <code>dask</code> array</h2>
 <p>An evolution of the <code>numpy</code> array</p>
 <ul>
-<li class="fragment">same interface (for most functionality)</li>
-<li class="fragment">allows “chunking” of the array into smaller chunks</li>
-<li class="fragment">gives control over when data is actually loaded into memory</li>
+<li>same interface (for most functionality)</li>
+<li>allows “chunking” of the array into smaller chunks</li>
+<li>gives control over when data is actually loaded into memory</li>
 </ul>
 <p><code>dask</code> keeps track of lazy operations in a “task graph”</p>
 </section>
 <section id="the-dask-array-1" class="slide level2">
 <h2>The <code>dask</code> array</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="" aria-label="1"></a><span class="im">import</span> dask.array <span class="im">as</span> da</span>
-<span id="cb8-2"><a href="" aria-label="2"></a>rng <span class="op">=</span> da.random.default_rng()</span>
-<span id="cb8-3"><a href="" aria-label="3"></a>x <span class="op">=</span> rng.random((<span class="dv">10000</span>, <span class="dv">10000</span>), chunks<span class="op">=</span>(<span class="dv">1000</span>, <span class="dv">1000</span>))</span>
-<span id="cb8-4"><a href="" aria-label="4"></a><span class="bu">print</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="" aria-label="1"></a><span class="im">import</span> dask.array <span class="im">as</span> da</span>
+<span id="cb10-2"><a href="" aria-label="2"></a>rng <span class="op">=</span> da.random.default_rng()</span>
+<span id="cb10-3"><a href="" aria-label="3"></a>x <span class="op">=</span> rng.random((<span class="dv">10000</span>, <span class="dv">10000</span>), chunks<span class="op">=</span>(<span class="dv">1000</span>, <span class="dv">1000</span>))</span>
+<span id="cb10-4"><a href="" aria-label="4"></a><span class="bu">print</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="the-dask-array-2" class="slide level2">
 <h2>The <code>dask</code> array</h2>
-<div id="d4c57650" class="cell" data-execution_count="3">
+<div id="1e510a98" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
 <pre><code>dask.array&lt;random, shape=(10000, 10000), dtype=float64, chunksize=(1000, 1000), chunktype=numpy.ndarray&gt;</code></pre>
 </div>
@@ -748,15 +760,15 @@ First five elements:
 </section>
 <section id="the-dask-array-3" class="slide level2">
 <h2>The <code>dask</code> array</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="" aria-label="1"></a><span class="im">import</span> dask.array <span class="im">as</span> da</span>
-<span id="cb10-2"><a href="" aria-label="2"></a>rng <span class="op">=</span> da.random.default_rng()</span>
-<span id="cb10-3"><a href="" aria-label="3"></a>x <span class="op">=</span> rng.random((<span class="dv">10000</span>, <span class="dv">10000</span>), chunks<span class="op">=</span>(<span class="dv">1000</span>, <span class="dv">1000</span>))</span>
-<span id="cb10-4"><a href="" aria-label="4"></a><span class="bu">print</span>(x[<span class="dv">0</span>:<span class="dv">100</span>, <span class="dv">0</span>:<span class="dv">100</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="" aria-label="1"></a><span class="im">import</span> dask.array <span class="im">as</span> da</span>
+<span id="cb12-2"><a href="" aria-label="2"></a>rng <span class="op">=</span> da.random.default_rng()</span>
+<span id="cb12-3"><a href="" aria-label="3"></a>x <span class="op">=</span> rng.random((<span class="dv">10000</span>, <span class="dv">10000</span>), chunks<span class="op">=</span>(<span class="dv">1000</span>, <span class="dv">1000</span>))</span>
+<span id="cb12-4"><a href="" aria-label="4"></a><span class="bu">print</span>(x[<span class="dv">0</span>:<span class="dv">100</span>, <span class="dv">0</span>:<span class="dv">100</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Lazy evaluation means <code>print(x)</code> and slicing still doesn’t load array data into memory.</p>
 </section>
 <section id="the-dask-array-4" class="slide level2">
 <h2>The <code>dask</code> array</h2>
-<div id="d3c70066" class="cell" data-execution_count="4">
+<div id="8c307194" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-stdout">
 <pre><code>dask.array&lt;getitem, shape=(100, 100), dtype=float64, chunksize=(100, 100), chunktype=numpy.ndarray&gt;</code></pre>
 </div>
@@ -764,61 +776,61 @@ First five elements:
 </section>
 <section id="the-dask-array-5" class="slide level2">
 <h2>The <code>dask</code> array</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="" aria-label="1"></a><span class="im">import</span> dask.array <span class="im">as</span> da</span>
-<span id="cb12-2"><a href="" aria-label="2"></a>rng <span class="op">=</span> da.random.default_rng()</span>
-<span id="cb12-3"><a href="" aria-label="3"></a>x <span class="op">=</span> rng.random((<span class="dv">10000</span>, <span class="dv">10000</span>), chunks<span class="op">=</span>(<span class="dv">1000</span>, <span class="dv">1000</span>))</span>
-<span id="cb12-4"><a href="" aria-label="4"></a><span class="bu">print</span>(x[<span class="dv">0</span>:<span class="dv">100</span>, <span class="dv">0</span>:<span class="dv">100</span>].compute())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="" aria-label="1"></a><span class="im">import</span> dask.array <span class="im">as</span> da</span>
+<span id="cb14-2"><a href="" aria-label="2"></a>rng <span class="op">=</span> da.random.default_rng()</span>
+<span id="cb14-3"><a href="" aria-label="3"></a>x <span class="op">=</span> rng.random((<span class="dv">10000</span>, <span class="dv">10000</span>), chunks<span class="op">=</span>(<span class="dv">1000</span>, <span class="dv">1000</span>))</span>
+<span id="cb14-4"><a href="" aria-label="4"></a><span class="bu">print</span>(x[<span class="dv">0</span>:<span class="dv">100</span>, <span class="dv">0</span>:<span class="dv">100</span>].compute())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>.compute</code> method gives us control over when to actually load into memory.</p>
 </section>
 <section id="the-dask-array-6" class="slide level2">
 <h2>The <code>dask</code> array</h2>
-<div id="cd8834fa" class="cell" data-execution_count="5">
+<div id="35b9b8aa" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-stdout">
-<pre><code>[[0.62121571 0.38801135 0.42471067 ... 0.12318417 0.25690303 0.94152533]
- [0.53293756 0.7966921  0.12186163 ... 0.5811482  0.98622727 0.36939098]
- [0.4226538  0.65749781 0.69054414 ... 0.95981209 0.44974094 0.58183254]
+<pre><code>[[0.47355395 0.49330925 0.28811619 ... 0.87299282 0.61790584 0.41371692]
+ [0.67249818 0.5544074  0.55176339 ... 0.26326433 0.30256713 0.87684548]
+ [0.8470196  0.18027441 0.47667133 ... 0.6923144  0.61607522 0.41034985]
  ...
- [0.24249078 0.95240795 0.69339958 ... 0.73061277 0.77004634 0.85153569]
- [0.76573613 0.99584381 0.61509168 ... 0.40907236 0.42187308 0.73753328]
- [0.7623503  0.58522315 0.85786946 ... 0.6125158  0.63081603 0.39949671]]</code></pre>
+ [0.87748301 0.38150987 0.55227222 ... 0.73843752 0.75167598 0.75531519]
+ [0.34594914 0.9417197  0.51197063 ... 0.30785602 0.92730831 0.07658436]
+ [0.45510103 0.13734244 0.00943409 ... 0.45731364 0.06999902 0.85342298]]</code></pre>
 </div>
 </div>
 <p><code>.compute</code> method gives us control over when to actually load into memory.</p>
 </section>
 <section id="dask-delayed" class="slide level2">
 <h2><code>dask</code> delayed</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="" aria-label="1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb14-2"><a href="" aria-label="2"></a><span class="im">from</span> dask <span class="im">import</span> delayed</span>
-<span id="cb14-3"><a href="" aria-label="3"></a></span>
-<span id="cb14-4"><a href="" aria-label="4"></a><span class="kw">def</span> for_loop_sum(array):</span>
-<span id="cb14-5"><a href="" aria-label="5"></a>  result <span class="op">=</span> array[<span class="dv">0</span>]</span>
-<span id="cb14-6"><a href="" aria-label="6"></a>  <span class="cf">for</span> a <span class="kw">in</span> array[<span class="dv">1</span>:]:</span>
-<span id="cb14-7"><a href="" aria-label="7"></a>    result <span class="op">+=</span> a</span>
-<span id="cb14-8"><a href="" aria-label="8"></a>  <span class="cf">return</span> result</span>
-<span id="cb14-9"><a href="" aria-label="9"></a></span>
-<span id="cb14-10"><a href="" aria-label="10"></a>array <span class="op">=</span> np.random.randint(</span>
-<span id="cb14-11"><a href="" aria-label="11"></a>  low<span class="op">=</span><span class="dv">0</span>,</span>
-<span id="cb14-12"><a href="" aria-label="12"></a>  high<span class="op">=</span><span class="dv">100</span>,</span>
-<span id="cb14-13"><a href="" aria-label="13"></a>  size<span class="op">=</span>(<span class="dv">100</span>,<span class="dv">100</span>),</span>
-<span id="cb14-14"><a href="" aria-label="14"></a>)</span>
-<span id="cb14-15"><a href="" aria-label="15"></a><span class="bu">print</span>(delayed(for_loop_sum(x[<span class="dv">0</span>:<span class="dv">100</span>, <span class="dv">0</span>:<span class="dv">100</span>]))) <span class="co"># lazy</span></span>
-<span id="cb14-16"><a href="" aria-label="16"></a><span class="bu">print</span>(for_loop_sum(x[<span class="dv">0</span>:<span class="dv">100</span>, <span class="dv">0</span>:<span class="dv">100</span>])) <span class="co"># eager</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="" aria-label="1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb16-2"><a href="" aria-label="2"></a><span class="im">from</span> dask <span class="im">import</span> delayed</span>
+<span id="cb16-3"><a href="" aria-label="3"></a></span>
+<span id="cb16-4"><a href="" aria-label="4"></a><span class="kw">def</span> for_loop_sum(array):</span>
+<span id="cb16-5"><a href="" aria-label="5"></a>  result <span class="op">=</span> array[<span class="dv">0</span>]</span>
+<span id="cb16-6"><a href="" aria-label="6"></a>  <span class="cf">for</span> a <span class="kw">in</span> array[<span class="dv">1</span>:]:</span>
+<span id="cb16-7"><a href="" aria-label="7"></a>    result <span class="op">+=</span> a</span>
+<span id="cb16-8"><a href="" aria-label="8"></a>  <span class="cf">return</span> result</span>
+<span id="cb16-9"><a href="" aria-label="9"></a></span>
+<span id="cb16-10"><a href="" aria-label="10"></a>array <span class="op">=</span> np.random.randint(</span>
+<span id="cb16-11"><a href="" aria-label="11"></a>  low<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb16-12"><a href="" aria-label="12"></a>  high<span class="op">=</span><span class="dv">100</span>,</span>
+<span id="cb16-13"><a href="" aria-label="13"></a>  size<span class="op">=</span>(<span class="dv">100</span>,<span class="dv">100</span>),</span>
+<span id="cb16-14"><a href="" aria-label="14"></a>)</span>
+<span id="cb16-15"><a href="" aria-label="15"></a><span class="bu">print</span>(delayed(for_loop_sum(x[<span class="dv">0</span>:<span class="dv">100</span>, <span class="dv">0</span>:<span class="dv">100</span>]))) <span class="co"># lazy</span></span>
+<span id="cb16-16"><a href="" aria-label="16"></a><span class="bu">print</span>(for_loop_sum(x[<span class="dv">0</span>:<span class="dv">100</span>, <span class="dv">0</span>:<span class="dv">100</span>])) <span class="co"># eager</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>delayed</code> function allows us to execute our own functions lazily.</p>
 </section>
 <section id="dask-delayed-1" class="slide level2">
 <h2><code>dask</code> delayed</h2>
-<div id="358856cb" class="cell" data-execution_count="6">
+<div id="1c00fc45" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-stdout">
-<pre><code>Delayed('ndarray-5d916b8b-72fe-4fd4-b90e-a5c58da14c93')
-[ 9387 10599 10795  9180 10436  9778  9070  9415  8363  9481  8999  9848
-  9492 10145 10810 10760 10789  9316  9818  9734 10526 10277 10293  9808
- 10473  9346 10038 10044 10283 10232  9339  9783  9945 10548 10199  9151
- 10842 10554  8156 10445 10320  9032  9297 10486 10975 10869  9902  9993
- 10063 10028  9800  9270  9319 10351  9864  9534 10262  9650  9245  9515
-  9139  9539  9709 10242 10504  9426  9607  9862 10687  8714 10014  9891
- 10424  8793  9456  9690 10314 10787  9675 10731 10874  9989  9435  9884
-  9609  9612 10605 10538 10337 10407 10702 10029  9059 10413 10566  9769
- 10893 10229  9577 11226]</code></pre>
+<pre><code>Delayed('ndarray-6277859d-1a77-49ac-96d7-69e8c82c9d63')
+[ 9526 10117  9452  9143  9560  9326 10648 11258  9900  8899  9967  9388
+  9310  9870 10077  9278  9231 10875 10303 10609  9911  9811  9637 10117
+  9798  9823 10408 10462  9789  9601 10662  9865  9401  9709  9233  9950
+  9274  9725  8898  9464  9847  9934  9862  9300 10223  9675  9648 10179
+ 10598  9675  8805  9933  9871  9902  9412 10180  9213 10161  9941 10220
+  9040  9206  9744  9949 10600  8938  9486  9739  9663 10402  9414  8646
+  9876  9445 10188 10344 10491  9136 10194  9991  9448  9217  9301  9507
+ 10451 10571  9830 10354  8912  9991  9559 10334 10098  9618  8869  9528
+  9519  9424  9492  8685]</code></pre>
 </div>
 </div>
 <p><code>delayed</code> function allows us to execute our own functions lazily.</p>
@@ -827,9 +839,9 @@ First five elements:
 <h2>Exercise 2 (Joint)</h2>
 <p>Loading of large array slices with</p>
 <ul>
-<li class="fragment"><code>numpy</code> (eager, via <code>tifffile.imread</code>)</li>
-<li class="fragment"><code>numpy.memmap</code> (lazy, via <code>tifffile.memmap</code>)</li>
-<li class="fragment"><code>dask</code></li>
+<li><code>numpy</code> (eager, via <code>tifffile.imread</code>)</li>
+<li><code>numpy.memmap</code> (lazy, via <code>tifffile.memmap</code>)</li>
+<li><code>dask</code></li>
 </ul>
 <p>showcasing the increased flexibility of <code>dask</code>.</p>
 </section>
@@ -840,11 +852,11 @@ First five elements:
 <li>Download <a href="https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/2_numpy_to_dask.ipynb">the exercise notebook</a></li>
 <li>Activate your conda environment</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="" aria-label="1"></a><span class="ex">conda</span> activate large-arrays</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="" aria-label="1"></a><span class="ex">conda</span> activate large-arrays</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Run jupyter</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="" aria-label="1"></a><span class="ex">jupyter</span> lab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="" aria-label="1"></a><span class="ex">jupyter</span> lab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Open <code>http://localhost:8888/lab?</code></li>
 <li>Navigate to the downloaded notebook and work through it, make it point to your own data</li>
@@ -853,9 +865,11 @@ First five elements:
 <section id="reading-and-writing-dask-arrays" class="slide level2">
 <h2>Reading and writing <code>dask</code> arrays</h2>
 <p>So far, we have only created <code>dask</code> arrays in-memory (lazily). But how do we store them on disk?</p>
-<p>Having chunks helps us here too.</p>
-<p>We can store each chunk in a separate file.</p>
-<p>We can store metadata in the same (super-)file.</p>
+<ul>
+<li class="fragment">Having chunks helps us here too.</li>
+<li class="fragment">We can store each chunk in a separate file.</li>
+<li class="fragment">We can store metadata in the same (super-)file.</li>
+</ul>
 </section>
 <section id="zarr-files" class="slide level2">
 <h2>Zarr files</h2>
@@ -878,9 +892,16 @@ First five elements:
 <li class="fragment">Zarr is a file format specification</li>
 <li class="fragment"><code>zarr-python</code> is a Python library to work with Zarr files
 <ul>
-<li class="fragment">Confusingly, imported with <code>import zarr</code></li>
+<li class="fragment">Confusingly, used like</li>
 </ul></li>
 </ul>
+<div class="fragment">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="" aria-label="1"></a><span class="im">import</span> zarr</span>
+<span id="cb20-2"><a href="" aria-label="2"></a></span>
+<span id="cb20-3"><a href="" aria-label="3"></a>...</span>
+<span id="cb20-4"><a href="" aria-label="4"></a></span>
+<span id="cb20-5"><a href="" aria-label="5"></a>zarr_array <span class="op">=</span> zarr.<span class="bu">open</span>(path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section>
 <section id="exercise-3" class="slide level2">
 <h2>Exercise 3</h2>
@@ -901,11 +922,11 @@ First five elements:
 <li>Download <a href="https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/3_dask_remote_to_zarr_io.ipynb">the exercise notebook</a></li>
 <li>Activate your conda environment</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="" aria-label="1"></a><span class="ex">conda</span> activate large-arrays</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="" aria-label="1"></a><span class="ex">conda</span> activate large-arrays</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Run jupyter</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="" aria-label="1"></a><span class="ex">jupyter</span> lab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="" aria-label="1"></a><span class="ex">jupyter</span> lab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Open <code>http://localhost:8888/lab?</code></li>
 <li>Navigate to the downloaded notebook and work through it, make it point to your own data</li>
@@ -975,7 +996,7 @@ First five elements:
 <section id="tree-hierarchy" class="slide level2">
 <h2>Tree / hierarchy</h2>
 
-<img data-src="../img/zarr_hierarchy.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<img data-src="img/zarr_hierarchy.png" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="zarr-is-general-pros" class="slide level2">
 <h2>Zarr is general (pros)</h2>
 <p>One of Zarr’s great strengths is that it can be applied to any kind of array data across many fields.</p>
@@ -1035,7 +1056,7 @@ First five elements:
 <div class="fragment">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="../img/multiscale.png" class="quarto-figure quarto-figure-center" height="300"></p>
+<p><img data-src="img/multiscale.png" class="quarto-figure quarto-figure-center" height="300"></p>
 </figure>
 </div>
 </div>
@@ -1044,7 +1065,7 @@ First five elements:
 <h2>Why multi-scale?</h2>
 <p>Viewing a whole slice from a multi-terabyte dataset can still be hundreds of GB!</p>
 
-<img data-src="../img/platy_zooms.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"><div class="footer">
+<img data-src="img/platy_zooms.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"><div class="footer">
 <p>Image from Vergara et al.&nbsp;2021 - Whole-body integration of gene expression and single-cell morphology</p>
 </div>
 </section>
@@ -1129,29 +1150,29 @@ First five elements:
 </section>
 <section id="multi-threading-example" class="slide level2">
 <h2>Multi-threading example</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="" aria-label="1"></a><span class="im">import</span> threading</span>
-<span id="cb20-2"><a href="" aria-label="2"></a></span>
-<span id="cb20-3"><a href="" aria-label="3"></a>counter <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb20-4"><a href="" aria-label="4"></a>lock <span class="op">=</span> threading.Lock()</span>
-<span id="cb20-5"><a href="" aria-label="5"></a></span>
-<span id="cb20-6"><a href="" aria-label="6"></a><span class="kw">def</span> increment(n):</span>
-<span id="cb20-7"><a href="" aria-label="7"></a>    <span class="kw">global</span> counter</span>
-<span id="cb20-8"><a href="" aria-label="8"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb20-9"><a href="" aria-label="9"></a>        <span class="cf">with</span> lock: <span class="co"># make sure counter doesn't get updated simultaneously</span></span>
-<span id="cb20-10"><a href="" aria-label="10"></a>            counter <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb20-11"><a href="" aria-label="11"></a></span>
-<span id="cb20-12"><a href="" aria-label="12"></a>threads <span class="op">=</span> [threading.Thread(target<span class="op">=</span>increment, args<span class="op">=</span>(<span class="dv">100_000</span>,)) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>)]</span>
-<span id="cb20-13"><a href="" aria-label="13"></a></span>
-<span id="cb20-14"><a href="" aria-label="14"></a><span class="cf">with</span> ThreadPoolExecutor(max_workers<span class="op">=</span><span class="dv">4</span>) <span class="im">as</span> pool:</span>
-<span id="cb20-15"><a href="" aria-label="15"></a>    futures <span class="op">=</span> [pool.submit(increment, <span class="dv">100_000</span>) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>)]</span>
-<span id="cb20-16"><a href="" aria-label="16"></a>    <span class="cf">for</span> f <span class="kw">in</span> futures:</span>
-<span id="cb20-17"><a href="" aria-label="17"></a>        f.result()</span>
-<span id="cb20-18"><a href="" aria-label="18"></a></span>
-<span id="cb20-19"><a href="" aria-label="19"></a><span class="bu">print</span>(counter)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="" aria-label="1"></a><span class="im">import</span> threading</span>
+<span id="cb23-2"><a href="" aria-label="2"></a></span>
+<span id="cb23-3"><a href="" aria-label="3"></a>counter <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb23-4"><a href="" aria-label="4"></a>lock <span class="op">=</span> threading.Lock()</span>
+<span id="cb23-5"><a href="" aria-label="5"></a></span>
+<span id="cb23-6"><a href="" aria-label="6"></a><span class="kw">def</span> increment(n):</span>
+<span id="cb23-7"><a href="" aria-label="7"></a>    <span class="kw">global</span> counter</span>
+<span id="cb23-8"><a href="" aria-label="8"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb23-9"><a href="" aria-label="9"></a>        <span class="cf">with</span> lock: <span class="co"># make sure counter doesn't get updated simultaneously</span></span>
+<span id="cb23-10"><a href="" aria-label="10"></a>            counter <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb23-11"><a href="" aria-label="11"></a></span>
+<span id="cb23-12"><a href="" aria-label="12"></a>threads <span class="op">=</span> [threading.Thread(target<span class="op">=</span>increment, args<span class="op">=</span>(<span class="dv">100_000</span>,)) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>)]</span>
+<span id="cb23-13"><a href="" aria-label="13"></a></span>
+<span id="cb23-14"><a href="" aria-label="14"></a><span class="cf">with</span> ThreadPoolExecutor(max_workers<span class="op">=</span><span class="dv">4</span>) <span class="im">as</span> pool:</span>
+<span id="cb23-15"><a href="" aria-label="15"></a>    futures <span class="op">=</span> [pool.submit(increment, <span class="dv">100_000</span>) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>)]</span>
+<span id="cb23-16"><a href="" aria-label="16"></a>    <span class="cf">for</span> f <span class="kw">in</span> futures:</span>
+<span id="cb23-17"><a href="" aria-label="17"></a>        f.result()</span>
+<span id="cb23-18"><a href="" aria-label="18"></a></span>
+<span id="cb23-19"><a href="" aria-label="19"></a><span class="bu">print</span>(counter)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="multi-threading-example-1" class="slide level2">
 <h2>Multi-threading example</h2>
-<div id="1da7c024" class="cell" data-execution_count="7">
+<div id="6f796c55" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-stdout">
 <pre><code>400000</code></pre>
 </div>
@@ -1179,25 +1200,25 @@ First five elements:
 </section>
 <section id="multi-processing-example" class="slide level2">
 <h2>Multi-processing example</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="" aria-label="1"></a><span class="im">import</span> multiprocessing <span class="im">as</span> mp</span>
-<span id="cb22-2"><a href="" aria-label="2"></a></span>
-<span id="cb22-3"><a href="" aria-label="3"></a><span class="kw">def</span> worker(xs):</span>
-<span id="cb22-4"><a href="" aria-label="4"></a>    <span class="bu">print</span>(<span class="bu">len</span>(xs))</span>
-<span id="cb22-5"><a href="" aria-label="5"></a>    <span class="cf">return</span> <span class="bu">sum</span>(xs)</span>
-<span id="cb22-6"><a href="" aria-label="6"></a></span>
-<span id="cb22-7"><a href="" aria-label="7"></a>chunks <span class="op">=</span> [[<span class="dv">1</span>,<span class="dv">2</span>],[<span class="dv">3</span>,<span class="dv">4</span>],[<span class="dv">5</span>,<span class="dv">6</span>],[<span class="dv">7</span>,<span class="dv">8</span>]]</span>
-<span id="cb22-8"><a href="" aria-label="8"></a>ctx <span class="op">=</span> mp.get_context(<span class="st">"fork"</span>)</span>
-<span id="cb22-9"><a href="" aria-label="9"></a><span class="cf">with</span> ctx.Pool(<span class="dv">4</span>) <span class="im">as</span> pool:</span>
-<span id="cb22-10"><a href="" aria-label="10"></a>   partial_sums <span class="op">=</span> pool.<span class="bu">map</span>(worker, chunks)</span>
-<span id="cb22-11"><a href="" aria-label="11"></a></span>
-<span id="cb22-12"><a href="" aria-label="12"></a><span class="bu">print</span>(partial_sums)</span>
-<span id="cb22-13"><a href="" aria-label="13"></a></span>
-<span id="cb22-14"><a href="" aria-label="14"></a>total <span class="op">=</span> <span class="bu">sum</span>(partial_sums)</span>
-<span id="cb22-15"><a href="" aria-label="15"></a><span class="bu">print</span>(total)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="" aria-label="1"></a><span class="im">import</span> multiprocessing <span class="im">as</span> mp</span>
+<span id="cb25-2"><a href="" aria-label="2"></a></span>
+<span id="cb25-3"><a href="" aria-label="3"></a><span class="kw">def</span> worker(xs):</span>
+<span id="cb25-4"><a href="" aria-label="4"></a>    <span class="bu">print</span>(<span class="bu">len</span>(xs))</span>
+<span id="cb25-5"><a href="" aria-label="5"></a>    <span class="cf">return</span> <span class="bu">sum</span>(xs)</span>
+<span id="cb25-6"><a href="" aria-label="6"></a></span>
+<span id="cb25-7"><a href="" aria-label="7"></a>chunks <span class="op">=</span> [[<span class="dv">1</span>,<span class="dv">2</span>],[<span class="dv">3</span>,<span class="dv">4</span>],[<span class="dv">5</span>,<span class="dv">6</span>],[<span class="dv">7</span>,<span class="dv">8</span>]]</span>
+<span id="cb25-8"><a href="" aria-label="8"></a>ctx <span class="op">=</span> mp.get_context(<span class="st">"fork"</span>)</span>
+<span id="cb25-9"><a href="" aria-label="9"></a><span class="cf">with</span> ctx.Pool(<span class="dv">4</span>) <span class="im">as</span> pool:</span>
+<span id="cb25-10"><a href="" aria-label="10"></a>   partial_sums <span class="op">=</span> pool.<span class="bu">map</span>(worker, chunks)</span>
+<span id="cb25-11"><a href="" aria-label="11"></a></span>
+<span id="cb25-12"><a href="" aria-label="12"></a><span class="bu">print</span>(partial_sums)</span>
+<span id="cb25-13"><a href="" aria-label="13"></a></span>
+<span id="cb25-14"><a href="" aria-label="14"></a>total <span class="op">=</span> <span class="bu">sum</span>(partial_sums)</span>
+<span id="cb25-15"><a href="" aria-label="15"></a><span class="bu">print</span>(total)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="multi-processing-example-1" class="slide level2">
 <h2>Multi-processing example</h2>
-<div id="c9081ece" class="cell" data-execution_count="8">
+<div id="2747146a" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-stdout">
 <pre><code>2222
 
@@ -1208,18 +1229,35 @@ First five elements:
 </div>
 </div>
 </section>
-<section id="take-away" class="slide level2">
-<h2>Take-away</h2>
+<section id="python-concurrency" class="slide level2">
+<h2>Python concurrency</h2>
 <p>Python has concurrency built-in.</p>
 <ul>
-<li class="fragment">Threads share memory</li>
-<li class="fragment">Processes don’t</li>
+<li>Threads share memory</li>
+<li>Processes don’t</li>
 </ul>
 <p>But writing concurrent code is complex and error-prone!</p>
 <p>Dask provides some abstractions so you don’t have to worry about the intricacies.</p>
 </section>
-<section id="exercise-4-prep" class="slide level2">
-<h2>Exercise 4 prep</h2>
+<section id="processing-chunks" class="slide level2 scrollable">
+<h2>Processing chunks</h2>
+<p>We can split operations on arrays into two types:</p>
+<ol type="1">
+<li class="fragment">The output element depends only on its input element (e.g threshold)</li>
+<li class="fragment">The output element also depends on some neighbouring elements (e.g.&nbsp;Gaussian filter)</li>
+</ol>
+</section>
+<section id="processing-chunks-1" class="slide level2 scrollable">
+<h2>Processing chunks</h2>
+<p>We can split operations on arrays into two types:</p>
+<ol type="1">
+<li>The output element depends only on its input element (e.g threshold)</li>
+<li>The output element also depends on some neighbouring elements (e.g.&nbsp;Gaussian filter)</li>
+</ol>
+<p>Neighbouring elements may live in a different chunk!</p>
+</section>
+<section id="operating-on-dasknumpy-arrays" class="slide level2">
+<h2>Operating on <code>dask/numpy</code> arrays</h2>
 <p>Some extra <code>dask</code>/<code>numpy</code> syntax that will come in handy</p>
 <ul>
 <li class="fragment"><code>where</code></li>
@@ -1227,8 +1265,8 @@ First five elements:
 <li class="fragment"><code>nanmean</code></li>
 </ul>
 </section>
-<section id="exercise-4-prep-1" class="slide level2">
-<h2>Exercise 4 prep</h2>
+<section id="operating-on-dask-chunks" class="slide level2">
+<h2>Operating on <code>dask</code> chunks</h2>
 <p>You can tell <code>dask</code> to apply a function lazily on each chunk</p>
 <ul>
 <li class="fragment"><code>map_block</code> (each chunk has all the info)</li>
@@ -1239,8 +1277,8 @@ First five elements:
 <h2>Exercise 4</h2>
 <p>Exercise 4 will guide you through a realistic analysis of multiphoton imaging data that uses chunkwise dask operations</p>
 <ul>
-<li class="fragment">without overlap</li>
-<li class="fragment">with overlap</li>
+<li>without overlap</li>
+<li>with overlap</li>
 </ul>
 <p>also showing how to choose between multi-threading and multi-processing.</p>
 </section>
@@ -1250,11 +1288,11 @@ First five elements:
 <li>Download <a href="https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/4_parallel_processing_with_dask.ipynb">the exercise notebook</a></li>
 <li>Activate your conda environment</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="" aria-label="1"></a><span class="ex">conda</span> activate large-arrays</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="" aria-label="1"></a><span class="ex">conda</span> activate large-arrays</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Run jupyter</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="" aria-label="1"></a><span class="ex">jupyter</span> lab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="" aria-label="1"></a><span class="ex">jupyter</span> lab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Open <code>http://localhost:8888/lab?</code></li>
 <li>Navigate to the downloaded notebook and work through it.</li>
@@ -1289,24 +1327,24 @@ First five elements:
 <section id="array-api" class="slide level2">
 <h2>Array API</h2>
 <p>Goal: abstract the array backend</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="" aria-label="1"></a><span class="kw">def</span> unit_vector_array_api(x: AnyArray) <span class="op">-&gt;</span> AnyArray:</span>
-<span id="cb26-2"><a href="" aria-label="2"></a>    <span class="co">"""Works with any supported array backend."""</span></span>
-<span id="cb26-3"><a href="" aria-label="3"></a>    <span class="co"># NumPy, CuPy, PyTorch, JAX, ...</span></span>
-<span id="cb26-4"><a href="" aria-label="4"></a>    xp <span class="op">=</span> x.__array_namespace__()</span>
-<span id="cb26-5"><a href="" aria-label="5"></a>    <span class="cf">return</span> x <span class="op">/</span> xp.sqrt(xp.<span class="bu">sum</span>(x <span class="op">*</span> x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="" aria-label="1"></a><span class="kw">def</span> unit_vector_array_api(x: AnyArray) <span class="op">-&gt;</span> AnyArray:</span>
+<span id="cb29-2"><a href="" aria-label="2"></a>    <span class="co">"""Works with any supported array backend."""</span></span>
+<span id="cb29-3"><a href="" aria-label="3"></a>    <span class="co"># NumPy, CuPy, PyTorch, JAX, ...</span></span>
+<span id="cb29-4"><a href="" aria-label="4"></a>    xp <span class="op">=</span> x.__array_namespace__()</span>
+<span id="cb29-5"><a href="" aria-label="5"></a>    <span class="cf">return</span> x <span class="op">/</span> xp.sqrt(xp.<span class="bu">sum</span>(x <span class="op">*</span> x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="array-api-1" class="slide level2">
 <h2>Array API</h2>
 
-<img data-src="img/array_api.png" class="r-stretch quarto-figure-center"><p class="caption">array API</p></section>
+<img data-src="img/array_api.png" alt="Libraries involved with the Array API project" class="r-stretch"></section>
 <section id="array-api-2" class="slide level2">
 <h2>Array API</h2>
 <p>Goal: work with different array backends</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="" aria-label="1"></a><span class="kw">def</span> unit_vector_array_api(x: AnyArray) <span class="op">-&gt;</span> AnyArray:</span>
-<span id="cb27-2"><a href="" aria-label="2"></a>    <span class="co">"""Works with any supported array backend."""</span></span>
-<span id="cb27-3"><a href="" aria-label="3"></a>    <span class="co"># NumPy, CuPy, PyTorch, JAX, ...</span></span>
-<span id="cb27-4"><a href="" aria-label="4"></a>    xp <span class="op">=</span> x.__array_namespace__()</span>
-<span id="cb27-5"><a href="" aria-label="5"></a>    <span class="cf">return</span> x <span class="op">/</span> xp.sqrt(xp.<span class="bu">sum</span>(x <span class="op">*</span> x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="" aria-label="1"></a><span class="kw">def</span> unit_vector_array_api(x: AnyArray) <span class="op">-&gt;</span> AnyArray:</span>
+<span id="cb30-2"><a href="" aria-label="2"></a>    <span class="co">"""Works with any supported array backend."""</span></span>
+<span id="cb30-3"><a href="" aria-label="3"></a>    <span class="co"># NumPy, CuPy, PyTorch, JAX, ...</span></span>
+<span id="cb30-4"><a href="" aria-label="4"></a>    xp <span class="op">=</span> x.__array_namespace__()</span>
+<span id="cb30-5"><a href="" aria-label="5"></a>    <span class="cf">return</span> x <span class="op">/</span> xp.sqrt(xp.<span class="bu">sum</span>(x <span class="op">*</span> x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="array-api-3" class="slide level2">
 <h2>Array API</h2>
@@ -1326,8 +1364,98 @@ First five elements:
 <li class="fragment">you will need to think about the <code>depth</code> parameter</li>
 </ul></li>
 <li class="fragment">By default, <code>dask</code> Arrays operate concurrently using multi-threading</li>
-<li class="fragment">Favour robustness and simplicity over speed</li>
+<li class="fragment">Favour robustness and simplicity over performance</li>
 <li class="fragment">There are other open-source Python array libraries</li>
+</ul>
+</section></section>
+<section>
+<section id="compression" class="title-slide slide level1 center">
+<h1>Compression</h1>
+
+</section>
+<section id="data-has-a-size-1" class="slide level2">
+<h2>Data has a “size”</h2>
+<p>Computers store data as <em>bits</em>.</p>
+<div id="7aaf2e5e" class="cell" data-execution_count="9">
+<div class="cell-output cell-output-stdout">
+<pre><code>60 bytes total
+
+First five elements:
+0000000000011110 0000000000000101 0000000000000010 0000000000111010 0000000001001100 ...</code></pre>
+</div>
+</div>
+</section>
+<section id="data-compression" class="slide level2">
+<h2>Data compression</h2>
+<p>We can be smart about how to store this data with fewer bits.</p>
+<div id="5ba198a1" class="cell" data-execution_count="10">
+<div class="cell-output cell-output-stdout">
+<pre><code>60 bytes total
+
+First five elements:
+0000000000011110 0000000000000101 0000000000000010 0000000000111010 0000000001001100 ...</code></pre>
+</div>
+</div>
+</section>
+<section id="data-compression-1" class="slide level2">
+<h2>Data compression</h2>
+<p>We could “encode” something like “assume the first 8 bits are always 0” and halve the file size.</p>
+<div id="739d6dad" class="cell" data-execution_count="11">
+<div class="cell-output cell-output-stdout">
+<pre><code>60 bytes total
+
+First five elements:
+0000000000011110 0000000000000101 0000000000000010 0000000000111010 0000000001001100 ...</code></pre>
+</div>
+</div>
+</section>
+<section id="lossless-and-lossy-compression" class="slide level2">
+<h2>Lossless and lossy compression</h2>
+<p>Some compression algorithms preserve all the information.</p>
+<p>Others are lossy, e.g.&nbsp;“.jpg” files</p>
+</section>
+<section id="what-is-a-codec" class="slide level2">
+<h2>What is a codec?</h2>
+<p>Codec stands for encoder/decoder.</p>
+<p>If defines how data is written to/read from disk.</p>
+<p>Different codecs will work better/worse for different data.</p>
+</section>
+<section id="compression-trade-offs" class="slide level2">
+<h2>Compression trade-offs</h2>
+<p>Generally, we expect a smaller size on disk to result in slower read/write.</p>
+<p>But compression algorithms can be clever about this too.</p>
+</section>
+<section id="case-study" class="slide level2">
+<h2>Case study</h2>
+<p>Two audio codecs work well on electrophysiology data.</p>
+
+<img data-src="img/ephys-codecs.png" alt="A plot showing audio codecs benchmarks on neuropixels data" class="r-stretch"><p>Better compression ratio, slower decompression speed</p>
+<div class="footer">
+<p><span class="citation" data-cites="Buccino_2023">Buccino et al. (<a href="#/references" role="doc-biblioref" onclick="">2023</a>)</span></p>
+</div>
+</section>
+<section id="using-codecs-in-zarr" class="slide level2">
+<h2>Using Codecs in zarr</h2>
+<p>Zarr provides a <a href="https://zarr.readthedocs.io/en/stable/api/zarr/codecs/">number of Codecs</a> that you can specify when writing files.</p>
+</section>
+<section id="exercise-5" class="slide level2">
+<h2>Exercise 5</h2>
+<p>Compares write speeds and disk size for different compression levels.</p>
+</section>
+<section id="exercise-5-1" class="slide level2">
+<h2>Exercise 5</h2>
+<ul>
+<li>Download <a href="https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/5_remote_file_compression.ipynb">the exercise notebook</a></li>
+<li>Activate your conda environment</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="" aria-label="1"></a><span class="ex">conda</span> activate large-arrays</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Run jupyter</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="" aria-label="1"></a><span class="ex">jupyter</span> lab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Open <code>http://localhost:8888/lab?</code></li>
+<li>Navigate to the downloaded notebook and work through it, make it point to your own data</li>
 </ul>
 </section></section>
 <section>
@@ -1494,7 +1622,7 @@ First five elements:
 </section>
 <section id="benchmarking-sharding" class="slide level2">
 <h2>Benchmarking sharding</h2>
-<p>Let’s experiment with sharding options:</p>
+<p>Let’s <a href="https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/sharding.ipynb">experiment</a> with sharding options:</p>
 <ul>
 <li class="fragment"><code>notebooks/sharding.ipynb</code></li>
 </ul>
@@ -1504,6 +1632,9 @@ First five elements:
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-aeon_neuropixels_2026" class="csl-entry" role="listitem">
 Aeon. 2026. <em>Neuropixels Recording Guide</em>. <a href="https://aeon.swc.ucl.ac.uk/getting_started/npx_recording/#id1">https://aeon.swc.ucl.ac.uk/getting_started/npx_recording/#id1</a>.
+</div>
+<div id="ref-Buccino_2023" class="csl-entry" role="listitem">
+Buccino, Alessio P, Olivier Winter, David Bryant, David Feng, Karel Svoboda, and Joshua H Siegle. 2023. <span>“Compression Strategies for Large-Scale Electrophysiology Data.”</span> <em>Journal of Neural Engineering</em> 20 (5): 056009. <a href="https://doi.org/10.1088/1741-2552/acf5a4">https://doi.org/10.1088/1741-2552/acf5a4</a>.
 </div>
 <div id="ref-hp_tech_takes_how_nodate" class="csl-entry" role="listitem">
 HP Tech Takes. n.d. <em>How <span>Much</span> <span>RAM</span> <span>Do</span> <span>I</span> <span>Need</span>? <span>A</span> <span>Capacity</span> <span>Guide</span></em>. HP. Accessed July 14, 2026. <a href="https://www.hp.com/us-en/shop/tech-takes/how-much-ram-do-i-need-every-use">https://www.hp.com/us-en/shop/tech-takes/how-much-ram-do-i-need-every-use</a>.
