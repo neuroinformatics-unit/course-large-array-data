@@ -36,28 +36,3 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           use-headless: True
-
-  build_sdist_wheels:
-    name: Build source distribution
-    needs: [test]
-    if: github.event_name == 'push' && github.ref_type == 'tag'
-    runs-on: ubuntu-latest
-    steps:
-    - uses: neuroinformatics-unit/actions/build_sdist_wheels@v2
-
-
-  upload_all:
-    name: Publish build distributions
-    needs: [build_sdist_wheels]
-    runs-on: ubuntu-latest
-    environment: # use Trusted Publisher route
-      name: pypi
-      url: https://pypi.org/p/${{ github.event.repository.name }}
-    permissions:
-      id-token: write # mandatory for trusted publishing
-    steps:
-    - uses: actions/download-artifact@v8
-      with:
-        name: artifact
-        path: dist
-    - uses: pypa/gh-action-pypi-publish@release/v1
