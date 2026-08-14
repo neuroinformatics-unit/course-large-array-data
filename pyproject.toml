@@ -3,7 +3,7 @@ name = "course-large-array-data"
 authors = [{name = "Neuroinformatics Unit", email= "a.felder@ucl.ac.uk"}]
 description = "Helper functions for Large Array Data course"
 requires-python = ">=3.12.0"
-dynamic = ["version"]
+version = "0.0.1"
 
 dependencies = [
     "dandi",
