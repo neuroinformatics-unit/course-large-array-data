@@ -1,0 +1,237 @@
+# Parallelising array operations with `dask`
+
+## Parallelising array operations with `dask`
+
+How should we coordinate array operations so Python can execute them at the same time?
+
+* "in parallel", "concurrently"
+
+## Concurrency
+
+Two types of concurrency built into Python
+
+- "Multi-threading"
+- "Multi-processing"
+
+## Multi-threading
+
+* Single Python process
+* Threads share resources (e.g. memory)
+
+## Multi-threading example
+
+```{.python}
+import threading
+
+counter = 0
+lock = threading.Lock()
+
+def increment(n):
+    global counter
+    for _ in range(n):
+        with lock: # make sure counter doesn't get updated simultaneously
+            counter += 1
+
+threads = [threading.Thread(target=increment, args=(100_000,)) for _ in range(4)]
+
+with ThreadPoolExecutor(max_workers=4) as pool:
+    futures = [pool.submit(increment, 100_000) for _ in range(4)]
+    for f in futures:
+        f.result()
+
+print(counter)
+```
+
+## Multi-threading example
+
+```{python}
+import threading
+from concurrent.futures import ThreadPoolExecutor
+counter = 0
+lock = threading.Lock()
+
+def increment(n):
+    global counter
+    for _ in range(n):
+        with lock: # make sure counter doesn't get updated simultaneously
+            counter += 1
+
+threads = [threading.Thread(target=increment, args=(100_000,)) for _ in range(4)]
+
+with ThreadPoolExecutor(max_workers=4) as pool:
+    futures = [pool.submit(increment, 100_000) for _ in range(4)]
+    for f in futures:
+        f.result()
+
+print(counter)
+```
+
+## Multi-threading
+
+* Single Python process
+* Threads share resources (e.g. memory)
+* Need for coordination of sharing memory may actually hurt performance
+
+## Multi-processing
+
+* Main Python process spawns other processes
+* No shared resources
+   * Each process has its own memory space
+   * Memory needs to be copied to the subprocess
+   * Overhead of launching extra processes
+
+## Multi-processing example
+
+```{.python}
+import multiprocessing as mp
+
+def worker(xs):
+    print(len(xs))
+    return sum(xs)
+
+chunks = [[1,2],[3,4],[5,6],[7,8]] 
+ctx = mp.get_context("fork")
+with ctx.Pool(4) as pool:
+   partial_sums = pool.map(worker, chunks)
+
+print(partial_sums)
+
+total = sum(partial_sums)
+print(total)
+```
+
+## Multi-processing example
+
+```{python}
+import multiprocessing as mp
+
+def worker(xs):
+    print(len(xs))
+    return sum(xs)
+
+chunks = [[1,2],[3,4],[5,6],[7,8]] 
+ctx = mp.get_context("fork")
+with ctx.Pool(4) as pool:
+   partial_sums = pool.map(worker, chunks)
+
+print(partial_sums)
+
+total = sum(partial_sums)
+print(total)
+```
+
+## Take-away
+
+Python has concurrency built-in.
+
+* Threads share memory
+* Processes don't
+
+But writing concurrent code is complex and error-prone!
+
+Dask provides some abstractions so you don't have to worry about the intricacies.
+
+## Exercise 4 prep
+
+Some extra `dask`/`numpy` syntax that will come in handy
+
+* `where`
+* Boolean comparison of arrays
+* `nanmean`
+
+## Exercise 4 prep
+
+You can tell `dask` to apply a function lazily on each chunk
+
+* `map_block` (each chunk has all the info)
+* `map_overlap` (you need info from neighbouring chunks)
+
+## Exercise 4
+
+Exercise 4 will guide you through a realistic analysis of multiphoton imaging data that uses chunkwise dask operations 
+
+* without overlap
+* with overlap
+
+also showing how to choose between multi-threading and multi-processing.
+
+## Exercise 4 {.smaller}
+
+::: {.nonincremental}
+- Download [the exercise notebook](https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/4_parallel_processing_with_dask.ipynb)
+- Activate your conda environment
+```bash
+conda activate large-arrays
+```
+- Run jupyter
+```bash
+jupyter lab
+```
+- Open `http://localhost:8888/lab?`
+- Navigate to the downloaded notebook and work through it.
+:::
+
+## More notes on `dask`
+
+* Scales to multiple compute nodes
+* Various extra libraries for GPU support
+* Very general
+
+## More notes on performance
+
+Favour robustness and simplicity over speed
+
+* Performance may differ depending on data, hardware...
+* Optimising performance is very tricky 
+
+## Other Python array libraries
+
+* `Xarray`: [label arrays with e.g units, dimensions, ...](https://docs.xarray.dev/en/stable/)
+* `pytorch`: [aimed at machine-learning, native GPU support](https://pytorch.org/)
+* `JAX`: [aimed at machine-learning](https://docs.jax.dev/en/latest/index.html) 
+* `cupy`: [array library for Python on nvidia GPU](cupy.dev)
+* ...
+
+## Array API
+
+Goal: abstract the array backend
+
+```{.python}
+def unit_vector_array_api(x: AnyArray) -> AnyArray:
+    """Works with any supported array backend."""
+    # NumPy, CuPy, PyTorch, JAX, ...
+    xp = x.__array_namespace__()
+    return x / xp.sqrt(xp.sum(x * x))
+```
+
+## Array API
+
+![array API](img/array_api.png)
+
+## Array API
+
+Goal: work with different array backends
+
+```{.python}
+def unit_vector_array_api(x: AnyArray) -> AnyArray:
+    """Works with any supported array backend."""
+    # NumPy, CuPy, PyTorch, JAX, ...
+    xp = x.__array_namespace__()
+    return x / xp.sqrt(xp.sum(x * x))
+```
+
+## Array API
+
+* Work-in-progress
+* Some difficulties in unifying array libraries
+* Choose for flexibility over performance
+
+## Summary
+
+* Python has threads and processes
+* Use `map_blocks` to apply chunkwise operations
+* Use `map_overlap` if you need information from neighbouring chunks, 
+  * you will need to think about the `depth` parameter
+* By default, `dask` Arrays operate concurrently using multi-threading
+* Favour robustness and simplicity over speed
+* There are other open-source Python array libraries
