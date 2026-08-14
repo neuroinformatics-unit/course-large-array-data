@@ -5,7 +5,7 @@
 :::: {.columns}
 
 ::: {.column width="40%"}
-![](../img/zarr-pink-stacked.svg){fig-alt="Zarr logo"}
+![](img/zarr-pink-stacked.svg){fig-alt="Zarr logo"}
 :::
 
 ::: {.column width="60%"}

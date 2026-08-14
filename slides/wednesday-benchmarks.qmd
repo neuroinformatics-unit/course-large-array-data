@@ -5,7 +5,7 @@
 :::: {.columns}
 
 ::: {.column width="40%"}
-![](../img/zarr-pink-stacked.svg){fig-alt="Zarr logo"}
+![](img/zarr-pink-stacked.svg){fig-alt="Zarr logo"}
 :::
 
 ::: {.column width="60%"}
@@ -46,7 +46,7 @@ These settings affect:
 :::: {.columns}
 
 ::: {.column width="40%"}
-![](../img/heftie.svg){fig-alt="HEFTIE logo" height=300}
+![](img/heftie.svg){fig-alt="HEFTIE logo" height=300}
 :::
 
 ::: {.column width="60%"}
@@ -78,7 +78,7 @@ Benchmarks were made as part of the [HEFTIE project](https://github.com/HEFTIEPr
 
 :::
 ::: {.column}
-![](../img/heart.png){height=450}
+![](img/heart.png){height=450}
 :::
 ::::
 
@@ -91,7 +91,7 @@ Benchmarks were made as part of the [HEFTIE project](https://github.com/HEFTIEPr
 
 :::
 ::: {.column}
-![](../img/dense.png){height=450}
+![](img/dense.png){height=450}
 :::
 ::::
 
@@ -104,7 +104,7 @@ Benchmarks were made as part of the [HEFTIE project](https://github.com/HEFTIEPr
 
 :::
 ::: {.column}
-![](../img/sparse.png){height=450}
+![](img/sparse.png){height=450}
 :::
 ::::
 
@@ -119,34 +119,34 @@ Benchmarks were made as part of the [HEFTIE project](https://github.com/HEFTIEPr
 
 ## Write time
 
-![Higher compression level = higher compression ratio = longer write time](../img/write_single.png){}
+![Higher compression level = higher compression ratio = longer write time](img/write_single.png){}
 
 
 ## Read time
 
-![Higher compression level doesn't usually result in longer read times. For many compressors this is a feature of their design, with a large one-off cost of compressing the data, but no slow down when reading it](../img/read_single.png){}
+![Higher compression level doesn't usually result in longer read times. For many compressors this is a feature of their design, with a large one-off cost of compressing the data, but no slow down when reading it](img/read_single.png){}
 
 ## Chunk size
 
-![Larger chunks = lower compression ratio (but only slightly)](../img/chunk_compression.png){}
+![Larger chunks = lower compression ratio (but only slightly)](img/chunk_compression.png){}
 
 ## Chunk size
 
-![Larger chunks = faster write and read times (mainly due to fewer total files)](../img/chunk_read.png){}
+![Larger chunks = faster write and read times (mainly due to fewer total files)](img/chunk_read.png){}
 
 ## Image type
 
 Heart image
-![Heart image](../img/write_single.png){}
+![Heart image](img/write_single.png){}
 Dense segmentation
-![Dense segmentation](../img/dense_write.png){}
+![Dense segmentation](img/dense_write.png){}
 Sparse segmentation
-![Sparse segmentation](../img/sparse_write.png){}
+![Sparse segmentation](img/sparse_write.png){}
 
 Segmentations compress much more!
 
 ## Software library
-![](../img/library_read.png){fig-align="center" height=1500}
+![](img/library_read.png){fig-align="center" height=1500}
 
 Which software library you use affects read / write times. [Tensorstore](https://google.github.io/tensorstore/) had the best performance.
 
