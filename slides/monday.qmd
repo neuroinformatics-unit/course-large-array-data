@@ -6,6 +6,16 @@
 
 They contain links to exercises, polls and further references.
 
+Also, activate your (conda) environment and install the helper functions for the course
+
+```bash
+conda activate large-arrays
+```
+```bash
+uv pip install git+https://github.com/neuroinformatics-unit/course-large-array-data
+```
+
+
 ## The instructor team
 
 * Alessandro Felder
