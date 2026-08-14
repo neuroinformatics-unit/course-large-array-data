@@ -1,0 +1,31 @@
+## Overall objectives
+
+- Understand computational challenges related to large array data and key strategies to address them
+- Gain hands-on Python experience and increase confidence in handling large array data
+- Appreciate the diversity of the open-source Python ecosystem for large array data and how you are part of it
+
+## Understand computational challenges and how to address them
+
+Large arrays do not fit into memory
+
+We deal with this
+
+* Chunking
+* Lazy evaluation
+* Parallelising across chunks
+* Compressing chunks on disk
+
+## Handling large array data with Python
+
+* `zarr-python` and `dask` are generalist libraries for processing large array
+* Use `zarr` files, ideally following a community standard (e.g. OME-Zarr)
+
+## The open-source ecosystem
+
+* There are many array libraries and related open-source projects out there.
+* Each have their niche.
+* Including in (neuro)science.
+* By using them, you are part of it!
+* Hopefully, interact more during collaboration days!
+
+# Thank you!

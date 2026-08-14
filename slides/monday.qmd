@@ -1,6 +1,8 @@
 # Introduction
 
-## Open these slides on your laptop
+## Setting up
+
+Open these slides on your laptop
 
 [neuroinformatics.dev/course-large-array-data](neuroinformatics.dev/course-large-array-data)
 
@@ -15,15 +17,39 @@ conda activate large-arrays
 uv pip install git+https://github.com/neuroinformatics-unit/course-large-array-data
 ```
 
-Optional: if you are familiar with `git`, clone the [course GitHub repository](https://github.com/neuroinformatics-unit/course-large-array-data).
+Download [the exercises](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fneuroinformatics-unit%2Fcourse-large-array-data%2Ftree%2Fmain%2Fnotebooks)
 
-## The instructor team
 
-* Alessandro Felder
-* Igor Tatarnikov
-* Kimberly Meechan
-* Harry Carey
-* Jim Bednar
+## The instructor team {.smaller}
+
+::: {style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; text-align: center;"}
+
+::: {.fragment}
+![](img/alessandro.png){width="60%"}\
+Alessandro Felder
+:::
+
+::: {.fragment}
+![](img/igor.png){width="60%"}\
+Igor Tatarnikov
+:::
+
+::: {.fragment}
+![](img/kimberly.png){width="60%"}\
+Kimberly Meechan
+:::
+
+::: {.fragment}
+![](img/harry.png){width="60%"}\
+Harry Carey
+:::
+
+::: {.fragment}
+![](img/jim.png){width="60%"}\
+Jim Bednar
+:::
+
+:::
 
 ## [Mentimeter](https://www.menti.com/alk7wxcqjqhe)
 
@@ -32,16 +58,16 @@ Optional: if you are familiar with `git`, clone the [course GitHub repository](h
 
 ## Overall objectives
 
-- understand computational challenges related to large array data and key strategies to address them
-- gain hands-on Python experience and increase confidence in handling large array data
-- appreciate the diversity of the open-source Python ecosystem for large array data and how you are part of it
+- Understand computational challenges related to large array data and key strategies to address them
+- Gain hands-on Python experience and increase confidence in handling large array data
+- Appreciate the diversity of the open-source Python ecosystem for large array data and how you are part of it
 
 ## Schedule
 
-- day 1: fundamentals, motivation, reading and writing large arrays
-- day 2: processing large arrays in parallel, standards for large imaging data
-- day 3: advanced topics and case studies: compression, benchmarking, visualisation, real-life applications
-- day 4-5: collaboration
+- Day 1: fundamentals, motivation, reading and writing large arrays
+- Day 2: processing large arrays in parallel, standards for large imaging data
+- Day 3: advanced topics and case studies: compression, benchmarking, visualisation, real-life applications
+- Day 4-5: collaboration
 
 ## What is an array?
 
@@ -65,10 +91,10 @@ Optional: if you are familiar with `git`, clone the [course GitHub repository](h
 
 Computers store data as _bits_ , arranged in _bytes_ of 8 bits.
 
-* kilobyte (KB) = 1000 bytes
-* megabyte (MB) = 1000 kilobytes
-* gigabyte (GB) = 1000 megabytes
-* terabyte (TB) = 1000 gigabytes
+* Kilobyte (KB) = 1000 bytes
+* Megabyte (MB) = 1000 kilobytes
+* Gigabyte (GB) = 1000 megabytes
+* Terabyte (TB) = 1000 gigabytes
 
 ## Data has a "size" (sidenote)
 
@@ -76,18 +102,12 @@ Computers store data as _bits_ , arranged in _bytes_ of 8 bits.
 There are also binary system equivalents
 
 ::: {.nonincremental}
-* kibibyte (KiB) = 1024 bytes
-* mebibyte (MiB) = 1024 kibibytes
+* Kibibyte (KiB) = 1024 bytes
+* Mebibyte (MiB) = 1024 kibibytes
 * ...
 :::
 
 We treat KB and KiB as equivalent for our purposes.
-
-## A mental model {.smaller}
-
-![](img/computer_mental_model_basic.png){fig-align="center" .nostretch height="10%"}
-
-Data being processed on a computer.
 
 # Why do we care about arrays?
 
@@ -356,9 +376,18 @@ It works well for many applications and is very stable.
 
 Using `numpy` keeps your code simple, more accessible, and easy-to-read.
 
+So what's the problem?
+
 ## A mental model {.smaller}
 
 ![](img/computer_mental_model_basic.png){fig-align="center" .nostretch height="10%"}
+
+Data being processed on a computer.
+
+
+## A mental model {.smaller}
+
+![](img/computer_mental_model_basic_with_cache.png){fig-align="center" .nostretch height="10%"}
 
 Data being processed on a computer.
 
@@ -374,7 +403,7 @@ Data being processed on a computer.
 
 ## A mental model {.smaller}
 
-![](img/computer_mental_model_access_expanded.png){fig-align="center" .nostretch height="40%"}
+![](img/computer_mental_model_access_expanded_no_cache.png){fig-align="center" .nostretch height="40%"}
 
 Data being processed on a computer.
 
@@ -398,10 +427,22 @@ Therefore, allocating memory eagerly is a bad idea!
 [@hp_tech_takes_how_nodate]
 :::
 
+
+## A mental model {.smaller}
+
+![](img/computer_mental_model_access_expanded.png){fig-align="center" .nostretch height="40%"}
+
+Data being processed on a computer.
+
+::: footer
+[Latency in more depth](https://gist.github.com/hellerbarde/2843375.js)
+:::
+
+
 ## Exercise 1 (Eager memory allocation)
 
 ::: {.nonincremental}
-- Download [the Exercise 1 notebook](https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/1_memory_cap.ipynb)
+- `notebooks/1_memory_cap.ipynb`
 - Activate your conda environment
 ```bash
 conda activate large-arrays
@@ -442,9 +483,9 @@ Our goal is to plot a slice of a 3D brain image.
 
 Eager strategy:
 
-* load the whole image into memory
-* access the slice
-* plot the slice
+* Load the whole image into memory
+* Access the slice
+* Plot the slice
 
 
 ## An example
@@ -453,9 +494,9 @@ Our goal is to plot a slice of a 3D brain image on disk.
 
 Lazy strategy:
 
-* store the index of the slice in-memory
-* figure out where on disk to get the slice from
-* only when plotting, access the slice
+* Store the index of the slice in-memory
+* Figure out where on disk to get the slice from
+* Only when plotting, access the slice
 
 ## `numpy` can do this
 
@@ -479,9 +520,9 @@ print(arr[50, :, :]) # only necessary "pages" loaded into memory
 
 ## Limitations of `numpy` memory maps
 
-- data has to be on local disk (not cloud)
-- no compression
-- no parallelisation
+- Data has to be on local disk (not cloud)
+- No compression
+- No parallelisation
 
 ## How could we improve on this? {.smaller}
 
@@ -489,17 +530,17 @@ print(arr[50, :, :]) # only necessary "pages" loaded into memory
 
 We would benefit from increased flexibility like
 
-* allowing large arrays to be cut into smaller, customisable "chunks" that can live anywhere
-* allow control over when operations are executed
+* Allowing large arrays to be cut into smaller, customisable "chunks" that can live anywhere
+* Allow control over when operations are executed
 
 ## The `dask` array
 
 An evolution of the `numpy` array
 
 ::: {.nonincremental}
-- same interface (for most functionality)
-- allows "chunking" of the array into smaller chunks
-- gives control over when data is actually loaded into memory
+- Same interface (for most functionality)
+- Allows "chunking" of the array into smaller chunks
+- Gives control over when data is actually loaded into memory
 :::
 
 `dask` keeps track of lazy operations in a "task graph"
@@ -632,7 +673,7 @@ showcasing the increased flexibility of `dask`.
 If you want to run on your own data
 
 ::: {.nonincremental}
-- Download [the exercise notebook](https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/2_numpy_to_dask.ipynb)
+- `notebooks/2_numpy_to_dask.ipynb`
 - Activate your conda environment
 ```bash
 conda activate large-arrays
@@ -711,7 +752,7 @@ Showcases
 ## Exercise 3
 
 ::: {.nonincremental}
-- Download [the exercise notebook](https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/3_dask_remote_to_zarr_io.ipynb)
+- `notebooks/3_dask_remote_to_zarr_io.ipynb`
 - Activate your conda environment
 ```bash
 conda activate large-arrays
@@ -735,11 +776,11 @@ jupyter lab
 
 ::: {.incremental}
 * `dask` is more flexible
-  * lazy by default
-  * customise chunks
-  * control function execution with `delayed`
-  * works with remote data
+  * Lazy by default
+  * Customise chunks
+  * Control function execution with `delayed`
+  * Works with remote data
 * `zarr`
-    * flexible file format for chunked arrays
-    * each chunk = one file on disk
+    * Flexible file format for chunked arrays
+    * Each chunk = one file on disk
 :::

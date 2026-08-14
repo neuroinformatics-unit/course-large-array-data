@@ -4,7 +4,7 @@
 
 How should we coordinate array operations so Python can execute them at the same time?
 
-* "in parallel", "concurrently"
+* "In parallel", "concurrently"
 
 ## Concurrency
 
@@ -171,16 +171,16 @@ You can tell `dask` to apply a function lazily on each chunk
 Exercise 4 will guide you through a realistic analysis of multiphoton imaging data that uses chunkwise dask operations
 
 ::: {.nonincremental}
-* without overlap
+* Without overlap
 * with overlap
 :::
 
-also showing how to choose between multi-threading and multi-processing.
+Also showing how to choose between multi-threading and multi-processing.
 
 ## Exercise 4 {.smaller}
 
 ::: {.nonincremental}
-- Download [the exercise notebook](https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/4_parallel_processing_with_dask.ipynb)
+- `notebooks/4_parallel_processing_with_dask.ipynb`
 - Activate your conda environment
 ```bash
 conda activate large-arrays

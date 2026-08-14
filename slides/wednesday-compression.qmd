@@ -95,7 +95,7 @@ Compares write speeds and disk size for different compression levels.
 ## Exercise 5
 
 ::: {.nonincremental}
-- Download [the exercise notebook](https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/5_remote_file_compression.ipynb)
+- `notebooks/5_remote_file_compression.ipynb`
 - Activate your conda environment
 ```bash
 conda activate large-arrays
