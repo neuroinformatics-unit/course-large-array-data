@@ -240,10 +240,10 @@
 <section id="the-instructor-team" class="slide level2">
 <h2>The instructor team</h2>
 <ul>
-<li>Alessandro Felder</li>
-<li>Igor Tatarnikov</li>
-<li>Kimberly Meechan</li>
-<li>Jim Bednar</li>
+<li class="fragment">Alessandro Felder</li>
+<li class="fragment">Igor Tatarnikov</li>
+<li class="fragment">Kimberly Meechan</li>
+<li class="fragment">Jim Bednar</li>
 </ul>
 </section>
 <section id="mentimeter" class="slide level2">
@@ -255,18 +255,18 @@
 <section id="overall-objectives" class="slide level2">
 <h2>Overall objectives</h2>
 <ul>
-<li>understand computational challenges related to large array data and key strategies to address them</li>
-<li>gain hands-on Python experience and increase confidence in handling large array data</li>
-<li>appreciate the diversity of the open-source Python ecosystem for large array data and how you are part of it</li>
+<li class="fragment">understand computational challenges related to large array data and key strategies to address them</li>
+<li class="fragment">gain hands-on Python experience and increase confidence in handling large array data</li>
+<li class="fragment">appreciate the diversity of the open-source Python ecosystem for large array data and how you are part of it</li>
 </ul>
 </section>
 <section id="schedule" class="slide level2">
 <h2>Schedule</h2>
 <ul>
-<li>day 1: fundamentals, motivation, reading and writing large arrays</li>
-<li>day 2: processing large arrays in parallel, standards for large imaging data</li>
-<li>day 3: advanced topics and case studies: compression, benchmarking, visualisation, real-life applications</li>
-<li>day 4-5: collaboration</li>
+<li class="fragment">day 1: fundamentals, motivation, reading and writing large arrays</li>
+<li class="fragment">day 2: processing large arrays in parallel, standards for large imaging data</li>
+<li class="fragment">day 3: advanced topics and case studies: compression, benchmarking, visualisation, real-life applications</li>
+<li class="fragment">day 4-5: collaboration</li>
 </ul>
 </section>
 <section id="what-is-an-array" class="slide level2">
@@ -274,8 +274,8 @@
 <div class="columns">
 <div class="column" style="width:45%;">
 <ul>
-<li>Data arranged in a grid</li>
-<li>Data all have the same type</li>
+<li class="fragment">Data arranged in a grid</li>
+<li class="fragment">Data all have the same type</li>
 </ul>
 </div><div class="column" style="width:55%;">
 <p><img data-src="img/array_2d.png" class="" style="width:90.0%"></p>
@@ -285,19 +285,19 @@
 <h2>Data has a “size”</h2>
 <p>Computers store data as <em>bits</em> , arranged in <em>bytes</em> of 8 bits.</p>
 <ul>
-<li>kilobyte (KB) = 1000 bytes</li>
-<li>megabyte (MB) = 1000 kilobytes</li>
-<li>gigabyte (GB) = 1000 megabytes</li>
-<li>terabyte (TB) = 1000 gigabytes</li>
+<li class="fragment">kilobyte (KB) = 1000 bytes</li>
+<li class="fragment">megabyte (MB) = 1000 kilobytes</li>
+<li class="fragment">gigabyte (GB) = 1000 megabytes</li>
+<li class="fragment">terabyte (TB) = 1000 gigabytes</li>
 </ul>
 </section>
 <section id="data-has-a-size-sidenote" class="slide level2">
 <h2>Data has a “size” (sidenote)</h2>
 <p>Computers store data as <em>bits</em> , arranged in <em>bytes</em> of 8 bits. There are also binary system equivalents</p>
 <ul>
-<li>kibibyte (KiB) = 1024 bytes</li>
-<li>mebibyte (MiB) = 1024 kibibytes</li>
-<li>…</li>
+<li class="fragment">kibibyte (KiB) = 1024 bytes</li>
+<li class="fragment">mebibyte (MiB) = 1024 kibibytes</li>
+<li class="fragment">…</li>
 </ul>
 <p>We treat KB and KiB as equivalent for our purposes.</p>
 </section>
@@ -319,8 +319,8 @@
 <section id="why-does-data-come-in-array-form" class="title-slide slide level1 center">
 <h1>Why does data come in array form?</h1>
 <ul>
-<li>Naturally lends itself to some data (e.g.&nbsp;microscopy)</li>
-<li>Arrays can be indexed efficiently in memory</li>
+<li class="fragment">Naturally lends itself to some data (e.g.&nbsp;microscopy)</li>
+<li class="fragment">Arrays can be indexed efficiently in memory</li>
 </ul>
 </section>
 <section id="electrophysiological-probes" class="slide level2 smaller">
@@ -523,13 +523,13 @@ A.init.then(() => {
 </section>
 <section id="exploring-a-numpy-array-1" class="slide level2">
 <h2>Exploring a <code>numpy</code> array</h2>
-<div id="37731e90" class="cell" data-execution_count="1">
+<div id="21bb3cfb" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
-<pre><code>[[13 37 58 70 96 75]
- [57 29 95 66 75 72]
- [27 71  2  3 65 63]
- [70 58 88 24 95 82]
- [69 31 64 61 59 51]]
+<pre><code>[[31 93 80 34 21 66]
+ [53 95 26 41 34 88]
+ [97 15 85 99  1 85]
+ [64 36 21 25 97 35]
+ [95 21 11 14 12 43]]
 Array shape: (5, 6)</code></pre>
 </div>
 </div>
@@ -564,12 +564,12 @@ Array shape: (5, 6)</code></pre>
 <div class="column" style="width:40%;">
 <p>Extract its bytes</p>
 </div><div class="column" style="width:59%;">
-<div id="2b4f0eee" class="cell" data-execution_count="2">
+<div id="ba486ffa" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code>60 bytes total
 
 First five elements:
-0000000000001101 0000000000100101 0000000000111010 0000000001000110 0000000001100000 ...</code></pre>
+0000000000011111 0000000001011101 0000000001010000 0000000000100010 0000000000010101 ...</code></pre>
 </div>
 </div>
 </div></div>
@@ -660,17 +660,18 @@ First five elements:
 </section>
 <section id="we-need-more-control" class="slide level2">
 <h2>We need more control</h2>
-<p>Lazy operations: hold off allocating memory/doing computations as long as we can…</p>
-<p>… and only operate on the minimum amount of in-memory data needed.</p>
+<p>“Lazy” operations:</p>
+<p>Hold off allocating memory/doing computations for as long as we can…</p>
+<p>…and only operate on the minimum amount of in-memory data needed.</p>
 </section>
 <section id="an-example" class="slide level2">
 <h2>An example</h2>
 <p>Our goal is to plot a slice of a 3D brain image.</p>
 <p>Eager strategy:</p>
 <ul>
-<li>load the whole image into memory</li>
-<li>access the slice</li>
-<li>plot the slice</li>
+<li class="fragment">load the whole image into memory</li>
+<li class="fragment">access the slice</li>
+<li class="fragment">plot the slice</li>
 </ul>
 </section>
 <section id="an-example-1" class="slide level2">
@@ -678,9 +679,9 @@ First five elements:
 <p>Our goal is to plot a slice of a 3D brain image on disk.</p>
 <p>Lazy strategy:</p>
 <ul>
-<li>store the index of the slice in-memory</li>
-<li>figure out where on disk to get the slice from</li>
-<li>only when plotting, access the slice</li>
+<li class="fragment">store the index of the slice in-memory</li>
+<li class="fragment">figure out where on disk to get the slice from</li>
+<li class="fragment">only when plotting, access the slice</li>
 </ul>
 </section>
 <section id="numpy-can-do-this" class="slide level2">
@@ -703,9 +704,9 @@ First five elements:
 <section id="limitations-of-numpy-memory-maps" class="slide level2">
 <h2>Limitations of <code>numpy</code> memory maps</h2>
 <ul>
-<li>data has to be on local disk (not cloud)</li>
-<li>no compression</li>
-<li>no parallelisation</li>
+<li class="fragment">data has to be on local disk (not cloud)</li>
+<li class="fragment">no compression</li>
+<li class="fragment">no parallelisation</li>
 </ul>
 </section>
 <section id="how-could-we-improve-on-this" class="slide level2 smaller">
@@ -715,17 +716,17 @@ First five elements:
 <h2>How could we improve on this?</h2>
 <p>We would benefit from increased flexibility like</p>
 <ul>
-<li>allowing large arrays to be cut into smaller, customisable “chunks” that can live anywhere</li>
-<li>allow control over when operations are executed</li>
+<li class="fragment">allowing large arrays to be cut into smaller, customisable “chunks” that can live anywhere</li>
+<li class="fragment">allow control over when operations are executed</li>
 </ul>
 </section>
 <section id="the-dask-array" class="slide level2">
 <h2>The <code>dask</code> array</h2>
 <p>An evolution of the <code>numpy</code> array</p>
 <ul>
-<li>same interface (for most functionality)</li>
-<li>allows “chunking” of the array into smaller chunks</li>
-<li>gives control over when data is actually loaded into memory</li>
+<li class="fragment">same interface (for most functionality)</li>
+<li class="fragment">allows “chunking” of the array into smaller chunks</li>
+<li class="fragment">gives control over when data is actually loaded into memory</li>
 </ul>
 <p><code>dask</code> keeps track of lazy operations in a “task graph”</p>
 </section>
@@ -738,7 +739,7 @@ First five elements:
 </section>
 <section id="the-dask-array-2" class="slide level2">
 <h2>The <code>dask</code> array</h2>
-<div id="818e9329" class="cell" data-execution_count="3">
+<div id="6bf835c8" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
 <pre><code>dask.array&lt;random, shape=(10000, 10000), dtype=float64, chunksize=(1000, 1000), chunktype=numpy.ndarray&gt;</code></pre>
 </div>
@@ -755,7 +756,7 @@ First five elements:
 </section>
 <section id="the-dask-array-4" class="slide level2">
 <h2>The <code>dask</code> array</h2>
-<div id="e4988731" class="cell" data-execution_count="4">
+<div id="a74e15f1" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-stdout">
 <pre><code>dask.array&lt;getitem, shape=(100, 100), dtype=float64, chunksize=(100, 100), chunktype=numpy.ndarray&gt;</code></pre>
 </div>
@@ -771,15 +772,15 @@ First five elements:
 </section>
 <section id="the-dask-array-6" class="slide level2">
 <h2>The <code>dask</code> array</h2>
-<div id="c3a61092" class="cell" data-execution_count="5">
+<div id="c4df38f4" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-stdout">
-<pre><code>[[0.59050712 0.72691565 0.09368338 ... 0.49612982 0.83212006 0.32131719]
- [0.9177696  0.89298876 0.67659466 ... 0.56464422 0.41030978 0.92519255]
- [0.13973992 0.05225079 0.96836711 ... 0.22162894 0.67353134 0.78514454]
+<pre><code>[[0.01421315 0.21078693 0.33367386 ... 0.12596308 0.8285338  0.90170689]
+ [0.50846879 0.16076125 0.25346182 ... 0.64236632 0.28817183 0.59729616]
+ [0.31395827 0.07614624 0.9902368  ... 0.10652484 0.11480812 0.56249619]
  ...
- [0.80599268 0.89622086 0.637178   ... 0.57421788 0.337428   0.19763235]
- [0.24856147 0.16764346 0.53511194 ... 0.92639996 0.27941617 0.38156525]
- [0.27273826 0.20425601 0.21533182 ... 0.43007852 0.26027211 0.50120967]]</code></pre>
+ [0.1774921  0.91939928 0.69619322 ... 0.56191519 0.03693816 0.04904063]
+ [0.80241285 0.97757548 0.36209484 ... 0.27767269 0.80850383 0.94357196]
+ [0.17979613 0.21894485 0.64129291 ... 0.96841989 0.30241192 0.61609812]]</code></pre>
 </div>
 </div>
 <p><code>.compute</code> method gives us control over when to actually load into memory.</p>
@@ -806,18 +807,18 @@ First five elements:
 </section>
 <section id="dask-delayed-1" class="slide level2">
 <h2><code>dask</code> delayed</h2>
-<div id="06fa9759" class="cell" data-execution_count="6">
+<div id="4044a515" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-stdout">
-<pre><code>Delayed('ndarray-5c170218-7427-49d5-84d4-75f83172f130')
-[ 9684 10092  8534  9659 10833  9188  9577  9337  9292 10393  8984 10271
- 10426  9185  9745  9410  9991 10812  9773  9326  9993  8861 10284 11106
- 10810 10061  9374 10357  9826  9579  9657  9369 10035  9581  9017  8782
- 10501  9735  9777 10277  9182 10844 10627 10472  9858  9670 10627  9018
-  9116 10140  9481  9382  8500  9566  9868  9928  9984  9444 10618  9312
- 10206  8288  9687 11552 10044  9476  9143 10817  9671  9972  9808  9786
- 10730  9387  9606  9368  9671 10647  9924 10081  9787  9012  9842  9959
-  9193 10418  9343 11269 10270  9882  9820  8953 10736 10482  8802 11056
-  9367  9429  9984 10494]</code></pre>
+<pre><code>Delayed('ndarray-b8eaf340-8d2c-4c86-83a7-cf3d06be53ae')
+[ 9960  9799 10301 11070 10328  9783 10105  9567 10196  9546 11287  9694
+  9496  9889  9921 10271  9551  8987  9790  9955 10420 10066  9649 10500
+ 10197 10695  9632 10311  9475  9805  9806 10159  9921  9405  9991  9345
+  9435 10059  9344  9728 10244  9942  9079  9970 10166 10192 10566  9754
+ 10433  9562  9496  9793  9956  9742  9718 10286  9456  9534 10892  9722
+  9441  8762 10319  9881 10081  9552  9644  9436 10946  9984  9259 10075
+ 10032  9985  9958 10739  9119 10110 10792 10809  9900 10639  9677  9606
+  9363 10938  8950  9356  9334  9837  9593  9220 10756  9647  9000  9162
+  9640  8818 10255 10209]</code></pre>
 </div>
 </div>
 <p><code>delayed</code> function allows us to execute our own functions lazily.</p>
@@ -826,9 +827,9 @@ First five elements:
 <h2>Exercise 2 (Joint)</h2>
 <p>Loading of large array slices with</p>
 <ul>
-<li><code>numpy</code> (eager, via <code>tifffile.imread</code>)</li>
-<li><code>numpy.memmap</code> (lazy, via <code>tifffile.memmap</code>)</li>
-<li><code>dask</code></li>
+<li class="fragment"><code>numpy</code> (eager, via <code>tifffile.imread</code>)</li>
+<li class="fragment"><code>numpy.memmap</code> (lazy, via <code>tifffile.memmap</code>)</li>
+<li class="fragment"><code>dask</code></li>
 </ul>
 <p>showcasing the increased flexibility of <code>dask</code>.</p>
 </section>
@@ -863,10 +864,10 @@ First five elements:
 <p><img data-src="img/zarr-pink-stacked.svg" alt="Zarr logo"></p>
 </div><div class="column" style="width:60%;">
 <ul>
-<li>open-source file format specification</li>
-<li>n-dimensional arrays</li>
-<li>split into chunks</li>
-<li>Each chunk is a separate file</li>
+<li class="fragment">open-source file format specification</li>
+<li class="fragment">n-dimensional arrays</li>
+<li class="fragment">split into chunks</li>
+<li class="fragment">Each chunk is a separate file</li>
 </ul>
 </div></div>
 </section>
@@ -874,10 +875,10 @@ First five elements:
 <h2>Note: Zarr and <code>zarr-python</code></h2>
 <p>Zarr is not the same as <code>zarr-python</code>.</p>
 <ul>
-<li>Zarr is a file format specification</li>
-<li><code>zarr-python</code> is a Python library to work with Zarr files
+<li class="fragment">Zarr is a file format specification</li>
+<li class="fragment"><code>zarr-python</code> is a Python library to work with Zarr files
 <ul>
-<li>Confusingly, imported with <code>import zarr</code></li>
+<li class="fragment">Confusingly, imported with <code>import zarr</code></li>
 </ul></li>
 </ul>
 </section>
@@ -890,8 +891,8 @@ First five elements:
 <h2>Exercise 3</h2>
 <p>Showcases</p>
 <ul>
-<li><code>dask</code> reading a file from a public cloud archive</li>
-<li><code>dask</code> processing the data and storing part of it to <code>zarr</code></li>
+<li class="fragment"><code>dask</code> reading a file from a public cloud archive</li>
+<li class="fragment"><code>dask</code> processing the data and storing part of it to <code>zarr</code></li>
 </ul>
 </section>
 <section id="exercise-3-2" class="slide level2">
@@ -946,19 +947,19 @@ First five elements:
 <p><img data-src="../img/zarr-pink-stacked.svg" alt="Zarr logo"></p>
 </div><div class="column" style="width:60%;">
 <ul>
-<li>open-source file format specification</li>
-<li>n-dimensional arrays</li>
-<li>split into chunks</li>
-<li>Each chunk is a separate file</li>
-<li>Enables parallel processing of massive datasets</li>
+<li class="fragment">open-source file format specification</li>
+<li class="fragment">n-dimensional arrays</li>
+<li class="fragment">split into chunks</li>
+<li class="fragment">Each chunk is a separate file</li>
+<li class="fragment">Enables parallel processing of massive datasets</li>
 </ul>
 </div></div>
 </section>
 <section id="working-with-zarr" class="slide level2">
 <h2>Working with Zarr</h2>
 <ul>
-<li><p>One of the main libraries for interacting with Zarr in python is <a href="https://zarr.readthedocs.io/en/stable/">zarr-python</a>.</p></li>
-<li><p>Quick demo of using zarr-python to make arrays and groups: <code>notebooks/zarr_python_example.ipynb</code></p></li>
+<li class="fragment"><p>One of the main libraries for interacting with Zarr in python is <a href="https://zarr.readthedocs.io/en/stable/">zarr-python</a>.</p></li>
+<li class="fragment"><p>Quick demo of using zarr-python to make arrays and groups: <code>notebooks/zarr_python_example.ipynb</code></p></li>
 </ul>
 </section>
 <section id="whats-in-a-zarr" class="slide level2 smaller">
@@ -966,9 +967,9 @@ First five elements:
 <p>The <a href="https://zarr-specs.readthedocs.io/en/v3.1.0/specs.html">zarr specification</a> dictates how a Zarr file should be structured.</p>
 <p>As we saw in the demo, the main components of a Zarr file are:</p>
 <ul>
-<li><strong>groups</strong> (which you can think of as containers) and <strong>arrays</strong> (our actual numeric data)</li>
-<li>groups can contain any combination of groups and arrays, allowing a tree of datasets to be made</li>
-<li>each level of the tree (a group or array) contains a <code>zarr.json</code> file with basic metadata</li>
+<li class="fragment"><strong>groups</strong> (which you can think of as containers) and <strong>arrays</strong> (our actual numeric data)</li>
+<li class="fragment">groups can contain any combination of groups and arrays, allowing a tree of datasets to be made</li>
+<li class="fragment">each level of the tree (a group or array) contains a <code>zarr.json</code> file with basic metadata</li>
 </ul>
 </section>
 <section id="tree-hierarchy" class="slide level2">
@@ -980,22 +981,22 @@ First five elements:
 <p>One of Zarr’s great strengths is that it can be applied to any kind of array data across many fields.</p>
 <p>Their website’s <a href="https://zarr.dev/datasets/">dataset section</a> includes:</p>
 <ul>
-<li>climate model outputs</li>
-<li>sea surface temperature</li>
-<li>bio-imaging data</li>
-<li>…</li>
+<li class="fragment">climate model outputs</li>
+<li class="fragment">sea surface temperature</li>
+<li class="fragment">bio-imaging data</li>
+<li class="fragment">…</li>
 </ul>
 </section>
 <section id="zarr-is-general-cons" class="slide level2">
 <h2>Zarr is general (cons)</h2>
 <ul>
-<li><p>Equally, one of Zarr’s great weaknesses is that it is general!</p></li>
-<li><p>When we use it for a specific kind of data (say biological images), there is no consistent place for related metadata to be stored.</p></li>
-<li><p>For example:</p>
+<li class="fragment"><p>Equally, one of Zarr’s great weaknesses is that it is general!</p></li>
+<li class="fragment"><p>When we use it for a specific kind of data (say biological images), there is no consistent place for related metadata to be stored.</p></li>
+<li class="fragment"><p>For example:</p>
 <ul>
-<li>pixel size?</li>
-<li>units?</li>
-<li>meaning of dimensions? E.g. time / z / y / x / channels</li>
+<li class="fragment">pixel size?</li>
+<li class="fragment">units?</li>
+<li class="fragment">meaning of dimensions? E.g. time / z / y / x / channels</li>
 </ul></li>
 </ul>
 </section>
@@ -1007,12 +1008,12 @@ First five elements:
 <h2>OME-Zarr</h2>
 <p>Specific fields can get around this limitation by extending the Zarr specification.</p>
 <ul>
-<li><a href="https://ngff.openmicroscopy.org/index.html">OME-Zarr</a> = Zarr + bio-imaging related metadata</li>
-<li>It also introduces conventions on how to layout the Zarr files to handle common use cases:
+<li class="fragment"><a href="https://ngff.openmicroscopy.org/index.html">OME-Zarr</a> = Zarr + bio-imaging related metadata</li>
+<li class="fragment">It also introduces conventions on how to layout the Zarr files to handle common use cases:
 <ul>
-<li>multi-resolution datasets (we’ll come back to this!)</li>
-<li>high-content screening</li>
-<li>storing label images alongside raw images</li>
+<li class="fragment">multi-resolution datasets (we’ll come back to this!)</li>
+<li class="fragment">high-content screening</li>
+<li class="fragment">storing label images alongside raw images</li>
 </ul></li>
 </ul>
 </section>
@@ -1020,16 +1021,16 @@ First five elements:
 <h2>Working with OME-Zarr</h2>
 <p>Let’s take a look at some OME-Zarr metadata using <a href="https://ome-zarr-models-py.readthedocs.io/en/stable/">ome-zarr-models</a>.</p>
 <ul>
-<li><p>OME-Zarr models is a python package specialised to validating and loading OME-Zarr metadata.</p></li>
-<li><p>Quick demo of accessing metadata: <code>notebooks/ome-zarr-models_example.ipynb</code></p></li>
+<li class="fragment"><p>OME-Zarr models is a python package specialised to validating and loading OME-Zarr metadata.</p></li>
+<li class="fragment"><p>Quick demo of accessing metadata: <code>notebooks/ome-zarr-models_example.ipynb</code></p></li>
 </ul>
 </section>
 <section id="multi-scales" class="slide level2 smaller">
 <h2>Multi-scales</h2>
 <p>Part of the <a href="https://ngff.openmicroscopy.org/specifications/0.5/index.html">OME-Zarr specification</a> adds <code>multiscales</code> metadata.</p>
 <ul>
-<li>It allows storing the same dataset at multiple resolutions</li>
-<li>May also hear this called a ‘pyramidal’ file format</li>
+<li class="fragment">It allows storing the same dataset at multiple resolutions</li>
+<li class="fragment">May also hear this called a ‘pyramidal’ file format</li>
 </ul>
 <div class="fragment">
 <div class="quarto-figure quarto-figure-center">
@@ -1051,16 +1052,16 @@ First five elements:
 <h2>Specialised viewers</h2>
 <p>Specialised viewers dynamically load different resolution levels.</p>
 <ul>
-<li><p>Web examples:</p>
+<li class="fragment"><p>Web examples:</p>
 <ul>
-<li><a href="https://neuroglancer-demo.appspot.com/#!%7B%22dimensions%22:%7B%22x%22:%5B0.00001022%2C%22m%22%5D%2C%22y%22:%5B0.00001022%2C%22m%22%5D%2C%22z%22:%5B0.00001022%2C%22m%22%5D%7D%2C%22position%22:%5B6490.5439453125%2C4794.5%2C6752.15087890625%5D%2C%22crossSectionScale%22:3.678794411714424%2C%22projectionOrientation%22:%5B0.3094263970851898%2C0.20628425478935242%2C0%2C-0.9282791018486023%5D%2C%22projectionScale%22:4096%2C%22layers%22:%5B%7B%22type%22:%22image%22%2C%22source%22:%22zarr://gs://ucl-hip-ct-35a68e99feaae8932b1d44da0358940b/K292/kidney/10.22um_complete-organ_bm18.ome.zarr/%22%2C%22tab%22:%22source%22%2C%22opacity%22:1%2C%22shaderControls%22:%7B%22normalized%22:%7B%22range%22:%5B42776%2C45855%5D%7D%7D%2C%22volumeRendering%22:%22max%22%2C%22volumeRenderingDepthSamples%22:256%2C%22name%22:%22K292_kidney_complete-organ_10.22um_bm18%22%7D%5D%2C%22showSlices%22:false%2C%22selectedLayer%22:%7B%22visible%22:true%2C%22layer%22:%22K292_kidney_complete-organ_10.22um_bm18%22%7D%2C%22layout%22:%224panel%22%7D">neuroglancer - human organ atlas kidney</a></li>
-<li><a href="https://webknossos.org/datasets/l4dense_motta_et_al_demo-5f33d5340100001800e8cddc/view?utm_source=site#2867,4361,1770,0,1.21">webknossos - segmented connectomics dataaset</a></li>
+<li class="fragment"><a href="https://neuroglancer-demo.appspot.com/#!%7B%22dimensions%22:%7B%22x%22:%5B0.00001022%2C%22m%22%5D%2C%22y%22:%5B0.00001022%2C%22m%22%5D%2C%22z%22:%5B0.00001022%2C%22m%22%5D%7D%2C%22position%22:%5B6490.5439453125%2C4794.5%2C6752.15087890625%5D%2C%22crossSectionScale%22:3.678794411714424%2C%22projectionOrientation%22:%5B0.3094263970851898%2C0.20628425478935242%2C0%2C-0.9282791018486023%5D%2C%22projectionScale%22:4096%2C%22layers%22:%5B%7B%22type%22:%22image%22%2C%22source%22:%22zarr://gs://ucl-hip-ct-35a68e99feaae8932b1d44da0358940b/K292/kidney/10.22um_complete-organ_bm18.ome.zarr/%22%2C%22tab%22:%22source%22%2C%22opacity%22:1%2C%22shaderControls%22:%7B%22normalized%22:%7B%22range%22:%5B42776%2C45855%5D%7D%7D%2C%22volumeRendering%22:%22max%22%2C%22volumeRenderingDepthSamples%22:256%2C%22name%22:%22K292_kidney_complete-organ_10.22um_bm18%22%7D%5D%2C%22showSlices%22:false%2C%22selectedLayer%22:%7B%22visible%22:true%2C%22layer%22:%22K292_kidney_complete-organ_10.22um_bm18%22%7D%2C%22layout%22:%224panel%22%7D">neuroglancer - human organ atlas kidney</a></li>
+<li class="fragment"><a href="https://webknossos.org/datasets/l4dense_motta_et_al_demo-5f33d5340100001800e8cddc/view?utm_source=site#2867,4361,1770,0,1.21">webknossos - segmented connectomics dataaset</a></li>
 </ul></li>
-<li><p>Local examples:</p>
+<li class="fragment"><p>Local examples:</p>
 <ul>
-<li>Napari</li>
-<li>BigDataViewer (Fiji)</li>
-<li>…</li>
+<li class="fragment">Napari</li>
+<li class="fragment">BigDataViewer (Fiji)</li>
+<li class="fragment">…</li>
 </ul></li>
 </ul>
 </section>
@@ -1068,17 +1069,17 @@ First five elements:
 <h2>Versioning</h2>
 <p>Spec versions can get complicated.</p>
 <ul>
-<li>The main <a href="https://zarr-specs.readthedocs.io/en/latest/specs.html">zarr spec</a> is currently v3</li>
-<li>The <a href="https://ngff.openmicroscopy.org/specifications/index.html">OME-Zarr spec</a> is currently v0.5</li>
-<li>OME-Zarr changes more often than Zarr</li>
+<li class="fragment">The main <a href="https://zarr-specs.readthedocs.io/en/latest/specs.html">zarr spec</a> is currently v3</li>
+<li class="fragment">The <a href="https://ngff.openmicroscopy.org/specifications/index.html">OME-Zarr spec</a> is currently v0.5</li>
+<li class="fragment">OME-Zarr changes more often than Zarr</li>
 </ul>
 </section>
 <section id="news-from-ome-zarr-land" class="slide level2">
 <h2>News from OME-Zarr land</h2>
 <ul>
-<li>follow the Announcements for the <code>ome-ngff</code> tag on <a href="https://forum.image.sc/tag/ome-ngff/1502">image.sc</a></li>
-<li>Join a community call or office hours - <a href="https://ngff.openmicroscopy.org/community/index.html#">community pages</a></li>
-<li><a href="https://ngff.openmicroscopy.org/index.html">ngff docs</a></li>
+<li class="fragment">follow the Announcements for the <code>ome-ngff</code> tag on <a href="https://forum.image.sc/tag/ome-ngff/1502">image.sc</a></li>
+<li class="fragment">Join a community call or office hours - <a href="https://ngff.openmicroscopy.org/community/index.html#">community pages</a></li>
+<li class="fragment"><a href="https://ngff.openmicroscopy.org/index.html">ngff docs</a></li>
 </ul>
 </section>
 <section id="ecosystem" class="slide level2">
@@ -1086,17 +1087,247 @@ First five elements:
 <p>The ecosystem of tools / packages around OME-Zarr is rapidly evolving.</p>
 <p>Don’t be afraid to try different options, and see what works best for your data.</p>
 <ul>
-<li>The <a href="https://ngff.openmicroscopy.org/resources/index.html">resources section</a> has useful lists of tools, training materials etc for OME-Zarr</li>
-<li><a href="https://ngff.openmicroscopy.org/resources/tools/index.html">Tools list</a></li>
-<li><a href="https://ngff.openmicroscopy.org/resources/learning-and-teaching-material/index.html">Training materials</a></li>
+<li class="fragment">The <a href="https://ngff.openmicroscopy.org/resources/index.html">resources section</a> has useful lists of tools, training materials etc for OME-Zarr</li>
+<li class="fragment"><a href="https://ngff.openmicroscopy.org/resources/tools/index.html">Tools list</a></li>
+<li class="fragment"><a href="https://ngff.openmicroscopy.org/resources/learning-and-teaching-material/index.html">Training materials</a></li>
 </ul>
 </section>
 <section id="try-it-out" class="slide level2">
 <h2>Try it out!</h2>
 <ul>
-<li><code>notebooks/creating_ome_zarr.ipynb</code>: creating OME-Zarr step by step</li>
-<li><code>notebooks/converting_ome_zarr.ipynb</code>: libraries for converting to OME-Zarr</li>
-<li><code>notebooks/visualising_ome_zarr.ipynb</code>: viewing OME-Zarr in napari</li>
+<li class="fragment"><code>notebooks/creating_ome_zarr.ipynb</code>: creating OME-Zarr step by step</li>
+<li class="fragment"><code>notebooks/converting_ome_zarr.ipynb</code>: libraries for converting to OME-Zarr</li>
+<li class="fragment"><code>notebooks/visualising_ome_zarr.ipynb</code>: viewing OME-Zarr in napari</li>
+</ul>
+</section></section>
+<section>
+<section id="parallelising-array-operations-with-dask" class="title-slide slide level1 center">
+<h1>Parallelising array operations with <code>dask</code></h1>
+
+</section>
+<section id="parallelising-array-operations-with-dask-1" class="slide level2">
+<h2>Parallelising array operations with <code>dask</code></h2>
+<p>How should we coordinate array operations so Python can execute them at the same time?</p>
+<ul>
+<li class="fragment">“in parallel”, “concurrently”</li>
+</ul>
+</section>
+<section id="concurrency" class="slide level2">
+<h2>Concurrency</h2>
+<p>Two types of concurrency built into Python</p>
+<ul>
+<li class="fragment">“Multi-threading”</li>
+<li class="fragment">“Multi-processing”</li>
+</ul>
+</section>
+<section id="multi-threading" class="slide level2">
+<h2>Multi-threading</h2>
+<ul>
+<li class="fragment">Single Python process</li>
+<li class="fragment">Threads share resources (e.g.&nbsp;memory)</li>
+</ul>
+</section>
+<section id="multi-threading-example" class="slide level2">
+<h2>Multi-threading example</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="" aria-label="1"></a><span class="im">import</span> threading</span>
+<span id="cb20-2"><a href="" aria-label="2"></a></span>
+<span id="cb20-3"><a href="" aria-label="3"></a>counter <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb20-4"><a href="" aria-label="4"></a>lock <span class="op">=</span> threading.Lock()</span>
+<span id="cb20-5"><a href="" aria-label="5"></a></span>
+<span id="cb20-6"><a href="" aria-label="6"></a><span class="kw">def</span> increment(n):</span>
+<span id="cb20-7"><a href="" aria-label="7"></a>    <span class="kw">global</span> counter</span>
+<span id="cb20-8"><a href="" aria-label="8"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb20-9"><a href="" aria-label="9"></a>        <span class="cf">with</span> lock: <span class="co"># make sure counter doesn't get updated simultaneously</span></span>
+<span id="cb20-10"><a href="" aria-label="10"></a>            counter <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb20-11"><a href="" aria-label="11"></a></span>
+<span id="cb20-12"><a href="" aria-label="12"></a>threads <span class="op">=</span> [threading.Thread(target<span class="op">=</span>increment, args<span class="op">=</span>(<span class="dv">100_000</span>,)) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>)]</span>
+<span id="cb20-13"><a href="" aria-label="13"></a></span>
+<span id="cb20-14"><a href="" aria-label="14"></a><span class="cf">with</span> ThreadPoolExecutor(max_workers<span class="op">=</span><span class="dv">4</span>) <span class="im">as</span> pool:</span>
+<span id="cb20-15"><a href="" aria-label="15"></a>    futures <span class="op">=</span> [pool.submit(increment, <span class="dv">100_000</span>) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>)]</span>
+<span id="cb20-16"><a href="" aria-label="16"></a>    <span class="cf">for</span> f <span class="kw">in</span> futures:</span>
+<span id="cb20-17"><a href="" aria-label="17"></a>        f.result()</span>
+<span id="cb20-18"><a href="" aria-label="18"></a></span>
+<span id="cb20-19"><a href="" aria-label="19"></a><span class="bu">print</span>(counter)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="multi-threading-example-1" class="slide level2">
+<h2>Multi-threading example</h2>
+<div id="d2be33e8" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-stdout">
+<pre><code>400000</code></pre>
+</div>
+</div>
+</section>
+<section id="multi-threading-1" class="slide level2">
+<h2>Multi-threading</h2>
+<ul>
+<li class="fragment">Single Python process</li>
+<li class="fragment">Threads share resources (e.g.&nbsp;memory)</li>
+<li class="fragment">Need for coordination of sharing memory may actually hurt performance</li>
+</ul>
+</section>
+<section id="multi-processing" class="slide level2">
+<h2>Multi-processing</h2>
+<ul>
+<li class="fragment">Main Python process spawns other processes</li>
+<li class="fragment">No shared resources
+<ul>
+<li class="fragment">Each process has its own memory space</li>
+<li class="fragment">Memory needs to be copied to the subprocess</li>
+<li class="fragment">Overhead of launching extra processes</li>
+</ul></li>
+</ul>
+</section>
+<section id="multi-processing-example" class="slide level2">
+<h2>Multi-processing example</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="" aria-label="1"></a><span class="im">import</span> multiprocessing <span class="im">as</span> mp</span>
+<span id="cb22-2"><a href="" aria-label="2"></a></span>
+<span id="cb22-3"><a href="" aria-label="3"></a><span class="kw">def</span> worker(xs):</span>
+<span id="cb22-4"><a href="" aria-label="4"></a>    <span class="bu">print</span>(<span class="bu">len</span>(xs))</span>
+<span id="cb22-5"><a href="" aria-label="5"></a>    <span class="cf">return</span> <span class="bu">sum</span>(xs)</span>
+<span id="cb22-6"><a href="" aria-label="6"></a></span>
+<span id="cb22-7"><a href="" aria-label="7"></a>chunks <span class="op">=</span> [[<span class="dv">1</span>,<span class="dv">2</span>],[<span class="dv">3</span>,<span class="dv">4</span>],[<span class="dv">5</span>,<span class="dv">6</span>],[<span class="dv">7</span>,<span class="dv">8</span>]]</span>
+<span id="cb22-8"><a href="" aria-label="8"></a>ctx <span class="op">=</span> mp.get_context(<span class="st">"fork"</span>)</span>
+<span id="cb22-9"><a href="" aria-label="9"></a><span class="cf">with</span> ctx.Pool(<span class="dv">4</span>) <span class="im">as</span> pool:</span>
+<span id="cb22-10"><a href="" aria-label="10"></a>   partial_sums <span class="op">=</span> pool.<span class="bu">map</span>(worker, chunks)</span>
+<span id="cb22-11"><a href="" aria-label="11"></a></span>
+<span id="cb22-12"><a href="" aria-label="12"></a><span class="bu">print</span>(partial_sums)</span>
+<span id="cb22-13"><a href="" aria-label="13"></a></span>
+<span id="cb22-14"><a href="" aria-label="14"></a>total <span class="op">=</span> <span class="bu">sum</span>(partial_sums)</span>
+<span id="cb22-15"><a href="" aria-label="15"></a><span class="bu">print</span>(total)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="multi-processing-example-1" class="slide level2">
+<h2>Multi-processing example</h2>
+<div id="be4266e7" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-stdout">
+<pre><code>2222
+
+
+
+[3, 7, 11, 15]
+36</code></pre>
+</div>
+</div>
+</section>
+<section id="take-away" class="slide level2">
+<h2>Take-away</h2>
+<p>Python has concurrency built-in.</p>
+<ul>
+<li class="fragment">Threads share memory</li>
+<li class="fragment">Processes don’t</li>
+</ul>
+<p>But writing concurrent code is complex and error-prone!</p>
+<p>Dask provides some abstractions so you don’t have to worry about the intricacies.</p>
+</section>
+<section id="exercise-4-prep" class="slide level2">
+<h2>Exercise 4 prep</h2>
+<p>Some extra <code>dask</code>/<code>numpy</code> syntax that will come in handy</p>
+<ul>
+<li class="fragment"><code>where</code></li>
+<li class="fragment">Boolean comparison of arrays</li>
+<li class="fragment"><code>nanmean</code></li>
+</ul>
+</section>
+<section id="exercise-4-prep-1" class="slide level2">
+<h2>Exercise 4 prep</h2>
+<p>You can tell <code>dask</code> to apply a function lazily on each chunk</p>
+<ul>
+<li class="fragment"><code>map_block</code> (each chunk has all the info)</li>
+<li class="fragment"><code>map_overlap</code> (you need info from neighbouring chunks)</li>
+</ul>
+</section>
+<section id="exercise-4" class="slide level2">
+<h2>Exercise 4</h2>
+<p>Exercise 4 will guide you through a realistic analysis of multiphoton imaging data that uses chunkwise dask operations</p>
+<ul>
+<li class="fragment">without overlap</li>
+<li class="fragment">with overlap</li>
+</ul>
+<p>also showing how to choose between multi-threading and multi-processing.</p>
+</section>
+<section id="exercise-4-1" class="slide level2 smaller">
+<h2>Exercise 4</h2>
+<ul>
+<li>Download <a href="https://raw.githubusercontent.com/neuroinformatics-unit/course-large-array-data/main/notebooks/4_parallel_processing_with_dask.ipynb">the exercise notebook</a></li>
+<li>Activate your conda environment</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="" aria-label="1"></a><span class="ex">conda</span> activate large-arrays</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Run jupyter</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="" aria-label="1"></a><span class="ex">jupyter</span> lab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Open <code>http://localhost:8888/lab?</code></li>
+<li>Navigate to the downloaded notebook and work through it.</li>
+</ul>
+</section>
+<section id="more-notes-on-dask" class="slide level2">
+<h2>More notes on <code>dask</code></h2>
+<ul>
+<li class="fragment">Scales to multiple compute nodes</li>
+<li class="fragment">Various extra libraries for GPU support</li>
+<li class="fragment">Very general</li>
+</ul>
+</section>
+<section id="more-notes-on-performance" class="slide level2">
+<h2>More notes on performance</h2>
+<p>Favour robustness and simplicity over speed</p>
+<ul>
+<li class="fragment">Performance may differ depending on data, hardware…</li>
+<li class="fragment">Optimising performance is very tricky</li>
+</ul>
+</section>
+<section id="other-python-array-libraries" class="slide level2">
+<h2>Other Python array libraries</h2>
+<ul>
+<li class="fragment"><code>Xarray</code>: <a href="https://docs.xarray.dev/en/stable/">label arrays with e.g units, dimensions, …</a></li>
+<li class="fragment"><code>pytorch</code>: <a href="https://pytorch.org/">aimed at machine-learning, native GPU support</a></li>
+<li class="fragment"><code>JAX</code>: <a href="https://docs.jax.dev/en/latest/index.html">aimed at machine-learning</a></li>
+<li class="fragment"><code>cupy</code>: <a href="cupy.dev">array library for Python on nvidia GPU</a></li>
+<li class="fragment">…</li>
+</ul>
+</section>
+<section id="array-api" class="slide level2">
+<h2>Array API</h2>
+<p>Goal: abstract the array backend</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="" aria-label="1"></a><span class="kw">def</span> unit_vector_array_api(x: AnyArray) <span class="op">-&gt;</span> AnyArray:</span>
+<span id="cb26-2"><a href="" aria-label="2"></a>    <span class="co">"""Works with any supported array backend."""</span></span>
+<span id="cb26-3"><a href="" aria-label="3"></a>    <span class="co"># NumPy, CuPy, PyTorch, JAX, ...</span></span>
+<span id="cb26-4"><a href="" aria-label="4"></a>    xp <span class="op">=</span> x.__array_namespace__()</span>
+<span id="cb26-5"><a href="" aria-label="5"></a>    <span class="cf">return</span> x <span class="op">/</span> xp.sqrt(xp.<span class="bu">sum</span>(x <span class="op">*</span> x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="array-api-1" class="slide level2">
+<h2>Array API</h2>
+
+<img data-src="img/array_api.png" class="r-stretch quarto-figure-center"><p class="caption">array API</p></section>
+<section id="array-api-2" class="slide level2">
+<h2>Array API</h2>
+<p>Goal: work with different array backends</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="" aria-label="1"></a><span class="kw">def</span> unit_vector_array_api(x: AnyArray) <span class="op">-&gt;</span> AnyArray:</span>
+<span id="cb27-2"><a href="" aria-label="2"></a>    <span class="co">"""Works with any supported array backend."""</span></span>
+<span id="cb27-3"><a href="" aria-label="3"></a>    <span class="co"># NumPy, CuPy, PyTorch, JAX, ...</span></span>
+<span id="cb27-4"><a href="" aria-label="4"></a>    xp <span class="op">=</span> x.__array_namespace__()</span>
+<span id="cb27-5"><a href="" aria-label="5"></a>    <span class="cf">return</span> x <span class="op">/</span> xp.sqrt(xp.<span class="bu">sum</span>(x <span class="op">*</span> x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="array-api-3" class="slide level2">
+<h2>Array API</h2>
+<ul>
+<li class="fragment">Work-in-progress</li>
+<li class="fragment">Some difficulties in unifying array libraries</li>
+<li class="fragment">Choose for flexibility over performance</li>
+</ul>
+</section>
+<section id="summary-2" class="slide level2">
+<h2>Summary</h2>
+<ul>
+<li class="fragment">Python has threads and processes</li>
+<li class="fragment">Use <code>map_blocks</code> to apply chunkwise operations</li>
+<li class="fragment">Use <code>map_overlap</code> if you need information from neighbouring chunks,
+<ul>
+<li class="fragment">you will need to think about the <code>depth</code> parameter</li>
+</ul></li>
+<li class="fragment">By default, <code>dask</code> Arrays operate concurrently using multi-threading</li>
+<li class="fragment">Favour robustness and simplicity over speed</li>
+<li class="fragment">There are other open-source Python array libraries</li>
 </ul>
 </section></section>
 <section>
@@ -1111,12 +1342,12 @@ First five elements:
 <p><img data-src="../img/zarr-pink-stacked.svg" alt="Zarr logo"></p>
 </div><div class="column" style="width:60%;">
 <ul>
-<li>open-source file format specification</li>
-<li>n-dimensional arrays</li>
-<li>split into chunks</li>
-<li>Each chunk is a separate file</li>
-<li>Enables parallel processing of massive datasets</li>
-<li>OME-Zarr extends this with bioimaging-related metadata + multiscales</li>
+<li class="fragment">open-source file format specification</li>
+<li class="fragment">n-dimensional arrays</li>
+<li class="fragment">split into chunks</li>
+<li class="fragment">Each chunk is a separate file</li>
+<li class="fragment">Enables parallel processing of massive datasets</li>
+<li class="fragment">OME-Zarr extends this with bioimaging-related metadata + multiscales</li>
 </ul>
 </div></div>
 </section>
@@ -1124,23 +1355,23 @@ First five elements:
 <h2>Zarr settings</h2>
 <p>There are lots of settings that can be adjusted when writing Zarr and OME-Zarr images:</p>
 <ul>
-<li>Chunk size</li>
-<li>Compressor</li>
-<li>Compression level</li>
-<li>Other compressor options like ‘shuffle’</li>
-<li>…</li>
+<li class="fragment">Chunk size</li>
+<li class="fragment">Compressor</li>
+<li class="fragment">Compression level</li>
+<li class="fragment">Other compressor options like ‘shuffle’</li>
+<li class="fragment">…</li>
 </ul>
 </section>
 <section id="how-to-choose" class="slide level2">
 <h2>How to choose?</h2>
 <p>These settings affect:</p>
 <ul>
-<li><p>Write time</p></li>
-<li><p>Read time</p></li>
-<li><p>Size on disk</p></li>
-<li><p>Number of files</p></li>
-<li><p>Memory usage for different operations</p></li>
-<li><p>Choosing settings is a trade-off between these different factors. You have to decide what you want to prioritise for your data.</p></li>
+<li class="fragment"><p>Write time</p></li>
+<li class="fragment"><p>Read time</p></li>
+<li class="fragment"><p>Size on disk</p></li>
+<li class="fragment"><p>Number of files</p></li>
+<li class="fragment"><p>Memory usage for different operations</p></li>
+<li class="fragment"><p>Choosing settings is a trade-off between these different factors. You have to decide what you want to prioritise for your data.</p></li>
 </ul>
 </section>
 <section id="heftie-project" class="slide level2">
@@ -1151,20 +1382,20 @@ First five elements:
 </div><div class="column" style="width:60%;">
 <p>Benchmarks were made as part of the <a href="https://github.com/HEFTIEProject">HEFTIE project</a>:</p>
 <ul>
-<li>David Stansby, Ruaridh Gollifer and Kimberly Meechan (UCL ARC)</li>
-<li>Also made the online <a href="https://ome-zarr-book.readthedocs.io/">OME-Zarr book</a> that we used some exercises from yesterday.</li>
+<li class="fragment">David Stansby, Ruaridh Gollifer and Kimberly Meechan (UCL ARC)</li>
+<li class="fragment">Also made the online <a href="https://ome-zarr-book.readthedocs.io/">OME-Zarr book</a> that we used some exercises from yesterday.</li>
 </ul>
 </div></div>
 </section>
 <section id="benchmarks" class="slide level2">
 <h2>Benchmarks</h2>
 <ul>
-<li><p><a href="https://github.com/HEFTIEProject/zarr-benchmarks">Benchmarks repository</a></p></li>
-<li><p><a href="https://heftieproject.github.io/zarr-benchmarks/">Benchmarks report</a></p></li>
-<li><p>3 images: heart (335 MB), dense segmentation, sparse segmentation</p></li>
-<li><p><a href="https://zenodo.org/records/15691492">Images used are on zenodo</a></p></li>
-<li><p>All sized 806 x 629 x 629</p></li>
-<li><p>All 16-bit unsigned integer</p></li>
+<li class="fragment"><p><a href="https://github.com/HEFTIEProject/zarr-benchmarks">Benchmarks repository</a></p></li>
+<li class="fragment"><p><a href="https://heftieproject.github.io/zarr-benchmarks/">Benchmarks report</a></p></li>
+<li class="fragment"><p>3 images: heart (335 MB), dense segmentation, sparse segmentation</p></li>
+<li class="fragment"><p><a href="https://zenodo.org/records/15691492">Images used are on zenodo</a></p></li>
+<li class="fragment"><p>All sized 806 x 629 x 629</p></li>
+<li class="fragment"><p>All 16-bit unsigned integer</p></li>
 </ul>
 </section>
 <section id="images" class="slide level2">
@@ -1197,14 +1428,14 @@ First five elements:
 <section id="benchmarks-1" class="slide level2">
 <h2>Benchmarks</h2>
 <ul>
-<li><a href="https://pytest-benchmark.readthedocs.io/en/latest/"><code>pytest-benchmark</code></a></li>
-<li>Vary different settings and record:
+<li class="fragment"><a href="https://pytest-benchmark.readthedocs.io/en/latest/"><code>pytest-benchmark</code></a></li>
+<li class="fragment">Vary different settings and record:
 <ul>
-<li>Time to write the whole array (lower is better)</li>
-<li>Time to read the whole array (lower is better)</li>
-<li>Compression ratio: data size in memory / data size on disk (higher is better)</li>
+<li class="fragment">Time to write the whole array (lower is better)</li>
+<li class="fragment">Time to read the whole array (lower is better)</li>
+<li class="fragment">Compression ratio: data size in memory / data size on disk (higher is better)</li>
 </ul></li>
-<li>Each run 5 times and mean values used</li>
+<li class="fragment">Each run 5 times and mean values used</li>
 </ul>
 </section>
 <section id="write-time" class="slide level2">
@@ -1241,31 +1472,31 @@ First five elements:
 <h2>Benchmarking Zarr conclusions</h2>
 <p>Some general recommendations:</p>
 <ul>
-<li><p>Use <code>tensorstore</code> library for fastest read/write</p></li>
-<li><p><code>blosc-zstd</code> is a good default compressor</p></li>
-<li><p>Use a high compression level to get the smallest file size (usually means longer write times, but not much effect on read time)</p></li>
-<li><p>Smaller chunks = smaller overall file size + less memory usage</p></li>
-<li><p>Larger chunks = faster read/write times + fewer files</p></li>
-<li><p>It’s a balance! People often use 64x64x64 or 128x128x128</p></li>
-<li><p>This is different for different data! Worth testing some small samples of your own data with different settings</p></li>
+<li class="fragment"><p>Use <code>tensorstore</code> library for fastest read/write</p></li>
+<li class="fragment"><p><code>blosc-zstd</code> is a good default compressor</p></li>
+<li class="fragment"><p>Use a high compression level to get the smallest file size (usually means longer write times, but not much effect on read time)</p></li>
+<li class="fragment"><p>Smaller chunks = smaller overall file size + less memory usage</p></li>
+<li class="fragment"><p>Larger chunks = faster read/write times + fewer files</p></li>
+<li class="fragment"><p>It’s a balance! People often use 64x64x64 or 128x128x128</p></li>
+<li class="fragment"><p>This is different for different data! Worth testing some small samples of your own data with different settings</p></li>
 </ul>
 </section>
 <section id="sharding" class="slide level2">
 <h2>Sharding</h2>
 <p>One of the settings we didn’t benchmark was ‘sharding’:</p>
 <ul>
-<li>Shards contain multiple chunks</li>
-<li>Each shard is a file on disk (rather than each individual chunk)</li>
-<li>A chunk is the smallest unit you can read; a shard is the smallest unit you can write</li>
-<li>Main purpose is to reduces number of files</li>
-<li>Some file systems may have performance issues storing and accessing a large number of small files.</li>
+<li class="fragment">Shards contain multiple chunks</li>
+<li class="fragment">Each shard is a file on disk (rather than each individual chunk)</li>
+<li class="fragment">A chunk is the smallest unit you can read; a shard is the smallest unit you can write</li>
+<li class="fragment">Main purpose is to reduces number of files</li>
+<li class="fragment">Some file systems may have performance issues storing and accessing a large number of small files.</li>
 </ul>
 </section>
 <section id="benchmarking-sharding" class="slide level2">
 <h2>Benchmarking sharding</h2>
 <p>Let’s experiment with sharding options:</p>
 <ul>
-<li><code>notebooks/sharding.ipynb</code></li>
+<li class="fragment"><code>notebooks/sharding.ipynb</code></li>
 </ul>
 </section>
 <section id="references" class="slide level2 smaller scrollable">
