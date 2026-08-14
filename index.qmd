@@ -4,6 +4,7 @@ subtitle: Neuroinformatics Open Software Summer School 2026
 format:
   revealjs:
     footer: "Sainsbury Wellcome Centre | OSSS | 17-21 August 2026"
+    incremental: true
 ---
 
 {{< include slides/monday.qmd >}}
