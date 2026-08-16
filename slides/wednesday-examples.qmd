@@ -29,6 +29,8 @@ Case studies from the Neuroinformatics Unit
   * More 3D data
   * From deeper in the brain
 
+We need flexibility to customise!
+
 ##
 
 ![](img/photon-mosaic.png){fig-alt="the photon-mosaic idea as a series of modular tiles."}
@@ -49,7 +51,11 @@ pm.rois_suite2p = extract_rois(method="suite2p")
 compare(rois_caiman, rois_suite2p)
 ```
 
-Very early stages
+A project in its very early stages
+
+## Modularity
+
+Demo time!
 
 ## Mental models
 
@@ -62,15 +68,54 @@ Very early stages
 * Rely on ROIExtractors to read (lazily)
 * We support native writing to Zarr and binary.
 
-## `photon-mosaic` pipeline for batch-processing on HPC
+## `photon-mosaic-pipeline` for batch-processing on HPC
 
 * Built on top of `snakemake`.
 * Configure with a single file.
 
-## Community
+## Community {.smaller}
 
 * Collaboration with Allen Institute for Neural Dynamics and International Brain Laboratory
 * Community-driven: open meetings every two weeks!
+
+::: {style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1em; text-align: center;"}
+
+::: {.fragment}
+![](img/alessandro.png){width="50%"}\
+Alessandro Felder
+:::
+
+::: {.fragment}
+![](img/laura.png){width="50%"}\
+Laura Porta
+:::
+
+::: {.fragment}
+![](img/alessio.png){width="50%"}\
+Alessio Buccino
+:::
+
+::: {.fragment}
+![](img/arielle.png){width="50%"}\
+Arielle Leon
+:::
+
+::: {.fragment}
+![](img/johannes.png){width="50%"}\
+Johannes Friedrich
+:::
+
+::: {.fragment}
+![](img/sean.png){width="50%"}\
+Sean McCulloch
+:::
+
+::: {.fragment}
+![](img/georg.png){width="50%"}\
+Georg Raiser
+:::
+
+:::
 
 ## Photon-mosaic
 
@@ -91,7 +136,9 @@ Collaboration day ideas? Open an [issue](https://github.com/orgs/neuroinformatic
 
 ## Cellfinder
 
-Finding cell coordinates (bright blobs) in large arrays.
+Finding centre coordinates of cells (bright blobs) in large arrays.
+
+![](img/cellfinder-closeup.png){fig-align="center" fig-alt="A closeup of some fluorescently labelled cells"}
 
 ## Serial two-photon tomography {background-color="black"}
 
@@ -112,9 +159,11 @@ Finding cell coordinates (bright blobs) in large arrays.
 
 ## Cellfinder
 
-Finding cell coordinates (bright blobs) in large arrays.
+Finding centre coordinates of cells (bright blobs) in large arrays.
 
-* Arrays are ~100GB
+![](img/cellfinder-closeup.png){fig-align="center" fig-alt="A closeup of some fluorescently labelled cells"}
+
+Arrays are ~100GB / channel, stored as 2D tiffs (40 MB each)
 
 ## How to find cells
 
@@ -274,6 +323,10 @@ Cellfinder efficiently processes large arrays.
 
 Cellfinder efficiently processes large arrays.
 
-## BrainGlobe Atlas API
+## Cellfinder
+
+Collaboration day ideas? Open an [issue](https://github.com/orgs/neuroinformatics-unit/projects/21).
+
+# BrainGlobe Atlas API
 
 🚧
