@@ -10,7 +10,7 @@
 
 Large arrays do not fit into memory
 
-We deal with this
+We can deal with this through
 
 * Chunking
 * Lazy evaluation
@@ -19,12 +19,21 @@ We deal with this
 
 ## Handling large array data with Python
 
-* `zarr-python` and `dask` are generalist libraries for processing large arrays.
+* `zarr-python` and `dask` are generalist libraries for processing large arrays (in parallel, with compression, anywhere).
 * Use `zarr` files, ideally following a community standard (e.g. OME-Zarr).
 
 ## The open-source ecosystem
 
+![](img/Scientific-Python-Ecosystem.png)
+
+::: footer
+Niko Sirmpilatze
+:::
+
+## The open-source ecosystem
+
 * There are many array libraries and related open-source projects out there.
+    * They also depend on layers of generalist open-source libraries.
 * Each have their niche.
 * Including in (neuro)science.
 * By using them, you are part of it!
