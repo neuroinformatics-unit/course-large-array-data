@@ -212,7 +212,7 @@ Atlases are made up of 4 main components:
 ::: {.incremental}
 - Images stored as OME-Zarr files
 - Meshes stored in a precomputed formats
-- Each component stored and donwloaded lazily
+- Each component stored and downloaded lazily
 - Data is reused between atlases
 :::
 
