@@ -127,6 +127,120 @@ Georg Raiser
 
 Collaboration day ideas? Open an [issue](https://github.com/orgs/neuroinformatics-unit/projects/21).
 
+# `brainglobe-atlasapi`
+
+## BrainGlobe Initiative {.smaller}
+
+::: {.columns}
+::: {.column width="55%"}
+Established 2020 with three aims:
+
+:::{.incremental}
+1. Develop general-purpose tools to help others build interoperable software for computational neuroanatomy.
+2. Develop specialist software for specific analysis and visualisation needs.
+3. Reduce barriers of entry, and facilitate the building of an ecosystem of computational neuroanatomy tools.
+:::
+
+:::
+::: {.column width="45%"}
+![](img/tracing.png){.nostretch width="90%"}
+:::
+:::
+
+## BrainGlobe atlases
+
+Problem - the data analysis tools are fragmented
+
+::: incremental
+-   Model species
+-   Imaging modality
+-   Anatomical focus
+-   Developmental stage
+:::
+
+::: footer
+@Claudi2020
+:::
+
+## BrainGlobe atlases
+
+### [brainglobe-atlasapi](https://github.com/brainglobe/brainglobe-atlasapi)
+
+![](img/atlas.png){fig-align="center" .nostretch width="65%"}
+
+![](img/noun-map-195855-EE9040.svg){.absolute .nostretch top="4%" width="10%" right="0%"}
+
+::: footer
+@Claudi2020
+:::
+
+## BrainGlobe atlases
+
+![](img/allen_mouse_10um.png){.absolute width="65%" left="17.5%"}
+
+::: footer
+@Claudi2020
+:::
+
+## BrainGlobe atlases
+
+Atlases are made up of 4 main components:
+
+::: {.incremental}
+1. Common coordinate space - text based metadata
+2. Template - uint16 image
+3. Annotations - uint32 image and meshes for each region
+4. Terminology - text based metadata
+:::
+
+## `brainglobe-atlasapi` V2
+
+::: {.incremental}
+- Images stored as `.tiff` files
+- Meshes stored as `.obj` files
+- Distributed as a single `.tar.gz` file
+- No reuse of data between atlases
+:::
+
+![](img/brainglobe-atlasapi_v3_structure_small.png){.fragment .absolute .nostretch width="75%" left="12.5%" top="55%"}
+
+::: {style="background: #ffffffff; width: 47%; height: 10%; margin: 0px; position: absolute; top: 83%; left: 0%"}
+:::
+
+## `brainglobe-atlasapi` V3
+
+::: {.incremental}
+- Images stored as OME-Zarr files
+- Meshes stored in a precomputed formats
+- Each component stored and donwloaded lazily
+- Data is reused between atlases
+:::
+
+## `brainglobe-atlasapi` V3
+
+![](img/brainglobe-atlasapi_v3_structure.png){.absolute .nostretch width="70%" left="15%" top="13%"}
+
+## `brainglobe-atlasapi` annotations {.smaller}
+
+::: {.incremental}
+- Multi-resolution 3D image for per voxel annotation
+- Mask for each region `(798, 1320, 800, 1140)`
+  - ~900 GB uncompressed for 10um resolution!!
+- Compressed with Blosc zstd codec
+  - Only ~180 MB for 10um, 25um, 50um, and 100um resolutions
+:::
+
+##
+
+```{=html}
+<iframe src="https://neuroglancer-demo.appspot.com/#!https://brainglobe.s3.amazonaws.com/ng_state_files/allen_mouse.json"
+        width="100%"
+        height="650px"
+        style="border:none;"
+        allowfullscreen>
+</iframe>
+```
+
 # Cellfinder
 
 ## Cellfinder
@@ -326,7 +440,3 @@ Cellfinder efficiently processes large arrays.
 ## Cellfinder
 
 Collaboration day ideas? Open an [issue](https://github.com/orgs/neuroinformatics-unit/projects/21).
-
-# BrainGlobe Atlas API
-
-🚧
