@@ -535,13 +535,13 @@ A.init.then(() => {
 </section>
 <section id="exploring-a-numpy-array-1" class="slide level2">
 <h2>Exploring a <code>numpy</code> array</h2>
-<div id="645571e2" class="cell" data-execution_count="1">
+<div id="b6a3ac39" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
-<pre><code>[[ 2 29  4 86 94 41]
- [48 51 26 65 39 87]
- [ 1 22 22 39 61 97]
- [70 75 78  3 88 58]
- [91 26 41 20 82 23]]
+<pre><code>[[45 23  5 63 37 85]
+ [67 49 71 42 86 23]
+ [23 91 69 15 20 22]
+ [44  0 52 23 70 85]
+ [69 83 93 40 44 36]]
 Array shape: (5, 6)</code></pre>
 </div>
 </div>
@@ -576,12 +576,12 @@ Array shape: (5, 6)</code></pre>
 <div class="column" style="width:40%;">
 <p>Extract its bytes</p>
 </div><div class="column" style="width:59%;">
-<div id="0a56f3be" class="cell" data-execution_count="2">
+<div id="4f96bcdb" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code>60 bytes total
 
 First five elements:
-0000000000000010 0000000000011101 0000000000000100 0000000001010110 0000000001011110 ...</code></pre>
+0000000000101101 0000000000010111 0000000000000101 0000000000111111 0000000000100101 ...</code></pre>
 </div>
 </div>
 </div></div>
@@ -798,7 +798,7 @@ First five elements:
 </section>
 <section id="the-dask-array-3" class="slide level2">
 <h2>The <code>dask</code> array</h2>
-<div id="974155ac" class="cell" data-execution_count="3">
+<div id="e0b3f21f" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
 <pre><code>dask.array&lt;random, shape=(10000, 10000), dtype=float64, chunksize=(1000, 1000), chunktype=numpy.ndarray&gt;</code></pre>
 </div>
@@ -815,7 +815,7 @@ First five elements:
 </section>
 <section id="the-dask-array-5" class="slide level2">
 <h2>The <code>dask</code> array</h2>
-<div id="63550a5a" class="cell" data-execution_count="4">
+<div id="f88ee58b" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-stdout">
 <pre><code>dask.array&lt;getitem, shape=(100, 100), dtype=float64, chunksize=(100, 100), chunktype=numpy.ndarray&gt;</code></pre>
 </div>
@@ -831,15 +831,15 @@ First five elements:
 </section>
 <section id="the-dask-array-7" class="slide level2">
 <h2>The <code>dask</code> array</h2>
-<div id="c3f9560c" class="cell" data-execution_count="5">
+<div id="6adcdfa1" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-stdout">
-<pre><code>[[0.61445674 0.41083439 0.28707008 ... 0.75208782 0.94290767 0.79885702]
- [0.3354025  0.08746116 0.06400934 ... 0.3716306  0.06823481 0.9312636 ]
- [0.27447981 0.43523149 0.28388671 ... 0.77478497 0.68932554 0.14470009]
+<pre><code>[[0.55869873 0.15608767 0.65387456 ... 0.28838792 0.85834159 0.23754669]
+ [0.19097165 0.24331573 0.11270679 ... 0.11625777 0.56804293 0.72479418]
+ [0.12476242 0.73068552 0.14235694 ... 0.73831261 0.15104198 0.48582121]
  ...
- [0.36347455 0.31431354 0.13395478 ... 0.25372613 0.49443843 0.83801591]
- [0.92364984 0.33759064 0.30763563 ... 0.6186865  0.2783236  0.75495891]
- [0.51216438 0.41198518 0.34655659 ... 0.95758743 0.92432426 0.45513867]]</code></pre>
+ [0.76516345 0.57239181 0.82992808 ... 0.90816151 0.72860562 0.30367242]
+ [0.09173725 0.42784511 0.54279486 ... 0.36039986 0.5152709  0.88416931]
+ [0.60437703 0.5476941  0.14325768 ... 0.31248716 0.23825601 0.75428585]]</code></pre>
 </div>
 </div>
 <p><code>.compute</code> method gives us control over when to actually load into memory.</p>
@@ -866,18 +866,18 @@ First five elements:
 </section>
 <section id="dask-delayed-1" class="slide level2">
 <h2><code>dask</code> delayed</h2>
-<div id="b845674e" class="cell" data-execution_count="6">
+<div id="e928baa4" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-stdout">
-<pre><code>Delayed('ndarray-30b53cef-401e-41b8-9ea7-486b02138992')
-[ 9558 10533 10559  9801  9824 10359  9248 10044  9582 10261  8968  9568
-  9717 10613 10368 10779  9269  9932  9626  8513  9708  9774  9152  9215
-  9142 10544  9426 10413  9981  9811  9219 10744 10032  9580  9250 10708
-  9934  9805  9663 11150  9923 10306 10361  9939 10027 10104 10101  9307
- 11128 10503 10375  9419  9534  9479  9375 10801 10039 10293 10001  9298
-  9725  9772  9128 10830  9976  9765  8737  8693  9870 10244 10143  9984
-  9653 10576  9606 10905  9828  9803  9447  9844 10166  8634  9927 10273
- 10291 10203 10174 10987  8970  9272  9447  9479  9614  9846  9804 10304
-  7712 10504 10536 10380]</code></pre>
+<pre><code>Delayed('ndarray-f43399d8-759e-46e6-bda4-8385327044e4')
+[ 8875  9430  9842  9607 10585  7822  9699 11167  9266 10783 10816  9982
+  9534 10308  9724  9678 10533 10653 10070 10491 10547  9307 10990  9981
+  9426 10368  7552  9271 10012  9473  9814 10199 10491 10576  9380 10293
+  8713 10230  9461 10194 10183  9614 10101 10326  9187 10234  9171 10141
+  9620  9713  9712 10243  9960  9764 10595 10116  9668  9988 10287  9430
+ 10485  9701  9652  9924 10278  9717  9628  9596 11194 10216 10046  9070
+  9789  9218 10206  9895  9799  9235 10492 10045 11119  9970  8959  9933
+  9107 11313  9023  9743  9867 10298  9943 11062 10435  9595 10217 10054
+ 10041  9333  9291 10401]</code></pre>
 </div>
 </div>
 <p><code>delayed</code> function allows us to execute our own functions lazily.</p>
@@ -1223,7 +1223,7 @@ First five elements:
 </section>
 <section id="multi-threading-example-1" class="slide level2">
 <h2>Multi-threading example</h2>
-<div id="877f756e" class="cell" data-execution_count="7">
+<div id="3e08fa42" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-stdout">
 <pre><code>400000</code></pre>
 </div>
@@ -1297,7 +1297,7 @@ First five elements:
 </section>
 <section id="multi-processing-example-1" class="slide level2">
 <h2>Multi-processing example</h2>
-<div id="6f007a8c" class="cell" data-execution_count="8">
+<div id="32669942" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-stdout">
 <pre><code>2222
 
@@ -1456,36 +1456,36 @@ First five elements:
 <section id="data-has-a-size-1" class="slide level2">
 <h2>Data has a “size”</h2>
 <p>Computers store data as <em>bits</em>.</p>
-<div id="4bee305f" class="cell" data-execution_count="9">
+<div id="a6f6be16" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-stdout">
 <pre><code>60 bytes total
 
 First five elements:
-0000000000000010 0000000000011101 0000000000000100 0000000001010110 0000000001011110 ...</code></pre>
+0000000000101101 0000000000010111 0000000000000101 0000000000111111 0000000000100101 ...</code></pre>
 </div>
 </div>
 </section>
 <section id="data-compression" class="slide level2">
 <h2>Data compression</h2>
 <p>We can be smart about how to store this data with fewer bits.</p>
-<div id="978c5f94" class="cell" data-execution_count="10">
+<div id="fd7b7864" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-stdout">
 <pre><code>60 bytes total
 
 First five elements:
-0000000000000010 0000000000011101 0000000000000100 0000000001010110 0000000001011110 ...</code></pre>
+0000000000101101 0000000000010111 0000000000000101 0000000000111111 0000000000100101 ...</code></pre>
 </div>
 </div>
 </section>
 <section id="data-compression-1" class="slide level2">
 <h2>Data compression</h2>
 <p>We could “encode” something like “assume the first 8 bits are always 0” and halve the file size.</p>
-<div id="f0101a78" class="cell" data-execution_count="11">
+<div id="bae6735b" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-stdout">
 <pre><code>60 bytes total
 
 First five elements:
-0000000000000010 0000000000011101 0000000000000100 0000000001010110 0000000001011110 ...</code></pre>
+0000000000101101 0000000000010111 0000000000000101 0000000000111111 0000000000100101 ...</code></pre>
 </div>
 </div>
 </section>
@@ -1838,6 +1838,113 @@ Georg Raiser</p>
 <p>Collaboration day ideas? Open an <a href="https://github.com/orgs/neuroinformatics-unit/projects/21">issue</a>.</p>
 </section></section>
 <section>
+<section id="brainglobe-atlasapi" class="title-slide slide level1 center">
+<h1><code>brainglobe-atlasapi</code></h1>
+
+</section>
+<section id="brainglobe-initiative" class="slide level2 smaller scrollable">
+<h2>BrainGlobe Initiative</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<p>Established 2020 with three aims:</p>
+<ol type="1">
+<li class="fragment">Develop general-purpose tools to help others build interoperable software for computational neuroanatomy.</li>
+<li class="fragment">Develop specialist software for specific analysis and visualisation needs.</li>
+<li class="fragment">Reduce barriers of entry, and facilitate the building of an ecosystem of computational neuroanatomy tools.</li>
+</ol>
+</div><div class="column" style="width:45%;">
+<p><img data-src="img/tracing.png" class="" style="width:90.0%"></p>
+</div></div>
+</section>
+<section id="brainglobe-atlases" class="slide level2">
+<h2>BrainGlobe atlases</h2>
+<p>Problem - the data analysis tools are fragmented</p>
+<ul>
+<li class="fragment">Model species</li>
+<li class="fragment">Imaging modality</li>
+<li class="fragment">Anatomical focus</li>
+<li class="fragment">Developmental stage</li>
+</ul>
+<div class="footer">
+<p><span class="citation" data-cites="Claudi2020">Claudi et al. (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span></p>
+</div>
+</section>
+<section id="brainglobe-atlases-1" class="slide level2">
+<h2>BrainGlobe atlases</h2>
+<h3 id="brainglobe-atlasapi-1"><a href="https://github.com/brainglobe/brainglobe-atlasapi">brainglobe-atlasapi</a></h3>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/atlas.png" class="nostretch quarto-figure quarto-figure-center" style="width:65.0%"></p>
+</figure>
+</div>
+<p><img data-src="img/noun-map-195855-EE9040.svg" class="absolute nostretch" style="top: 4%; right: 0%; width: 10%; "></p>
+<div class="footer">
+<p><span class="citation" data-cites="Claudi2020">Claudi et al. (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span></p>
+</div>
+</section>
+<section id="brainglobe-atlases-2" class="slide level2">
+<h2>BrainGlobe atlases</h2>
+<p><img data-src="img/allen_mouse_10um.png" class="absolute" style="left: 17.5%; width: 65%; "></p>
+<div class="footer">
+<p><span class="citation" data-cites="Claudi2020">Claudi et al. (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span></p>
+</div>
+</section>
+<section id="brainglobe-atlases-3" class="slide level2 scrollable">
+<h2>BrainGlobe atlases</h2>
+<p>Atlases are made up of 4 main components:</p>
+<ol type="1">
+<li class="fragment">Common coordinate space - text based metadata</li>
+<li class="fragment">Template - uint16 image</li>
+<li class="fragment">Annotations - uint32 image and meshes for each region</li>
+<li class="fragment">Terminology - text based metadata</li>
+</ol>
+</section>
+<section id="brainglobe-atlasapi-v2" class="slide level2">
+<h2><code>brainglobe-atlasapi</code> V2</h2>
+<ul>
+<li class="fragment">Images stored as <code>.tiff</code> files</li>
+<li class="fragment">Meshes stored as <code>.obj</code> files</li>
+<li class="fragment">Distributed as a single <code>.tar.gz</code> file</li>
+<li class="fragment">No reuse of data between atlases</li>
+</ul>
+<p><img data-src="img/brainglobe-atlasapi_v3_structure_small.png" class="fragment absolute" style="top: 55%; left: 12.5%; width: 75%; "></p>
+<div style="background: #ffffffff; width: 47%; height: 10%; margin: 0px; position: absolute; top: 83%; left: 0%">
+
+</div>
+</section>
+<section id="brainglobe-atlasapi-v3" class="slide level2">
+<h2><code>brainglobe-atlasapi</code> V3</h2>
+<ul>
+<li class="fragment">Images stored as OME-Zarr files</li>
+<li class="fragment">Meshes stored in a precomputed formats</li>
+<li class="fragment">Each component stored and downloaded lazily</li>
+<li class="fragment">Data is reused between atlases</li>
+</ul>
+</section>
+<section id="brainglobe-atlasapi-v3-1" class="slide level2">
+<h2><code>brainglobe-atlasapi</code> V3</h2>
+<p><img data-src="img/brainglobe-atlasapi_v3_structure.png" class="absolute" style="top: 13%; left: 15%; width: 70%; "></p>
+</section>
+<section id="brainglobe-atlasapi-annotations" class="slide level2 smaller">
+<h2><code>brainglobe-atlasapi</code> annotations</h2>
+<ul>
+<li class="fragment">Multi-resolution 3D image for per voxel annotation</li>
+<li class="fragment">Mask for each region <code>(798, 1320, 800, 1140)</code>
+<ul>
+<li class="fragment">~900 GB uncompressed for 10um resolution!!</li>
+</ul></li>
+<li class="fragment">Compressed with Blosc zstd codec
+<ul>
+<li class="fragment">Only ~180 MB for 10um, 25um, 50um, and 100um resolutions</li>
+</ul></li>
+</ul>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<iframe src="https://neuroglancer-demo.appspot.com/#!https://brainglobe.s3.amazonaws.com/ng_state_files/allen_mouse.json" width="100%" height="650px" style="border:none;" allowfullscreen="">
+</iframe>
+</section></section>
+<section>
 <section id="cellfinder" class="title-slide slide level1 center">
 <h1>Cellfinder</h1>
 
@@ -2069,11 +2176,6 @@ Georg Raiser</p>
 <h2>Cellfinder</h2>
 <p>Collaboration day ideas? Open an <a href="https://github.com/orgs/neuroinformatics-unit/projects/21">issue</a>.</p>
 </section></section>
-<section id="brainglobe-atlas-api" class="title-slide slide level1 center">
-<h1>BrainGlobe Atlas API</h1>
-<p>🚧</p>
-</section>
-
 <section>
 <section id="overall-summary" class="title-slide slide level1 center">
 <h1>Overall summary</h1>
@@ -2138,6 +2240,9 @@ Aeon. 2026. <em>Neuropixels Recording Guide</em>. <a href="https://aeon.swc.ucl.
 </div>
 <div id="ref-Buccino_2023" class="csl-entry" role="listitem">
 Buccino, Alessio P, Olivier Winter, David Bryant, David Feng, Karel Svoboda, and Joshua H Siegle. 2023. <span>“Compression Strategies for Large-Scale Electrophysiology Data.”</span> <em>Journal of Neural Engineering</em> 20 (5): 056009. <a href="https://doi.org/10.1088/1741-2552/acf5a4">https://doi.org/10.1088/1741-2552/acf5a4</a>.
+</div>
+<div id="ref-Claudi2020" class="csl-entry" role="listitem">
+Claudi, Federico, Luigi Petrucco, Adam L. Tyson, Tiago Branco, Troy W. Margrie, and Ruben Portugues. 2020. <span>“BrainGlobe Atlas API: A Common Interface for Neuroanatomical Atlases.”</span> <em>Journal of Open Source Software</em> 5 (54): 2668. <a href="https://doi.org/10.21105/joss.02668">https://doi.org/10.21105/joss.02668</a>.
 </div>
 <div id="ref-hp_tech_takes_how_nodate" class="csl-entry" role="listitem">
 HP Tech Takes. n.d. <em>How <span>Much</span> <span>RAM</span> <span>Do</span> <span>I</span> <span>Need</span>? <span>A</span> <span>Capacity</span> <span>Guide</span></em>. HP. Accessed July 14, 2026. <a href="https://www.hp.com/us-en/shop/tech-takes/how-much-ram-do-i-need-every-use">https://www.hp.com/us-en/shop/tech-takes/how-much-ram-do-i-need-every-use</a>.
