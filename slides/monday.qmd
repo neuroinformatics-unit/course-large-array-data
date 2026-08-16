@@ -545,6 +545,13 @@ An array of `numpy` arrays
 
 that also behaves like a lazy `numpy` array.
 
+## What does this mean?
+
+![](img/access_2d.png)
+
+## What does this mean?
+
+![](img/access_3d.png)
 
 ## The `dask` array
 

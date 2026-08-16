@@ -66,6 +66,36 @@ with ThreadPoolExecutor(max_workers=4) as pool:
 print(counter)
 ```
 
+## Multi-threading with `Queue`
+
+```{.python}
+import threading
+import queue
+
+q = queue.Queue()
+
+def worker():
+    while True:
+        item = q.get()
+        print(f'Working on {item}')
+        print(f'Finished {item}')
+        q.task_done()
+
+# Turn-on the worker thread.
+threading.Thread(target=worker, daemon=True).start()
+
+# Send thirty task requests to the worker.
+for item in range(30):
+    q.put(item)
+
+# Block until all tasks are done.
+q.join()
+print('All work completed')
+```
+
+::: {footer}
+[https://docs.python.org/3/library/queue.html](https://docs.python.org/3/library/queue.html)
+:::
 ## Multi-threading
 
 * Single Python process
@@ -128,6 +158,8 @@ Python has concurrency built-in.
 * Threads share memory
 * Processes don't
 :::
+
+Use `Queue` for safe communication.
 
 But writing concurrent code is complex and error-prone!
 
