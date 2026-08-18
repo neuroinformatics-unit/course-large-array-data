@@ -535,13 +535,13 @@ A.init.then(() => {
 </section>
 <section id="exploring-a-numpy-array-1" class="slide level2">
 <h2>Exploring a <code>numpy</code> array</h2>
-<div id="b6a3ac39" class="cell" data-execution_count="1">
+<div id="e2b6ed6b" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
-<pre><code>[[45 23  5 63 37 85]
- [67 49 71 42 86 23]
- [23 91 69 15 20 22]
- [44  0 52 23 70 85]
- [69 83 93 40 44 36]]
+<pre><code>[[32 43 65 95 37 88]
+ [ 4 34 82 30 26 22]
+ [69 78 42 87 56 81]
+ [ 5 41 48 63 92 53]
+ [72 56 62 23 33 51]]
 Array shape: (5, 6)</code></pre>
 </div>
 </div>
@@ -576,12 +576,12 @@ Array shape: (5, 6)</code></pre>
 <div class="column" style="width:40%;">
 <p>Extract its bytes</p>
 </div><div class="column" style="width:59%;">
-<div id="4f96bcdb" class="cell" data-execution_count="2">
+<div id="d506efd3" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code>60 bytes total
 
 First five elements:
-0000000000101101 0000000000010111 0000000000000101 0000000000111111 0000000000100101 ...</code></pre>
+0000000000100000 0000000000101011 0000000001000001 0000000001011111 0000000000100101 ...</code></pre>
 </div>
 </div>
 </div></div>
@@ -798,7 +798,7 @@ First five elements:
 </section>
 <section id="the-dask-array-3" class="slide level2">
 <h2>The <code>dask</code> array</h2>
-<div id="e0b3f21f" class="cell" data-execution_count="3">
+<div id="700bfb66" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
 <pre><code>dask.array&lt;random, shape=(10000, 10000), dtype=float64, chunksize=(1000, 1000), chunktype=numpy.ndarray&gt;</code></pre>
 </div>
@@ -815,7 +815,7 @@ First five elements:
 </section>
 <section id="the-dask-array-5" class="slide level2">
 <h2>The <code>dask</code> array</h2>
-<div id="f88ee58b" class="cell" data-execution_count="4">
+<div id="49c66dac" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-stdout">
 <pre><code>dask.array&lt;getitem, shape=(100, 100), dtype=float64, chunksize=(100, 100), chunktype=numpy.ndarray&gt;</code></pre>
 </div>
@@ -831,15 +831,15 @@ First five elements:
 </section>
 <section id="the-dask-array-7" class="slide level2">
 <h2>The <code>dask</code> array</h2>
-<div id="6adcdfa1" class="cell" data-execution_count="5">
+<div id="aee5fea5" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-stdout">
-<pre><code>[[0.55869873 0.15608767 0.65387456 ... 0.28838792 0.85834159 0.23754669]
- [0.19097165 0.24331573 0.11270679 ... 0.11625777 0.56804293 0.72479418]
- [0.12476242 0.73068552 0.14235694 ... 0.73831261 0.15104198 0.48582121]
+<pre><code>[[0.03253803 0.2614327  0.64681631 ... 0.49464121 0.46261251 0.17876863]
+ [0.01697999 0.6643703  0.58008443 ... 0.01420531 0.90376143 0.31415469]
+ [0.95924724 0.16851846 0.09130982 ... 0.35808623 0.82692309 0.88373208]
  ...
- [0.76516345 0.57239181 0.82992808 ... 0.90816151 0.72860562 0.30367242]
- [0.09173725 0.42784511 0.54279486 ... 0.36039986 0.5152709  0.88416931]
- [0.60437703 0.5476941  0.14325768 ... 0.31248716 0.23825601 0.75428585]]</code></pre>
+ [0.68139916 0.6499788  0.85691498 ... 0.96517229 0.01258917 0.35944043]
+ [0.27329427 0.40688852 0.66911353 ... 0.17843952 0.24625911 0.67287817]
+ [0.359546   0.85340175 0.92695889 ... 0.3839975  0.44808929 0.62934189]]</code></pre>
 </div>
 </div>
 <p><code>.compute</code> method gives us control over when to actually load into memory.</p>
@@ -866,18 +866,18 @@ First five elements:
 </section>
 <section id="dask-delayed-1" class="slide level2">
 <h2><code>dask</code> delayed</h2>
-<div id="e928baa4" class="cell" data-execution_count="6">
+<div id="ef7ea45d" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-stdout">
-<pre><code>Delayed('ndarray-f43399d8-759e-46e6-bda4-8385327044e4')
-[ 8875  9430  9842  9607 10585  7822  9699 11167  9266 10783 10816  9982
-  9534 10308  9724  9678 10533 10653 10070 10491 10547  9307 10990  9981
-  9426 10368  7552  9271 10012  9473  9814 10199 10491 10576  9380 10293
-  8713 10230  9461 10194 10183  9614 10101 10326  9187 10234  9171 10141
-  9620  9713  9712 10243  9960  9764 10595 10116  9668  9988 10287  9430
- 10485  9701  9652  9924 10278  9717  9628  9596 11194 10216 10046  9070
-  9789  9218 10206  9895  9799  9235 10492 10045 11119  9970  8959  9933
-  9107 11313  9023  9743  9867 10298  9943 11062 10435  9595 10217 10054
- 10041  9333  9291 10401]</code></pre>
+<pre><code>Delayed('ndarray-6639df84-fc12-4b55-b394-c2452a27e7d0')
+[10713 10070  9443 10340  8764 10698  9925  9931  9548  9109  9852  9778
+  9391  9987  9454  9959 10309 11093 10239 10865  8978  8706  9623  9754
+  9861  9302  9413  8719  9348 11095 10199 11380 10790  9714 10914  8905
+  9777 10032 10765  9924  9883 10885 10268  9401  9282  9391  9267 10121
+  9658  9377  9686 10151  9805  9766 10398 10098  9550  9668  9545  9832
+  9912  9328  9486  9309 10835  9481  9830  9937 10057  9875  9994 10111
+ 10204  9341  9334  9370  9709 10305  9290  9037 10736 10070  9729  8456
+  9310  9280  9567  9878 10244  8613  9541 10346 10905 10115 10486  9773
+ 10633  9783 10230 10062]</code></pre>
 </div>
 </div>
 <p><code>delayed</code> function allows us to execute our own functions lazily.</p>
@@ -1223,7 +1223,7 @@ First five elements:
 </section>
 <section id="multi-threading-example-1" class="slide level2">
 <h2>Multi-threading example</h2>
-<div id="3e08fa42" class="cell" data-execution_count="7">
+<div id="52a75a10" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-stdout">
 <pre><code>400000</code></pre>
 </div>
@@ -1297,7 +1297,7 @@ First five elements:
 </section>
 <section id="multi-processing-example-1" class="slide level2">
 <h2>Multi-processing example</h2>
-<div id="32669942" class="cell" data-execution_count="8">
+<div id="fb8830ca" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-stdout">
 <pre><code>2222
 
@@ -1456,36 +1456,36 @@ First five elements:
 <section id="data-has-a-size-1" class="slide level2">
 <h2>Data has a “size”</h2>
 <p>Computers store data as <em>bits</em>.</p>
-<div id="a6f6be16" class="cell" data-execution_count="9">
+<div id="27947dd8" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-stdout">
 <pre><code>60 bytes total
 
 First five elements:
-0000000000101101 0000000000010111 0000000000000101 0000000000111111 0000000000100101 ...</code></pre>
+0000000000100000 0000000000101011 0000000001000001 0000000001011111 0000000000100101 ...</code></pre>
 </div>
 </div>
 </section>
 <section id="data-compression" class="slide level2">
 <h2>Data compression</h2>
 <p>We can be smart about how to store this data with fewer bits.</p>
-<div id="fd7b7864" class="cell" data-execution_count="10">
+<div id="f9a2aad6" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-stdout">
 <pre><code>60 bytes total
 
 First five elements:
-0000000000101101 0000000000010111 0000000000000101 0000000000111111 0000000000100101 ...</code></pre>
+0000000000100000 0000000000101011 0000000001000001 0000000001011111 0000000000100101 ...</code></pre>
 </div>
 </div>
 </section>
 <section id="data-compression-1" class="slide level2">
 <h2>Data compression</h2>
 <p>We could “encode” something like “assume the first 8 bits are always 0” and halve the file size.</p>
-<div id="bae6735b" class="cell" data-execution_count="11">
+<div id="19e965cb" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-stdout">
 <pre><code>60 bytes total
 
 First five elements:
-0000000000101101 0000000000010111 0000000000000101 0000000000111111 0000000000100101 ...</code></pre>
+0000000000100000 0000000000101011 0000000001000001 0000000001011111 0000000000100101 ...</code></pre>
 </div>
 </div>
 </section>
@@ -2226,6 +2226,10 @@ Georg Raiser</p>
 <li class="fragment">By using them, you are part of it!</li>
 <li class="fragment">Hopefully, interact more during collaboration days!</li>
 </ul>
+</section>
+<section id="feedback" class="slide level2">
+<h2>Feedback</h2>
+<p>Please provide your <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5lz4EqBGfXg4Muz9kMLEUJr-eJ8-25V7WvE0MCUwaEuXctQ/viewform?usp=publish-editor">honest feedback</a> :)</p>
 </section></section>
 <section>
 <section id="thank-you" class="title-slide slide level1 center">
